@@ -1,0 +1,126 @@
+/*@media (max-width: 768px) {
+	h1 {
+		font-size: 1.75rem; 
+	}
+}*/
+
+html {
+    font-size: 16px; 
+	font-family: "Source Sans 3", sans-serif;
+}
+
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	border: 0;
+	text-decoration: none;
+	/*list-style: none;*/
+	/*appearance: none;*/
+}
+  
+body{
+	width: 100vw;
+	height: 100vh;
+	user-select: none;
+	overflow-x: hidden;
+}
+
+:root {
+	--clr-primary: #7380ec;
+	--clr-danger: #ff7782;
+	--clr-success: #41f1b6;
+	--clr-white: #fff;
+	--clr-info-dark: #687D9F;
+	--clr-info-light: #dce1eb;
+	--clr-dark: #363949;
+	--clr-warnig: #ff4edc;
+	--clr-light: rgba(132, 139, 200, 0.18);
+	--clr-primary-variant: #0074FF;
+	--clr-primary-variant2: #033878;
+	--clr-dark-variant: #677483;
+	--clr-color-background: #f6f6f9;
+
+	--card-border-radius: 2rem;
+	--border-radius-1: 0.4rem;
+	--border-radius-2: 0.8rem;
+	--border-radius-3: 1.2rem;
+
+	--card-padding: 1.8rem;
+	--padding-1: 1.2rem;
+	--box-shadow: 0 2rem 3rem var(--clr-light);
+}
+
+/* dark theme */
+.dark-theme-variables {
+	--clr-color-background: #181a1e;
+	--clr-white: #202528;
+	--clr-light: rgba(0, 0, 0, 0.4);
+	--clr-dark: #edeffd;
+	--clr-dark-variant: #677483;
+	--box-shadow: 0 2rem 3rem var(--clr-light)
+}
+
+/*Títulos*/
+h1{
+    color: #027EB3;
+    font-weight: bold;
+	font-size: 2.5rem;
+    line-height: 2.5rem;
+    letter-spacing: 0;
+    text-align: center; 
+    margin: 0;
+}
+
+/*Subtítulos*/
+h2{
+	color: #000000;
+    font-weight: bold;
+	font-size: 1.5rem;
+    line-height: 1.5rem;
+    letter-spacing: 0;
+    text-align: left; 
+    margin: 0;
+}
+
+/*Texto negrita mediano*/
+h3{
+	color: #000000;
+    font-weight: bold;
+	font-size: 1rem;
+    line-height: 2rem;
+    letter-spacing: 0;
+    text-align: left; 
+    margin: 0;
+}
+
+/*Texto normal mediano*/
+h4{
+	color: #000000;
+    font-weight: 500;
+	font-size: 1rem;
+    line-height: 2rem;
+    letter-spacing: 0.3px;
+    margin: 0;
+}
+
+/*Texto gris mediano*/
+h5{
+	color: #AAA;
+    font-weight: 500;
+	font-size: 1rem;
+    line-height: 1rem;
+    letter-spacing: 0.3px;
+    margin: 0;
+}
+
+/*Texto gris pequeño*/
+
+h6{
+	color: #AAA;
+    font-weight: 500;
+	font-size: 0.5rem;
+    line-height: 1rem;
+    letter-spacing: 0.3px;
+    margin: 0;
+}

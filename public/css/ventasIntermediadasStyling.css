@@ -1,0 +1,257 @@
+.ventasIntermediadasContainer {
+    margin-top: 1.4rem;
+    width: auto;
+}
+
+.firstRow{
+    display: grid;
+    width: 100%;
+    height: 5%;
+    gap: 1.5rem;
+    grid-template-columns: 30rem 10rem;
+    align-items: center;
+}
+
+.thirdRow{
+    margin-top: 1rem;
+    display: flex;
+    width: 100%;
+    height: 5%;
+    align-items: left;
+}
+
+.searcherContainer{
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 5% auto;
+    width: 100%;
+    height: 2rem;
+    background-color: #F3F3F3;
+    padding: 0.25rem 1rem 0.5rem 1rem;
+    border-radius: 2rem 2rem 2rem 2rem;;
+    align-items: center;
+}
+
+.searcherContainer span{
+    color: #AAA;
+    font-size: 1.25rem;
+}
+
+.searcher{
+    width: 100%;
+    height: 100%
+}
+
+.searcher input{
+    width: 100%;
+    height: 100%;
+    color: #000;
+    background-color: transparent;
+    border: 0;
+    outline: 0;
+    font-size: 0.9rem;
+}
+
+.searcher input::placeholder {
+    color: #AAA;
+}
+
+.agregarNuevaVentaContainer {
+    background: #2E1572;
+    border-radius: 40px;
+    display: flex; /* Establece el contenedor como Flex */
+    max-width: 10rem; /* Asegura que el contenedor tome todo el ancho disponible */
+    min-height: 3rem; /* Establece una altura mínima para evitar que sea demasiado pequeño */
+    align-items: center;
+    padding: 0.1rem 1rem;
+    margin: 0;
+}
+
+.agregarNuevaVentaContainer:hover{
+    background-color: #42219c;
+}
+
+.btnAgregarNuevaVenta {
+    color: #FFF;
+    font-size: 0.9rem;
+    font-weight: 600;
+    display: flex;
+    width: 100%; /* Toma todo el ancho disponible del contenedor padre */
+    padding: 0.3rem; /* Ajusta el padding según sea necesario */
+    align-items: center;
+    justify-content: left;
+    border: none;
+    background: none;
+    cursor: pointer;
+    white-space: normal; /* Permite que el texto se ajuste automáticamente */
+    word-break: break-word; /* Asegura que las palabras largas se rompan correctamente */
+}
+
+.btnAgregarNuevaVenta span {
+    font-size: 1.5rem;
+    color: #FFF;
+}
+
+.date {
+    display: inline-block;
+    background: var(--clr-white);
+    border-radius: var(--border-radius-1);
+    margin-top: 1rem;
+    padding: 0.5rem 1.6rem;
+}
+
+.insights {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.6rem;
+}
+
+.insights > div {
+    background-color: var(--clr-white);
+    padding: var(--card-padding);
+    border-radius: var(--card-border-radius);
+    margin-top: 1rem;
+    box-shadow: var(--box-shadow);
+    transition: all 0.3s ease;
+}
+
+.insights > div:hover {
+    box-shadow: none;
+}
+
+.ventasIntermediadasContainer .insights > div span {
+    background: coral;
+    padding: 0.5rem;
+    border-radius: 50%;
+    color: var(--clr-white);
+    font-size: 2rem;
+}
+
+.ventasIntermediadasContainer .insights > div.expenses span {
+    background: var(--clr-danger);
+}
+
+.ventasIntermediadasContainer .insights > div.income span {
+    background: var(--clr-success);
+}
+
+.ventasIntermediadasContainer .insights > div .middle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.ventasIntermediadasContainer .insights > div .middle h1 {
+    font-size: 1.6rem;
+}
+
+.ventasIntermediadasContainer h1 {
+    color: var(--clr-dark);
+}
+
+.ventasIntermediadasContainer .insights h1,
+.ventasIntermediadasContainer .insights h3,
+.ventasIntermediadasContainer .insights p {
+    color: var(--clr-dark);
+}
+
+.ventasIntermediadasContainer .insights .progress {
+    position: relative;
+    height: 68px;
+    width: 68px;
+    border-radius: 50px;
+}
+
+.ventasIntermediadasContainer .insights svg {
+    height: 150px;
+    width: 150px;
+    position: absolute;
+    top: 0;
+}
+
+.ventasIntermediadasContainer .insights svg circle {
+    fill: none;
+    stroke: var(--clr-primary);
+    transform: rotate(270deg);
+    stroke-width: 5;
+}
+
+.ventasIntermediadasContainer .insights .sales svg circle,
+.ventasIntermediadasContainer .insights .expenses svg circle,
+.ventasIntermediadasContainer .insights .income svg circle {
+    stroke-dashoffset: 0;
+    stroke-dasharray: 150;
+}
+
+.ventasIntermediadasContainer .insights .income svg circle {
+    stroke: var(--clr-success);
+}
+
+.ventasIntermediadasContainer .insights .progress .number {
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Recent order */
+.ventasIntermediadasContainer .recent_order {
+    margin-top: 2rem;
+}
+
+.ventasIntermediadasContainer .recent_order h2 {
+    color: var(--clr-dark);
+    margin-bottom: 0.8rem;
+}
+
+.ventasIntermediadasContainer .recent_order table {
+    background: var(--clr-white);
+    width: 100%;
+    border-radius: var(--card-border-radius);
+    padding: var(--card-padding);
+    text-align: center;
+    box-shadow: var(--box-shadow);
+    transition: all 0.3s ease;
+    color: var(--clr-dark);
+}
+
+.ventasIntermediadasContainer .recent_order table:hover {
+    box-shadow: none;
+}
+
+.ventasIntermediadasContainer table tbody td {
+    height: 3.8rem;
+    border-bottom: 1px solid var(--clr-white);
+    color: var(--clr-dark-variant);
+}
+
+.ventasIntermediadasContainer table tbody tr:last-child td {
+    border: none;
+}
+
+.ventasIntermediadasContainer .recent_order a {
+    text-align: center;
+    display: block;
+    margin: 1rem;
+}
+
+
+.primary {
+	color: var(--clr-primary);
+}
+  
+.success {
+	color: var(--clr-success);
+}
+  
+.danger {
+	color: var(--clr-danger);
+}
+  
+.warning {
+    color: var(--clr-warnig);
+}
