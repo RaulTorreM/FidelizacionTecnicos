@@ -24,8 +24,6 @@
   --dt-html-background: rgb(33, 37, 41);
 }
 
-
-
 table.dataTable td.dt-control {
   text-align: center;
   cursor: pointer;
@@ -335,10 +333,14 @@ table.dataTable tbody td.dt-body-nowrap {
 }
 
 table.dataTable {
-  width: 100%;
-  margin: 0 auto;
+  width: 100% !important;
   border-spacing: 0;
-  font-size: 0.88rem; /*tabla*/
+  font-size: 0.85rem; /*0.88rem tabla*/
+
+  /* Establecer tamaño más pequeño si el zoom es mayor a 100% */
+  @media screen and (min-width: 100%) {
+    font-size: 0.75rem; /* Tamaño más pequeño del texto */
+  }
   /*
    * Header and footer styles
    */
@@ -346,6 +348,7 @@ table.dataTable {
    * Body styles
    */
 }
+
 table.dataTable thead th,
 table.dataTable tfoot th {
   font-weight: bold;
@@ -560,7 +563,7 @@ div.dt-container .dt-search {
   display: grid;
   gap: 0.5rem;
   grid-template-columns: 2% auto;
-  width: 100%;
+  max-width: 100vh;
   height: 2rem;
   background-color: #F3F3F3;
   padding: 0.25rem 1rem 0.5rem 1rem;

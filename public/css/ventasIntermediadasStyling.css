@@ -1,6 +1,10 @@
 .ventasIntermediadasContainer {
     margin-top: 1.4rem;
-    width: auto;
+    margin-right: 1rem;
+    border-radius: 1rem;
+    width: 100%;
+    background-color: #fff;
+    padding: 1rem;
 }
 
 .firstRow{
@@ -14,8 +18,7 @@
 
 .thirdRow{
     margin-top: 1rem;
-    display: flex;
-    width: 100%;
+    width: auto;
     height: 5%;
     align-items: left;
 }
@@ -227,6 +230,22 @@
     height: 3.8rem;
     border-bottom: 1px solid var(--clr-white);
     color: var(--clr-dark-variant);
+}
+
+/* Estilos específicos de celdas de Estado */
+.ventasIntermediadasContainer table tbody td.redimido {
+    color: green;
+    font-weight: bold;
+}
+
+.ventasIntermediadasContainer table tbody td.en-espera {
+    color: orange;
+    font-weight: bold;
+}
+
+.ventasIntermediadasContainer table tbody td.tiempo-agotado {
+    color: red;
+    font-weight: bold;
 }
 
 .ventasIntermediadasContainer table tbody tr:last-child td {

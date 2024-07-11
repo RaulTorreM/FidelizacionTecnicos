@@ -29,7 +29,7 @@ class VentaIntermediadaSeeder extends Seeder
                 'nombreTecnico' => 'Josué García Betancourt',
                 'tipoCodigoCliente_VentaIntermediada' => 'DNI',
                 'codigoCliente_VentaIntermediada' => '12345678',
-                'nombreCliente_VentaIntermediada' => 'Nombre2Apellido2 Apellido22',
+                'nombreCliente_VentaIntermediada' => 'Nombre2 Apellido2 Apellido22',
                 'fechaHoraEmision_VentaIntermediada' => '2024-05-30 08:25:11',
                 'fechaHoraCargada_VentaIntermediada' => now(),
                 'montoTotal_VentaIntermediada' => 20,
