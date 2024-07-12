@@ -4,6 +4,7 @@
 
 @push('styles')
     <link rel="stylesheet" href="{{ asset('css/ventasIntermediadasStyling.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/modalAgregarVenta.css') }}">
     <link rel="stylesheet" href="{{ asset('css/datatables.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" 
@@ -22,11 +23,14 @@
             </div>-->
             
             <div class="agregarNuevaVentaContainer">
-                <button class="btnAgregarNuevaVenta">
+                <button class="btnAgregarNuevaVenta" onclick="openModal('modalAgregarVenta')">
                     Agregar nueva venta
                     <span class="material-symbols-outlined">note_add</span>
                 </button>
             </div>
+
+            <!--Modal para agregar nueva venta-->
+            @include('components.modalAgregarVenta')
         </div>
 
         <!--Tabla de cursos locales-->
@@ -74,10 +78,13 @@
             </table>
         </div>
         
+        
+
     </div>
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/jszip.min.js') }}"></script>
     <script src="{{ asset('js/datatables.js') }}"></script>
+    <script src="{{ asset('js/modalAgregarVentaScript.js') }}"></script>
     <script>
         $(document).ready(function() {
             $('#tblVentasIntermediadas').DataTable({

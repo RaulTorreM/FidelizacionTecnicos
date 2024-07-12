@@ -54,17 +54,17 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Mostrar opciones de la lista con el id correspondiente
-    window.toggleOptions = function(id) {
+    window.toggleOptionsUser = function(id) {
         var options = document.getElementById(id);
         options.style.display = (options.style.display === 'block') ? 'none' : 'block';
     }
 
     // Colocar el valor de la opción en el input
-    window.selectOption = function(value) {
+    /*window.selectOptionDashboard = function(value) {
         var input = document.getElementById('idUserDivList').getElementsByTagName('input')[0];
         input.value = value;
-        toggleOptions('userList');
-    }
+        toggleOptionsUser('userList');
+    }*/
 
     // Ir al enlace de la opción de la lista
     window.linkOption = function(value) {

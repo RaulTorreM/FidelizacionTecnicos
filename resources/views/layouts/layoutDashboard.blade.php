@@ -84,11 +84,11 @@
                 </div>
                 <div class="user_options_List" id="user_options_List">
                     <div class="div-input-select" id="idUserDivList">
-                        <label id="labelDesplegable" type="text-autocomplete" placeholder="Admin" onclick="toggleOptions('userList')">
+                        <label id="labelDesplegable" type="text-autocomplete" placeholder="Admin" onclick="toggleOptionsUser('userList')">
                             Administador
                             <span class="material-symbols-outlined">keyboard_arrow_down</span>
                         </label>
-                        <ul class="select-items" id="userList">
+                        <ul class="select-items-userList" id="userList">
                             <li onclick="linkOption('perfil')">Perfil</li>
                             <li onclick="linkOption('#')">Opción 2</li>
                         </ul>

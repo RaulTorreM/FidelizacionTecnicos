@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use function Psy\debug;
 use App\Models\VentaIntermediada;
 use App\Models\Canje;
+use App\Models\Tecnico;
 
 class VentaIntermediadaController extends Controller
 {
@@ -82,9 +83,7 @@ class VentaIntermediadaController extends Controller
             return $ventaObj;
         });
         
-        return view('dashboard.ventasIntermediadas', compact('ventas'));
-        
+        $tecnicos = Tecnico::all();
+        return view('dashboard.ventasIntermediadas', compact('ventas', 'tecnicos'));
     }
-
-    
 }
