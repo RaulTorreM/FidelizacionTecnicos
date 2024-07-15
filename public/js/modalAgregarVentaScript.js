@@ -25,6 +25,40 @@ function closeModal(modalId) {
     }
 }
 
+/*Selección de archivos, falta agregar la lógica para evitar arrastrar archivos con acceso denegado */
+// Función para simular clic en el input file al hacer clic en el botón
+function handleFileSelect() {
+    document.getElementById('fileInput').click();
+}
+
+// Event listener para cuando ya se seleccionó un archivo
+document.getElementById('fileInput').addEventListener('change', function() {
+    var file = this.files[0]; // Obtener el archivo seleccionado
+    if (file) {
+        analizarXML(file);
+    }
+});
+
+// Función para permitir soltar archivos
+function allowDrop(event) {
+    event.preventDefault();
+}
+
+// Event listener para soltar sobre el área
+document.getElementById('fileArea').addEventListener('drop', function(event) {
+    event.preventDefault();
+    var file = event.dataTransfer.files[0]; // Obtener el archivo soltado
+    if (file) {
+        analizarXML(file);
+    }
+});
+
+//Lógica para manejar el archivo xml seleccionado
+function analizarXML(file) {
+    console.log('Archivo seleccionado:', file.name);
+    // Aquí puedes agregar más lógica para analizar o procesar el archivo XML según tus necesidades
+}
+
 // Función para guardar la venta (ejemplo)
 function guardarVenta(modalAgregarVenta) {
     // Aquí puedes agregar lógica para enviar el formulario o realizar otras acciones necesarias

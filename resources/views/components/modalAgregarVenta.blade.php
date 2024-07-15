@@ -27,9 +27,9 @@
 
                 <!-- Seleccionar archivos -->
                 <div class="select-files-div">
-                    <div class="fileArea">
+                    <div class="fileArea" id="fileArea" class="select-files-div" ondragover="allowDrop(event)">
                         <input type="file" id="fileInput" class="file-input" accept=".xml">
-                        <button type="button" class="btnSelectFile">Seleccionar archivo .xml</button>
+                        <button type="button" class="btnSelectFile" onclick="handleFileSelect()">Seleccionar archivo .xml</button>
                         <br>
                         <span>o arrastra y suelta aquí</span>
                     </div>
