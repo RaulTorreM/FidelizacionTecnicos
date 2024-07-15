@@ -77,9 +77,6 @@
                 </tbody>
             </table>
         </div>
-        
-        
-
     </div>
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/jszip.min.js') }}"></script>
@@ -90,8 +87,6 @@
             $('#tblVentasIntermediadas').DataTable({
 
                 // Configuración inicial
-                "autoWidth": true,
-                "responsive": true,
                 lengthMenu: [3, 10, 15], 
                 pageLength: 5, 
                 dom: "Bfrtilp",

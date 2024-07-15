@@ -80,7 +80,7 @@
     font-weight: 600;
     display: flex;
     width: 100%; /* Toma todo el ancho disponible del contenedor padre */
-    padding: 0.3rem; /* Ajusta el padding según sea necesario */
+    padding: 0.3rem; 
     align-items: center;
     justify-content: left;
     border: none;

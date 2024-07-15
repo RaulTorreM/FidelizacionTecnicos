@@ -336,11 +336,6 @@ table.dataTable {
   width: 100% !important;
   border-spacing: 0;
   font-size: 0.85rem; /*0.88rem tabla*/
-
-  /* Establecer tamaño más pequeño si el zoom es mayor a 100% */
-  @media screen and (min-width: 100%) {
-    font-size: 0.75rem; /* Tamaño más pequeño del texto */
-  }
   /*
    * Header and footer styles
    */
@@ -598,7 +593,20 @@ div.dt-container .dt-input {
   padding: 5px;
   background-color: transparent;
   color: inherit;
+  outline: none;
 }
+
+/*limpiar search ícono*/
+input[type="search"]::-webkit-search-cancel-button { 
+  -webkit-appearance: none;
+  appearance: none;
+  height: 1.2rem; 
+  width: 1.2rem;
+  background: url('../images/close-icon.png') no-repeat center center; 
+  background-size: contain; /* Ajusta el tamaño del ícono al contenedor */
+  cursor: pointer;
+}
+
 div.dt-container select.dt-input {
   padding: 4px;
   border: none;

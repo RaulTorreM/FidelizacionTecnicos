@@ -9,6 +9,8 @@
     height: 100%;
     overflow: auto;
     background-color: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente */
+    opacity: 0; /* Inicialmente transparente */
+    transition: opacity 0.3s ease; /* Transición suave de 0.3 segundos */
 }
 
 .modal-dialog {
@@ -16,6 +18,9 @@
     margin: 10% auto;
     width: 80%; /* Ancho del modal */
     max-width: 600px; /* Ancho máximo del modal */
+    opacity: 0; /* Inicialmente transparente */
+    transform: translateY(-100px); /* Inicialmente desplazado hacia arriba */
+    transition: opacity 0.3s ease, transform 0.3s ease; /* Transición suave */
 }
 
 .modal-content {
@@ -160,12 +165,14 @@
     max-height: 200px; /* Altura máxima del desplegable */
     margin-top: 3px;
     overflow-y: auto;
+    max-height: 15rem;
 }
 
 .select-items li {
     padding: 10px;
     cursor: pointer;
     transition: background-color 0.3s;
+    color: #666;
 }
 
 .select-items li:hover {
@@ -188,4 +195,52 @@
 
 .select-items::-webkit-scrollbar-thumb:hover {
     background: hsla(220, 4%, 58%, 0.5); /* Color del thumb al pasar el cursor */
+}
+
+
+.select-files-div {
+    height: auto;
+    text-align: center; 
+}
+
+.fileArea {
+    border: 2px dashed #ccc;
+    padding: 2.7rem;
+    margin-top: 2rem;
+    cursor: pointer;
+    position: relative;
+    display: inline-block;
+    height: 10rem;
+    text-align: center;
+    justify-self: center;
+}
+
+/* Estilos para la zona de selección de archivos */
+.file-input {
+    display: none;
+}
+  
+.btnSelectFile {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+}
+  
+.btnSelectFile:hover {
+    background-color: #0056b3;
+}
+
+.select-files span {
+    display: block;
+    margin-top: 10px;
+    font-size: 0.9rem;
+    color: #777;
+}
+
+.select-files.dragover {
+    border-color: #007bff;
 }

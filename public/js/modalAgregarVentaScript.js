@@ -3,6 +3,11 @@ function openModal(modalId) {
     var modal = document.getElementById(modalId);
     if (modal) {
         modal.style.display = 'block';
+        setTimeout(function() {
+            modal.style.opacity = 1; // Hacer el modal visible de forma gradual
+            modal.querySelector('.modal-dialog').style.transform = 'translateY(0)'; // Animación de entrada del modal
+            modal.querySelector('.modal-dialog').style.opacity = 1; // Hacer el modal-content visible gradualmente
+        }, 50); // Pequeño retraso para asegurar la transición CSS
         document.body.style.overflow = 'hidden'; // Evita el scroll de fondo cuando está abierto el modal
     }
 }
@@ -10,15 +15,21 @@ function openModal(modalId) {
 function closeModal(modalId) {
     var modal = document.getElementById(modalId);
     if (modal) {
-        modal.style.display = 'none';
-        document.body.style.overflow = ''; // Permite el scroll de nuevo cuando se cierra el modal
+        modal.style.opacity = 0; // Hacer el modal gradualmente invisible
+        modal.querySelector('.modal-dialog').style.transform = 'translateY(-50px)'; // Animación de salida del modal
+        modal.querySelector('.modal-dialog').style.opacity = 0; // Hacer el modal-content gradualmente invisible
+        setTimeout(function() {
+            modal.style.display = 'none';
+            document.body.style.overflow = ''; // Permite el scroll de nuevo cuando se cierra el modal
+        }, 300); // Espera 0.3 segundos (igual a la duración de la transición CSS)
     }
 }
 
 // Función para guardar la venta (ejemplo)
-function guardarVenta() {
+function guardarVenta(modalAgregarVenta) {
     // Aquí puedes agregar lógica para enviar el formulario o realizar otras acciones necesarias
     document.getElementById('formAgregarVenta').submit();
+    closeModal(modalAgregarVenta);
 }
 
 function toggleOptions(id) {

@@ -19,15 +19,25 @@
                             @foreach ($tecnicos as $tecnico)
                               <li onclick="selectOption('{{ $tecnico->idTecnico }} - {{ $tecnico->nombreTecnico }}')">
                                 {{ $tecnico->idTecnico }} - {{ $tecnico->nombreTecnico }}
-                              </li>git 
+                              </li>
                             @endforeach
                         </ul>
                     </div>
                 </form>
+
+                <!-- Seleccionar archivos -->
+                <div class="select-files-div">
+                    <div class="fileArea">
+                        <input type="file" id="fileInput" class="file-input" accept=".xml">
+                        <button type="button" class="btnSelectFile">Seleccionar archivo .xml</button>
+                        <br>
+                        <span>o arrastra y suelta aquí</span>
+                    </div>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" onclick="closeModal('modalAgregarVenta')">Cancelar</button>
-                <button type="button" class="btn btn-primary" onclick="guardarVenta()">Guardar</button>
+                <button type="button" class="btn btn-primary" onclick="guardarVenta('modalAgregarVenta')">Guardar</button>
             </div>
         </div>
     </div>
