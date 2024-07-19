@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('nombreTecnico', 255);   
             
             $table->string('tipoCodigoCliente_VentaIntermediada', 3); //DNI - RUC
-            $table->string('codigoCliente_VentaIntermediada', 8); //77043114
+            $table->string('codigoCliente_VentaIntermediada', 11); //77043114 - 10703047951
             $table->string('nombreCliente_VentaIntermediada', 100); //Josué García Betancourt
             $table->dateTime('fechaHoraEmision_VentaIntermediada'); 
             $table->dateTime('fechaHoraCargada_VentaIntermediada')->default(now());

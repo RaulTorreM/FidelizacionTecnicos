@@ -49,13 +49,41 @@ document.getElementById('fileArea').addEventListener('drop', function(event) {
     event.preventDefault();
     var file = event.dataTransfer.files[0]; // Obtener el archivo soltado
     if (file) {
-        analizarXML(file);
+        checkFileAccess(file).then((isAccessible) => {
+            if (isAccessible) {
+                analizarXML(file);
+            }
+        }).catch((error) => {
+            console.error('Error al revisar acceso a archivo:', error);
+        });
     }
 });
 
+// Función para verificar el acceso al archivo usando promesas
+function checkFileAccess(file) {
+    return new Promise((resolve, reject) => {
+        // Comprobar el tipo de archivo
+        if (file.type !== 'text/xml' && file.type !== '') {
+            console.error('Tipo de archivo no permitido:', file.type);
+            reject('Tipo de archivo no permitido');
+        }
+
+        // Intentar leer el archivo para verificar el acceso
+        const reader = new FileReader();
+        reader.readAsText(file);
+        reader.onload = function() {
+            console.log('Acceso al archivo permitido');
+            resolve(true);
+        };
+        reader.onerror = function() {
+            reject('Acceso al archivo denegado');
+        };
+    });
+}
+
 //Lógica para manejar el archivo xml seleccionado
 function analizarXML(file) {
-    console.log('Archivo seleccionado:', file.name);
+    console.log('Archivo seleccionado:', file.name, "analizando...");
     // Aquí puedes agregar más lógica para analizar o procesar el archivo XML según tus necesidades
 }
 

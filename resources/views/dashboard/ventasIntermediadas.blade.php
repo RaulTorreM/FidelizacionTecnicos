@@ -58,14 +58,21 @@
                     @foreach ($ventas as $venta)
                     <tr>
                         <td>{{ $contador++ }}</td> 
-                        <td>{{ $venta->idVentaIntermediada }}</td>
+                        <td>{{ $venta->idVentaIntermediada }} <br>
+                            <small>{{ $venta->tipoComprobante}}</small>
+                        </td>
                         <td>{{ $venta->fechaHoraEmision_VentaIntermediada }}</td>
                         <td>{{ $venta->fechaHoraCargada_VentaIntermediada }}</td>
-                        <td>{{ $venta->nombreCliente_VentaIntermediada }}</td>
+                        <td>{{ $venta->nombreCliente_VentaIntermediada }} <br>
+                            <small>{{ $venta->tipoCodigoCliente_VentaIntermediada }}:  
+                                   {{ $venta->codigoCliente_VentaIntermediada }}
+                            </small>
+                        </td>
                         <td>{{ $venta->montoTotal_VentaIntermediada }}</td>
                         <td>{{ $venta->puntosGanados_VentaIntermediada }}</td>
                         <td>{{ $venta->nombreTecnico }} <br>
-                            DNI: {{ $venta->idTecnico }} </td>
+                            <small>DNI: {{ $venta->idTecnico }}</small>
+                        </td>
                         <td>{{ $venta->fechaHoraCanje }}</td>
                         <td>{{ $venta->puntosRestantes}}</td>
                         <!--<td>{{ $venta->estadoVentaIntermediada }}</td>-->

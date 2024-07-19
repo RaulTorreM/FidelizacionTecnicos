@@ -3,25 +3,33 @@ document.addEventListener('DOMContentLoaded', function() {
     const routes = JSON.parse(dashboardContainer.getAttribute('data-routes'));
     const menuToggleButton = document.getElementById('menu_toggle_button');
     const aside = document.querySelector('aside');
-    const mainContent = document.querySelector('.main');
+    const linksSidebar = document.querySelectorAll('aside .sidebar a'); // Selecciona todos los enlaces 
+                                                                        // dentro del sidebar 
     const h5Elements = document.querySelectorAll('.sidebar a h5'); // Selecciona todos los h5 
                                                                    // dentro de los enlaces del sidebar
+    const sidebar = document.querySelectorAll('.sidebar'); 
 
     // Función para obtener el estado guardado del sidebar
     function getSidebarState() {
         return localStorage.getItem('sidebarState') === 'closed';
     }
 
+    function getMenuButtonState() {
+        return localStorage.getItem('menuToggleButton') === 'closed';
+    }
+
     // Función para guardar el estado del sidebar
     function saveSidebarState(state) {
         localStorage.setItem('sidebarState', state ? 'closed' : 'open');
+        localStorage.setItem('menuToggleButton', state ? 'closed' : 'open');
     }
 
     // Inicializa el estado del sidebar según lo guardado en localStorage
     function initializeSidebarState() {
         const isClosed = getSidebarState();
+        const isBtnClosed = getMenuButtonState();
         aside.classList.toggle('closed', isClosed);
-        mainContent.classList.toggle('expanded', !isClosed);
+        menuToggleButton.classList.toggle('closed', isBtnClosed);
 
         // Oculta los h5 si el sidebar está cerrado al inicio
         if (isClosed) {
@@ -80,21 +88,34 @@ document.addEventListener('DOMContentLoaded', function() {
     // Manejar el botón de menú para abrir/cerrar el sidebar
     menuToggleButton.addEventListener('click', () => {
         const isClosed = aside.classList.toggle('closed');
-        mainContent.classList.toggle('expanded', !isClosed);
+        menuToggleButton.classList.toggle('closed', isClosed);
         
-        // Guarda el estado actual del sidebar en localStorage
+        // Guarda el estado actual del sidebar y del botón 'menu_toggle_button' en localStorage
         saveSidebarState(isClosed);
-    
-        // Cambia el ícono del botón de menú según el estado del sidebar
-        if (isClosed) {
-            menuToggleButton.innerHTML = '<span class="material-symbols-outlined">arrow_forward_ios</span>';
-        } else {
-            menuToggleButton.innerHTML = '<span class="material-symbols-outlined">arrow_back_ios</span>';
-        }
-    
-        // Toggle para ocultar los h5 cuando se cierra el sidebar
+        
+        // Toggle para ocultar los h5 cuando se cierra el aside
         h5Elements.forEach(function(h5) {
             h5.classList.toggle('hidden', isClosed); // Agrega o quita la clase 'hidden'
         });
     });
+
+    /*Manejar el pasar el mouse por encima de un enlace del sidebar*/
+    // Añadir los event listeners a cada enlace
+    sidebar.forEach(sb => {
+        sb.addEventListener('mouseover', handleMouseEnter);
+        sb.addEventListener('mouseout', handleMouseLeave);
+    });
+    // Función para agregar la clase 'hovered' al aside
+    function handleMouseEnter() {
+        aside.classList.add('hovered');
+        h5Elements.forEach(function(h5) {
+            h5.classList.remove('hidden');
+        });
+    }
+
+    // Función para remover la clase 'hovered' del aside
+    function handleMouseLeave() {
+        aside.classList.remove('hovered');
+        initializeSidebarState(); // Reestablecer el sidebar al estado correcto
+    }
 });

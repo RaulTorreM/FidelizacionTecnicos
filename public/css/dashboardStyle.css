@@ -18,17 +18,30 @@
     padding-bottom: 0rem;
 }
 
-.left_menu_close span {
-    max-width: 100%;
-    max-height: 100%;
-    color: var(--clr-info-dark);
+.header .left_menu_close {
     cursor: pointer;
-    margin: 0.7rem;
 }
 
 .left_menu_close:hover {
     color: var(--clr-primary-variant);
     background-color: #EEE;
+}
+
+.left_menu_close span {
+    max-width: 100%;
+    max-height: 100%;
+    color: var(--clr-info-dark);
+    margin: 0.7rem;
+    margin-left: 0.8rem;
+}
+
+.left_menu_close:hover span{
+    font-weight: bold;
+}
+
+.left_menu_close.closed span{
+    transform: rotate(180deg);
+    margin-left: 0.3rem;
 }
 
 .notification_container {
@@ -142,7 +155,7 @@
     grid-column: 2; 
     grid-row: 2; 
     background-color: #F6F7F9;
-    padding: 0 2rem 0 2rem;
+    padding: 0 2rem 0 1rem;
     width: auto;
 }
 
@@ -153,6 +166,7 @@ aside {
     background-color: #F7FAFF;
     box-shadow: 1px 0px 10px rgba(0, 0, 0, 0.1); /* Ajusta los valores según tus preferencias */
     transition: width 0.3s ease; /* Transición para cambiar la anchura */
+    z-index: 10;
 }
 
 aside .top {
@@ -185,7 +199,7 @@ aside .sidebar {
 	height: 90vh; /* Altura máxima */
 	position: relative;
 	top: 1rem;
-    transition: margin-left 0.3s ease; /* Transición para el contenido principal */
+    transition: margin-left 0.9s ease; /* Transición para el contenido principal */
 }
   
 aside .sidebar a {
@@ -205,7 +219,7 @@ aside .sidebar a span {
 }
 
 aside .sidebar a h5 {
-	transition: color 0.5s;
+	transition: color 0.5s, .4s ease-in-out;
 }
 
 aside .sidebar a:last-child {
@@ -213,6 +227,7 @@ aside .sidebar a:last-child {
 	bottom: 1rem; 
 	width: 100%;
 }
+
 
 aside .sidebar a:hover h5 {
     color: var(--clr-primary-variant);
@@ -247,7 +262,6 @@ aside.closed {
     width: 5rem; /* Anchura mínima */
 }
 
-
 aside .sidebar a h5.hidden {
     display: none;
 }
@@ -260,4 +274,8 @@ aside .sidebar a span {
 aside .sidebar a:hover span {
     margin-left: 1rem;
     transition: color 0.7s, margin-left .4s ease;
+}
+
+aside.hovered {
+    width: 13rem; /* Anchura cuando el aside está expandido */
 }

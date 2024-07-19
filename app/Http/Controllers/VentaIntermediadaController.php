@@ -25,11 +25,8 @@ class VentaIntermediadaController extends Controller
         // Construir el nuevo ID con los ceros eliminados
         $idLimpio = $partes[0] . '-'  . $numeroLimpio; // F001-72
 
-        $tipoComprobante = $this->detectarTipoComprobante($id);
-        
         // Concatenar tipoComprobante e idLimpio
-        $numComprobante = $tipoComprobante . "\n". $idLimpio;
-        return $numComprobante;
+        return $idLimpio;
     }
 
     public function detectarTipoComprobante($id) 
@@ -49,7 +46,10 @@ class VentaIntermediadaController extends Controller
 
         $ventas = $ventasIntermediadas->map(function ($venta) {
             // Limpiar id
-            $id = $this->limpiarIDs($venta->idVentaIntermediada);
+            $idLimpio = $this->limpiarIDs($venta->idVentaIntermediada);
+
+            // Obtener tipo de comprobante
+            $tipoComprobante = $this->detectarTipoComprobante($venta->idVentaIntermediada);
 
             // Obtener todas las fechas de canje
             $fechasCanjes = $venta->canjes->pluck('fechaHora_Canje')->toArray();
@@ -65,7 +65,8 @@ class VentaIntermediadaController extends Controller
         
             // Crear un objeto para retorno
             $ventaObj = new \stdClass();
-            $ventaObj->idVentaIntermediada = $id;
+            $ventaObj->idVentaIntermediada = $idLimpio;
+            $ventaObj->tipoComprobante = $tipoComprobante;
             $ventaObj->idTecnico = $venta->idTecnico;
             $ventaObj->nombreTecnico = $venta->nombreTecnico;
             $ventaObj->tipoCodigoCliente_VentaIntermediada = $venta->tipoCodigoCliente_VentaIntermediada;
