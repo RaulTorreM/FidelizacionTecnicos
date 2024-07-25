@@ -4,7 +4,9 @@
 
 @push('styles')
     <link rel="stylesheet" href="{{ asset('css/ventasIntermediadasStyling.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/modals.css') }}">
     <link rel="stylesheet" href="{{ asset('css/modalAgregarVenta.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/modalAgregarNuevoTecnico.css') }}">
     <link rel="stylesheet" href="{{ asset('css/datatables.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" 
@@ -15,13 +17,6 @@
 @section('main-content')
     <div class="ventasIntermediadasContainer">
         <div class="firstRow">
-            <!--<div class="searcherContainer">
-                <span class="material-symbols-outlined">search</span>
-                <div class="searcher">
-                    <input type="text" placeholder="Buscar DNI/Nombre de técnico o número de comprobante">
-                </div>
-            </div>-->
-            
             <div class="agregarNuevaVentaContainer">
                 <button class="btnAgregarNuevaVenta" onclick="openModal('modalAgregarVenta')">
                     Agregar nueva venta
@@ -30,7 +25,10 @@
             </div>
 
             <!--Modal para agregar nueva venta-->
-            @include('components.modalAgregarVenta')
+            @include('modals.modalAgregarVenta')
+
+             <!--Modal para agregar nuevo técnico-->
+             @include('modals.modalAgregarNuevoTecnico')
         </div>
 
         <!--Tabla de cursos locales-->
@@ -75,9 +73,10 @@
                         </td>
                         <td>{{ $venta->fechaHoraCanje }}</td>
                         <td>{{ $venta->puntosRestantes}}</td>
-                        <!--<td>{{ $venta->estadoVentaIntermediada }}</td>-->
-                        <td class="{{ strtolower(str_replace(' ', '-', $venta->estadoVentaIntermediada)) }}">
-                            {{ $venta->estadoVentaIntermediada }}
+                        <td class="estado__celda">
+                            <span class="estado__span-{{strtolower(str_replace(' ', '-', $venta->estadoVentaIntermediada))}}">
+                                {{ $venta->estadoVentaIntermediada }}
+                            </span>
                         </td>
                     </tr>
                     @endforeach

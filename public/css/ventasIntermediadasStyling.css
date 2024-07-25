@@ -233,19 +233,37 @@
 }
 
 /* Estilos específicos de celdas de Estado */
-.ventasIntermediadasContainer table tbody td.redimido {
-    color: green;
-    font-weight: bold;
+
+.estado__celda {
+    padding: 0 !important;
+    margin: 0 !important;
+    text-align: center; 
 }
 
-.ventasIntermediadasContainer table tbody td.en-espera {
-    color: orange;
+.estado__celda span {
+    padding: 5px;
+    border-radius: 5px;
+    margin: 0;
     font-weight: bold;
+    font-size: 0.85rem;
+    display: inline-block;
+    max-width: 100%;
 }
 
-.ventasIntermediadasContainer table tbody td.tiempo-agotado {
-    color: red;
-    font-weight: bold;
+.estado__span-redimido {
+    color: #139161;
+    background-color: rgb(35 218 149 / 20%) !important;
+}
+
+.estado__span-en-espera {
+    color: #2394da;
+    background-color: rgba(35, 78, 218, 0.2)!important;
+}
+
+.estado__span-tiempo-agotado {
+    color: #da2926;
+    background-color: rgba(218, 35, 35, 0.2) !important;
+    width: max-content;
 }
 
 .ventasIntermediadasContainer table tbody tr:last-child td {

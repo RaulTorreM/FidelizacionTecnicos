@@ -1,0 +1,254 @@
+/* Estilos para el modal */
+.modal {
+    display: none; /* Por defecto, ocultar el modal */
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: none;
+    opacity: 0; /* Inicialmente transparente */
+    transition: opacity 0.3s ease; /* Transición suave de 0.3 segundos */
+	overflow-y: none; /*Evitar el scroll vertical del modal*/
+}
+
+.modal-dialog {
+    position: relative;
+    margin: 10% auto;
+    width: 80%; /* Ancho del modal */
+    max-width: 600px; /* Ancho máximo del modal */
+    opacity: 0; /* Inicialmente transparente */
+    transform: translateY(0); /* En su posición original */
+    transition: opacity 0.3s ease, transform 0.3s ease; /* Transición suave */
+}
+
+.modal-dialog.open {
+    opacity: 1; /* Totalmente opaco */
+    transform: translateY(-70px); /* Inicialmente desplazado hacia arriba */
+}
+
+.modal-content {
+    background-color: #F9F9F9;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 1px;
+    margin-bottom: 10px;
+}
+
+.modal-title {
+    margin: 0;
+    color: #000;
+    font-weight: 600;
+}
+
+.modal-body {
+    padding: 20px 0;
+}
+
+.form-group{
+    margin-bottom: 0.5rem;
+}
+
+.modal-footer {
+    border-top: 1px solid #ddd;
+    padding-top: 10px;
+    margin-top: 10px;
+    text-align: right;
+}
+
+/* Estilos para los botones */
+.btn {
+    display: inline-block;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.btn-secondary {
+    background-color: #fff;
+    color: #999;
+    border: 0.2px solid #DDD;
+}
+
+.btn-secondary:hover {
+    background-color: #ECF5FF;
+    color: #46A1FF;
+    border-color: #C6E2FF;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.close {
+    font-size: 1.6rem;
+    color: #AAA;
+    cursor: pointer;
+    background: none;
+}
+
+.close:hover {
+    background-color: none;
+    color: var(--clr-primary-variant);
+}
+
+/*Estilos de los labels y enlaces*/
+.primary-label {
+	color: var(--clr-primary-variant);
+	font-weight: 700;
+}
+
+.primary-label a {
+	color: #AAA;
+    cursor: pointer;
+}
+
+.primary-label a:hover{
+	color: #444;
+
+}
+
+.secondary-label {
+	color: var(--clr-dark);
+	font-weight: 700;
+}
+
+/*Estilos de los inputs*/
+.input-select, .input-container {
+    position: relative;
+    width: 100%;
+    max-width: 400px; 
+}
+
+.input-select-item, .input-item {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 0.5rem;
+    box-sizing: border-box;
+    outline: none;
+    transition: border-color 0.3s;
+    color: #666;
+}
+
+.input-select-item::placeholder, .input-item::placeholder {
+    color: #BBB;
+}
+
+.input-select-item:focus, .input-item:focus{
+    border-color: #007bff; 
+}
+
+/*Estilos de las listas*/
+.select-items {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px 5px 5px 5px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    max-height: 200px; /* Altura máxima del desplegable */
+    margin-top: 3px;
+    overflow-y: auto;
+    max-height: 15rem;
+}
+
+.select-items li {
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    color: #666;
+}
+
+.select-items li:hover {
+    background-color: #f0f0f0; /* Cambia el color de fondo al pasar el ratón */
+}
+
+/*Estilo para el bar scroll de las listas*/
+.select-items::-webkit-scrollbar {
+    width: 0.5rem;
+}
+
+.select-items::-webkit-scrollbar-track {
+    background: hsla(220, 4%, 58%, 0.1); /* Color de fondo del track del scrollbar */
+}
+
+.select-items::-webkit-scrollbar-thumb {
+    background: hsla(220, 4%, 58%, 0.3); /* Color del thumb del scrollbar */
+    border-radius: 5px; /* Bordes redondeados */
+}
+
+.select-items::-webkit-scrollbar-thumb:hover {
+    background: hsla(220, 4%, 58%, 0.5); /* Color del thumb al pasar el cursor */
+}
+
+/* Estilos para la selección de archivos */
+.select-files-div {
+    height: auto;
+    text-align: center; 
+}
+
+.fileArea {
+    border: 2px dashed #ccc;
+    padding: 2.7rem;
+    margin-top: 2rem;
+    cursor: pointer;
+    position: relative;
+    display: inline-block;
+    height: 10rem;
+    text-align: center;
+    justify-self: center;
+}
+
+.file-input {
+    display: none;
+}
+  
+.btnSelectFile {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+}
+  
+.btnSelectFile:hover {
+    background-color: #0056b3;
+}
+
+.select-files span {
+    display: block;
+    margin-top: 10px;
+    font-size: 0.9rem;
+    color: #777;
+}
+
+.select-files.dragover {
+    border-color: #007bff;
+}

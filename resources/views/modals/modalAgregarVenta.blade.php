@@ -10,10 +10,13 @@
                 <form id="formAgregarVenta" action="{{ route('ventasIntermediadas.post') }}" method="POST">
                     @csrf
                     <div class="form-group">
-                        <label id="tecnico">Técnico <a>[+ Nuevo]</a></label>
+                        <label class="primary-label" id="tecnico">
+                            Técnico 
+                            <a onclick="openModal('modalAgregarNuevoTecnico')">[+ Nuevo]</a>
+                        </label>
                     </div>
                     <div class="input-select" id="tecnicoSelect">
-                        <input type="text" id="tecnicoInput" placeholder="Ingresar técnico"
+                        <input class="input-select-item" type="text" id="tecnicoInput" placeholder="Ingresar técnico"
                                oninput="filterOptions()" onclick="toggleOptions('tecnicoOptions')" autocomplete="off">
                         <ul class="select-items" id="tecnicoOptions" style="display: none;">
                             @foreach ($tecnicos as $tecnico)
