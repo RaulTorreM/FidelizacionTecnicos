@@ -1,4 +1,25 @@
-/* Estilos para el modal */
 #modalAgregarNuevoTecnico {
     z-index: 20;
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente */
+}
+
+#modalAgregarNuevoTecnico .modal-dialog {
+    transform: translateY(15px); /* Inicialmente desplazado hacia arriba */
+}
+
+#modalAgregarNuevoTecnico .modal-dialog.open {
+    opacity: 1; /* Totalmente opaco */
+    transform: translateY(0px); /* Inicialmente desplazado hacia arriba */
+}
+
+#phoneInput {
+    max-width: 9rem;
+}
+
+#dniInput {
+    width: 8rem;
+}
+
+#oficioInput {
+    max-width: 16rem;
 }

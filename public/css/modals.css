@@ -54,6 +54,10 @@
 
 .form-group{
     margin-bottom: 0.5rem;
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: left;
 }
 
 .modal-footer {
@@ -113,6 +117,7 @@
 .primary-label {
 	color: var(--clr-primary-variant);
 	font-weight: 700;
+    margin: 0 0.8rem;
 }
 
 .primary-label a {
@@ -158,8 +163,9 @@
 }
 
 /*Estilos de las listas*/
-.select-items {
+.select-items { /*ul*/
     position: absolute;
+    display: none;
     top: 100%;
     left: 0;
     right: 0;
@@ -171,7 +177,6 @@
     list-style-type: none;
     padding: 0;
     margin: 0;
-    max-height: 200px; /* Altura máxima del desplegable */
     margin-top: 3px;
     overflow-y: auto;
     max-height: 15rem;

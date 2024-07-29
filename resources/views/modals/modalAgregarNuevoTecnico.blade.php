@@ -9,49 +9,45 @@
                 <form id="formAgregarNuevoTecnico" action="{{ route('ventasIntermediadas.post') }}" method="POST">
                     @csrf
                     <div class="form-group">
-                        <label id="dniLabel">DNI:</label>
-                        <input type="text" id="dniInput" placeholder="Ingresar DNI">
-                        <label id="name">Nombre:</label>
-                        <input type="text" id="nameInput" placeholder="Ingresar nombre">
+                        <label class="primary-label" id="dniLabel" for="dniInput">DNI:</label>
+                        <input class="input-item" type="number" id="dniInput" placeholder="Ingresar DNI" 
+                               oninput="validateInputLength(this, 8)">
+                        <label class="primary-label" id="nameLabel"  for="nameInput">Nombre:</label>
+                        <input class="input-item" type="text" id="nameInput" placeholder="Ingresar nombre">
                     </div>
                     <div class="form-group">
-                        <label id="phoneLabel">Celular:</label>
-                        <input type="number" id="phoneInput" placeholder="Ingresar celular">
+                        <label class="primary-label" id="phoneLabel" for="phoneInput">Celular:</label>
+                        <input class="input-item" type="number" id="phoneInput" placeholder="Ingresar celular"
+                               oninput="validateInputLength(this, 9)">
+                        <label class="primary-label" id="oficioLabel" for="oficioInput">Oficio:</label>
+
                         <div class="input-select" id="oficioSelect">
-                            <label id="oficioLabel">Oficio:</label>
-                            <input type="text" id="oficioInput" placeholder="Ingresar oficio"
-                                   oninput="filterOptions()" onclick="toggleOptions('oficioOptions')" autocomplete="off">
-                            <ul class="select-items" id="oficioOptions" style="display: none;">
-                                <li>
+                            @php
+                                $idInput = 'oficioInput';
+                                $idOptions = 'oficioOptions';
+                            @endphp
+                            <input class="input-select-item" type="text" id="oficioInput" placeholder="Seleccionar oficio"
+                                   readonly oninput="filterOptions('{{ $idInput }}', '{{ $idOptions }}')" 
+                                   onclick="toggleOptions('{{ $idOptions }}')" autocomplete="off">
+                            <ul class="select-items" id="oficioOptions">
+                                <li onclick="selectOption('Albañil', '{{ $idInput }}', '{{ $idOptions }}')">
                                     Albañil
                                 </li>
-                                <li>
+                                <li onclick="selectOption('Enchapador', '{{ $idInput }}', '{{ $idOptions }}')">
                                     Enchapador
                                 </li>
-                                <li>
+                                <li onclick="selectOption('Enchapador/Albañil', '{{ $idInput }}', '{{ $idOptions }}')">
                                     Enchapador/Albañil
-                                </li>
-                                <li>
-                                    Otro (ejemplo)
                                 </li>
                             </ul>
                         </div>
                     </div>
                 </form>
-
-                <!-- Seleccionar archivos -->
-                <div class="select-files-div">
-                    <div class="fileArea" id="fileArea" class="select-files-div" ondragover="allowDrop(event)">
-                        <input type="file" id="fileInput" class="file-input" accept=".xml">
-                        <button type="button" class="btnSelectFile" onclick="handleFileSelect()">Seleccionar archivo .xml</button>
-                        <br>
-                        <span>o arrastra y suelta aquí</span>
-                    </div>
-                </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" onclick="closeModal('modalAgregarVenta')">Cancelar</button>
-                <button type="button" class="btn btn-primary" onclick="guardarVenta('modalAgregarVenta')">Guardar</button>
+                <button type="button" class="btn btn-secondary" onclick="closeModal('modalAgregarNuevoTecnico')">Cancelar</button>
+                <button type="button" class="btn btn-primary" 
+                        onclick="guardarModal('modalAgregarNuevoTecnico', 'formAgregarNuevoTecnico')">Guardar</button>
             </div>
         </div>
     </div>

@@ -87,6 +87,8 @@
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/jszip.min.js') }}"></script>
     <script src="{{ asset('js/datatables.js') }}"></script>
+    <script src="{{ asset('js/modals.js') }}"></script>
+    <script src="{{ asset('js/modalAgregarNuevoTecnicoScript.js') }}"></script>
     <script src="{{ asset('js/modalAgregarVentaScript.js') }}"></script>
     <script>
         $(document).ready(function() {
