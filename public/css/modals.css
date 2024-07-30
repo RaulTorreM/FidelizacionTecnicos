@@ -142,6 +142,13 @@
     max-width: 400px; 
 }
 
+.idInputSelectContainer {
+    display: flex;
+    flex-direction: row;
+    background-color: transparent;
+    padding: 0;
+}
+
 .input-select-item, .input-item {
     width: 100%;
     padding: 10px;
@@ -160,6 +167,48 @@
 
 .input-select-item:focus, .input-item:focus{
     border-color: #007bff; 
+}
+
+/*Estilos de los only select inputs */
+.onlySelectInput-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 400px;
+    height: fit-content;
+    font-size: 14px;
+    background-color: #FFF;
+    border: 1px solid #ccc;
+    border-radius: 0.5rem;
+    transition: border-color 0.3s;
+}
+
+.onlySelectInput{
+    padding: 20px 10px;
+    width: 100%;
+    height: 30px;
+    box-sizing: border-box;
+    outline: none;
+    background-color: transparent;
+    color: #666;
+    cursor: pointer;
+}
+
+.onlySelectInput::placeholder {
+    color: #BBB;
+}
+
+.onlySelectInput-container span {
+    font-size: 1.2rem;
+    cursor: pointer;
+    background-color: transparent;
+    color: #666;
+    margin-right: 0.5rem;
+}
+
+.onlySelectInput-container span:hover {
+    color: #0b55a4;
 }
 
 /*Estilos de las listas*/
@@ -218,15 +267,31 @@
 }
 
 .fileArea {
+    display: flex;
+    align-content: center;
+    justify-content: center;
     border: 2px dashed #ccc;
-    padding: 2.7rem;
     margin-top: 2rem;
     cursor: pointer;
     position: relative;
     display: inline-block;
     height: 10rem;
+    padding: 0 2rem;
     text-align: center;
     justify-self: center;
+    background-color: #fff;
+}
+
+.fileArea_text {
+    display: flex;
+    flex-direction: column;
+    width: 15rem;
+    margin: auto;
+}
+
+.fileArea.drag-over {
+    border: 4px dashed #ccc;
+    width: 20rem;
 }
 
 .file-input {
@@ -241,6 +306,7 @@
     font-size: 1rem;
     cursor: pointer;
     border-radius: 5px;
+    outline: none;
 }
   
 .btnSelectFile:hover {
@@ -257,3 +323,4 @@
 .select-files.dragover {
     border-color: #007bff;
 }
+

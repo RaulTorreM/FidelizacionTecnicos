@@ -37,9 +37,19 @@ document.getElementById('fileInput').addEventListener('change', function() {
     }
 });
 
-// Función para permitir soltar archivos
 function allowDrop(event) {
     event.preventDefault();
+    document.getElementById('fileArea').classList.add('drag-over');
+}
+
+function removeDrop(event) {
+    event.preventDefault();
+    document.getElementById('fileArea').classList.remove('drag-over');
+}
+
+function handleDrop(event) {
+    event.preventDefault();
+    document.getElementById('fileArea').classList.remove('drag-over');
 }
 
 // Event listener para soltar sobre el área
@@ -85,14 +95,29 @@ function analizarXML(file) {
     // Aquí puedes agregar más lógica para analizar o procesar el archivo XML según tus necesidades
 }
 
-function toggleOptions(id) {
-    var options = document.getElementById(id);
+function toggleOptions(idOptions) {
+    var options = document.getElementById(idOptions);
     options.style.display = (options.style.display === 'block') ? 'none' : 'block';
 }
 
 document.addEventListener("DOMContentLoaded", function() {
     closeOptionsOnClickOutside();
+    initializeClickOutside();
 });
+
+function initializeClickOutside() {
+    document.addEventListener('click', function(event) {
+        var elements = document.querySelectorAll('.onlySelectInput-container');
+        elements.forEach(function(element) {
+            var isClickInside = element.contains(event.target);
+            if (!isClickInside) {
+                element.style.borderColor = '#ccc';
+            } else {
+                element.style.borderColor = '#007bff'; // Mantener el color de foco si está dentro
+            }
+        });
+    });
+}
 
 function closeOptionsOnClickOutside() {
     // Encuentra todos los elementos select en el documento
@@ -101,7 +126,7 @@ function closeOptionsOnClickOutside() {
     selects.forEach(function(select) {
         // Obtiene el elemento ul hijo
         var optionsContainer = select.querySelector('ul');
-
+       
         if (optionsContainer) {
             // Obtiene el ID del ul
             var optionsContainerId = optionsContainer.id;
@@ -149,8 +174,24 @@ function selectOption(value, idInput, idOptions) {
     }
 }
 
+function clearInput(containerClassName) {
+    var container = document.querySelector(containerClassName); 
+    if (container) {
+        var input = container.querySelector('input');
+        if (input) {
+            input.value = ''; // Limpia el valor del input
+        } else {
+            console.error('No se encontró un input siguiente para el contenedor ' + container + '.');
+        }
+    } else {
+        console.error('Elemento con la clase "' + containerClassName + '" no encontrado.');
+    }
+}
+
 // Función para enviar el formulario del las ventanas modales
 function guardarModal(idModal, idForm) {
     document.getElementById(idForm).submit();
     closeModal(idModal);
 }
+
+

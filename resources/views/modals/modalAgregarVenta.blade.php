@@ -5,7 +5,7 @@
                 <h5 class="modal-title">Nueva Venta Intermediada</h5>
                 <button class="close" onclick="closeModal('modalAgregarVenta')">&times;</button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" id="idModalBodyAgregarVenta">
                 <!-- Formulario para agregar nueva venta -->
                 <form id="formAgregarVenta" action="{{ route('ventasIntermediadas.post') }}" method="POST">
                     @csrf
@@ -36,12 +36,14 @@
                 </form>
 
                 <!-- Seleccionar archivos -->
-                <div class="select-files-div">
-                    <div class="fileArea" id="fileArea" class="select-files-div" ondragover="allowDrop(event)">
-                        <input type="file" id="fileInput" class="file-input" accept=".xml">
-                        <button type="button" class="btnSelectFile" onclick="handleFileSelect()">Seleccionar archivo .xml</button>
-                        <br>
-                        <span>o arrastra y suelta aquí</span>
+                <div class="select-files-div" id="idSelectFilesContainer">
+                    <div class="fileArea" id="fileArea" class="select-files-div" ondragover="allowDrop(event)"
+                         ondragleave="removeDrop(event)" ondrop="handleDrop(event)">
+                         <div class="fileArea_text">
+                            <input type="file" id="fileInput" class="file-input" accept=".xml">
+                            <button type="button" class="btnSelectFile" onclick="handleFileSelect()">Seleccionar archivo .xml</button>
+                            <span>o arrastra y suelta aquí</span>
+                         </div>
                     </div>
                 </div>
             </div>

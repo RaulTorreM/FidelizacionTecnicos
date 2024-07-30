@@ -7,3 +7,14 @@
 #idLabelTecnico {
     margin-left: 0;
 }
+
+#idModalBodyAgregarVenta {
+    padding: 20px 0 0 0;
+    max-height: 20rem;
+}
+
+#idSelectFilesContainer {
+    height: 15rem;
+    margin: auto;
+}
+

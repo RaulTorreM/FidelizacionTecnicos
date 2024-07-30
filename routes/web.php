@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\VentaIntermediadaController;
+use App\Http\Controllers\TecnicoController;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ResetPasswordMail;
 use App\Models\VentaIntermediada;
@@ -24,6 +25,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard-recompensas', [DashboardController::class, 'recompensas'])->name('recompensas');  
     Route::get('/dashboard-tecnicos', [DashboardController::class, 'tecnicos'])->name('tecnicos');  
     Route::get('/dashboard-configuracion', [DashboardController::class, 'configuracion'])->name('configuracion');  
+    Route::post('/dashboard-nuevoTecnico', [TecnicoController::class, 'store'])->name('nuevoTecnico.store');  
 
     Route::get('emailExample', function () {
         Mail::to('garciabetancourtjosue@gmail.com')
