@@ -986,6 +986,7 @@ html.dark div.dt-button-info {
   border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
+/*Estilos de los botones de datatable*/
 div.dt-buttons > .dt-button,
 div.dt-buttons > div.dt-button-split .dt-button {
   position: relative;
@@ -1564,3 +1565,14 @@ html[data-bs-theme=dark] div.dtr-modal div.dtr-modal-display {
   border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
+/*Boton excel*/
+div.dt-buttons > .dt-button.buttons-excel {
+  background-color: #186D3F;
+  color: #fff;
+}
+
+/*Boton pdf*/
+div.dt-buttons > .dt-button.buttons-pdf {
+  background-color: #AA0000;
+  color: #fff;
+}
