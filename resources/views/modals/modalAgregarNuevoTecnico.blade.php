@@ -47,11 +47,11 @@
                         
                     </div>
 
-                    <div class="form-group">
-                        <label class="primary-label" id="bornDate" for="bornDateInput">Fecha de nacimiento:</label>
-                        <input class="input-item" type="date" id="bornDateInput" placeholder="Ingresar fecha de nacimiento"
-                               onblur="validateYear(this)" name="fechaNacimiento_Tecnico">
-                    </div>
+                    <div class="form-group" id="form-group-align-start">
+                        <label class="primary-label" id="bornDateLabel" for="bornDateInput">Fecha de nacimiento:</label>
+                        <input class="input-item" type="date" id="bornDateInput"
+                               placeholder="Ingresar fecha de nacimiento" name="fechaNacimiento_Tecnico">
+                        <span class="inline-alert-message" id="dateMessageError">La fecha debe ser posterior al 1 de enero de 1900.</span>                    </div>
                 </form>
             </div>
             <div class="modal-footer">

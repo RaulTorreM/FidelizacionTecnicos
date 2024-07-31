@@ -19,3 +19,27 @@
 #dniInput {
     width: 8rem;
 }
+
+#bornDateLabel {
+    margin-right: 0;
+    max-width: 6rem;
+}
+
+#form-group-align-start {
+    justify-content: start;
+}
+
+#bornDateInput {
+    max-width: 8.5rem;
+}
+
+.inline-alert-message {
+    padding: 0 10px;
+    font-size: 0.9rem;
+    color: #fc4f4b;
+    display: none;
+}
+
+.inline-alert-message.shown {
+    display: inline;
+}
