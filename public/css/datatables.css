@@ -607,6 +607,11 @@ input[type="search"]::-webkit-search-cancel-button {
   cursor: pointer;
 }
 
+input[type="search"]::-webkit-search-cancel-button:hover {
+  border-radius: 40%;
+  background-color: rgb(254, 91, 91);
+}
+
 div.dt-container select.dt-input {
   padding: 4px;
   border: none;
@@ -995,8 +1000,8 @@ div.dt-buttons > div.dt-button-split .dt-button {
   margin-left: 0.167em;
   margin-right: 0.167em;
   margin-bottom: 0.333em;
-  padding: 0.5em 1em;
-  border: 1px solid rgba(0, 0, 0, 0.3);
+  padding: 0.2em 0.7em;
+  /*border: 1px solid rgba(0, 0, 0, 0.3);*/
   border-radius: 2px;
   cursor: pointer;
   font-size: 0.88rem;
@@ -1005,7 +1010,7 @@ div.dt-buttons > div.dt-button-split .dt-button {
   white-space: nowrap;
   overflow: hidden;
   background-color: rgba(0, 0, 0, 0.1); /* Fallback */
-  background: linear-gradient(to bottom, rgba(230, 230, 230, 0.1) 0%, rgba(0, 0, 0, 0.1) 100%);
+  /*background: linear-gradient(to bottom, rgba(230, 230, 230, 0.1) 0%, rgba(0, 0, 0, 0.1) 100%);*/
   filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr="rgba(230, 230, 230, 0.1)", EndColorStr="rgba(0, 0, 0, 0.1)");
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -1027,7 +1032,7 @@ div.dt-buttons > div.dt-button-split .dt-button.disabled {
 div.dt-buttons > .dt-button.dt-button-active:not(.disabled),
 div.dt-buttons > div.dt-button-split .dt-button.dt-button-active:not(.disabled) {
   background-color: rgba(0, 0, 0, 0.1); /* Fallback */
-  background: linear-gradient(to bottom, rgba(179, 179, 179, 0.1) 0%, rgba(0, 0, 0, 0.1) 100%);
+  /*background: linear-gradient(to bottom, rgba(179, 179, 179, 0.1) 0%, rgba(0, 0, 0, 0.1) 100%);*/
   filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr="rgba(179, 179, 179, 0.1)", EndColorStr="rgba(0, 0, 0, 0.1)");
   box-shadow: inset 1px 1px 3px #999999;
 }
@@ -1035,7 +1040,7 @@ div.dt-buttons > .dt-button.dt-button-active:not(.disabled):hover:not(.disabled)
 div.dt-buttons > div.dt-button-split .dt-button.dt-button-active:not(.disabled):hover:not(.disabled) {
   box-shadow: inset 1px 1px 3px #999999;
   background-color: rgba(0, 0, 0, 0.1); /* Fallback */
-  background: linear-gradient(to bottom, rgba(128, 128, 128, 0.1) 0%, rgba(0, 0, 0, 0.1) 100%);
+  /*background: linear-gradient(to bottom, rgba(128, 128, 128, 0.1) 0%, rgba(0, 0, 0, 0.1) 100%);*/
   filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr="rgba(128, 128, 128, 0.1)", EndColorStr="rgba(0, 0, 0, 0.1)");
 }
 div.dt-buttons > .dt-button:hover,
@@ -1044,9 +1049,9 @@ div.dt-buttons > div.dt-button-split .dt-button:hover {
 }
 div.dt-buttons > .dt-button:hover:not(.disabled),
 div.dt-buttons > div.dt-button-split .dt-button:hover:not(.disabled) {
-  border: 1px solid #666;
-  background-color: rgba(0, 0, 0, 0.1); /* Fallback */
-  background: linear-gradient(to bottom, rgba(153, 153, 153, 0.1) 0%, rgba(0, 0, 0, 0.1) 100%);
+  /*border: 1px solid #666;*/
+  /*background-color: rgba(0, 0, 0, 0.1);*/ /* Fallback */
+  /*background: linear-gradient(to bottom, rgba(153, 153, 153, 0.1) 0%, rgba(0, 0, 0, 0.1) 100%);*/
   filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr="rgba(153, 153, 153, 0.1)", EndColorStr="rgba(0, 0, 0, 0.1)");
 }
 div.dt-buttons > .dt-button:focus:not(.disabled),
@@ -1567,12 +1572,52 @@ html[data-bs-theme=dark] div.dtr-modal div.dtr-modal-display {
 
 /*Boton excel*/
 div.dt-buttons > .dt-button.buttons-excel {
-  background-color: #186D3F;
+  background-color: #fff;
+  color: #04AA6D;
+  font-size: 1.2rem;
+  width: 100%;
+  max-width: 3.1rem;
+  border: 2px solid #04AA6D; /* Green */
+  border-radius: 5px;
+  transition-duration: 0.4s;
+}
+
+div.dt-buttons > .dt-button.buttons-excel:hover{
+  background-color: #04AA6D; 
   color: #fff;
 }
 
+/*Estilos propios para componentes del datable*/
+
 /*Boton pdf*/
 div.dt-buttons > .dt-button.buttons-pdf {
-  background-color: #AA0000;
+  background-color: #fff;
+  color: #aa0404;
+  font-size: 1.2rem;
+  width: 100%;
+  max-width: 3.2rem;
+  border: 2px solid #aa0404; /* Green */
+  border-radius: 5px;
+  transition-duration: 0.4s;
+}
+
+div.dt-buttons > .dt-button.buttons-pdf:hover {
+  background-color: #aa0404;
   color: #fff;
+}
+
+div.dt-container .dt-length,
+div.dt-container .dt-search,
+div.dt-container .dt-info,
+div.dt-container .dt-processing,
+div.dt-container .dt-paging {
+  color: #555;
+  font-size: 0.95rem;
+  margin: 0.5rem 0;
+}
+
+
+div.dt-container select.dt-input {
+  border: 1px solid #333;
+  cursor: pointer;
 }

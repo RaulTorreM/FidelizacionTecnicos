@@ -97,8 +97,8 @@
                 // Configuración inicial
                 lengthMenu: [3, 10, 15], 
                 pageLength: 3, 
-                dom: "Bilfrtp", //B:buttons f:filter r:processing t:table
-                                //i:info l:length ("Mostrar n registros") p:paging
+                dom: "Blifrtp", //B:buttons f:filter r:processing t:table
+                                  //i:info l:length ("Mostrar n registros") p:paging
                 buttons: [
                     {   extend: "excelHtml5",
                         text: "<i class='fa-solid fa-file-excel'></i>",
