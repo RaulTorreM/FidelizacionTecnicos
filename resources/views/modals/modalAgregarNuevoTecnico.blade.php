@@ -18,7 +18,7 @@
                     <div class="form-group">
                         <label class="primary-label" id="phoneLabel" for="phoneInput">Celular:</label>
                         <input class="input-item" type="number" id="phoneInput" placeholder="Ingresar celular"
-                               oninput="validateInputLength(this, 9)" name="oficioTecnico">
+                               oninput="validateInputLength(this, 9)" name="celularTecnico">
                         <label class="primary-label" id="oficioLabel" for="oficioInput">Oficio:</label>
                         <div class="input-select" id="oficioSelect">
                             @php
@@ -28,7 +28,7 @@
                            <div class="onlySelectInput-container">
                                 <input class="onlySelectInput" type="text" id="oficioInput" placeholder="Seleccionar oficio"
                                     readonly oninput="filterOptions('{{ $idInput }}', '{{ $idOptions }}')" 
-                                    onclick="toggleOptions('{{ $idOptions }}')" autocomplete="off" name="oficio">
+                                    onclick="toggleOptions('{{ $idOptions }}')" autocomplete="off" name="oficioTecnico">
                                 <span class="material-symbols-outlined"
                                       onclick="clearInput('.onlySelectInput-container')">cancel</span>
                             </div>
@@ -44,20 +44,25 @@
                                 </li>
                             </ul>
                         </div>
-                        
                     </div>
 
-                    <div class="form-group" id="form-group-align-start">
+                    <div class="form-group start">
                         <label class="primary-label" id="bornDateLabel" for="bornDateInput">Fecha de nacimiento:</label>
                         <input class="input-item" type="date" id="bornDateInput"
                                placeholder="Ingresar fecha de nacimiento" name="fechaNacimiento_Tecnico">
-                        <span class="inline-alert-message" id="dateMessageError">La fecha debe ser posterior al 1 de enero de 1900.</span>                    </div>
+                        <span class="inline-alert-message" id="dateMessageError"> Mensaje dinámico </span>      
+                    </div>
+                    
+                    <div class="form-group start">
+                        <label class="aa"> askdasjdlksajdalk </label>
+                        <span class="inline-alert-message"> Mensaje dinámico </span>      
+                    </div>
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" onclick="closeModal('modalAgregarNuevoTecnico')">Cancelar</button>
                 <button type="button" class="btn btn-primary" 
-                        onclick="guardarModal('modalAgregarNuevoTecnico', 'formAgregarNuevoTecnico')">Guardar</button>
+                        onclick="guardarModalAgregarNuevoTecnico('modalAgregarNuevoTecnico', 'formAgregarNuevoTecnico')">Guardar</button>
             </div>
         </div>
     </div>

@@ -25,7 +25,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard-recompensas', [DashboardController::class, 'recompensas'])->name('recompensas');  
     Route::get('/dashboard-tecnicos', [DashboardController::class, 'tecnicos'])->name('tecnicos');  
     Route::get('/dashboard-configuracion', [DashboardController::class, 'configuracion'])->name('configuracion');  
-    Route::post('/dashboard-nuevoTecnico', [TecnicoController::class, 'store'])->name('nuevoTecnico.store');  
+    Route::post('/modal-nuevoTecnico', [TecnicoController::class, 'store'])->name('nuevoTecnico.store');  
 
     Route::get('emailExample', function () {
         Mail::to('garciabetancourtjosue@gmail.com')

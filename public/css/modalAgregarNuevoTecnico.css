@@ -25,7 +25,7 @@
     max-width: 6rem;
 }
 
-#form-group-align-start {
+.form-group .start {
     justify-content: start;
 }
 
