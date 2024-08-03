@@ -1,6 +1,9 @@
 document.addEventListener("DOMContentLoaded", function() {
+    var dniInput = document.getElementById('dniInput');
+    var phoneInput = document.getElementById('phoneInput');
     var dateInput = document.getElementById('bornDateInput');
     var dateMessageError = document.getElementById('dateMessageError');
+    var multiMessageError = document.getElementById('multiMessageError');
     var today = new Date();
     var minDate = '1900-01-01';
     var maxDate = today.toISOString().split('T')[0];
@@ -22,32 +25,20 @@ document.addEventListener("DOMContentLoaded", function() {
         // Verificar si el campo de fecha está vacío
         if (!selectedDate) {
             dateMessageError.classList.remove('shown'); // Mostrar mensaje de error
-            console.log("Campo de fecha vacío");
             return; // Salir de la función si el campo está vacío
         }
         
         if (selectedDate < minDate) {
-            dateMessageError.classList.add('shown'); // Mostrar mensaje de error
             dateMessageError.textContent = 'La fecha debe ser posterior al 1 de enero de 1900.'; 
-            console.log("funciona 1900");
-        } else if (selectedDate > maxDate) {
             dateMessageError.classList.add('shown'); // Mostrar mensaje de error
+        } else if (selectedDate > maxDate) {
             dateMessageError.textContent = 'La fecha debe ser menor a la fecha actual'; 
-            console.log("funciona fecha actual");
+            dateMessageError.classList.add('shown'); // Mostrar mensaje de error
         } else {
             dateMessageError.classList.remove('shown'); // Ocultar mensaje de error
         }
     }
 });
-
-function validateInputLength(input, length) {
-    // Remover caracteres no numéricos
-    input.value = input.value.replace(/[^0-9]/g, '');
-    
-    if (input.value.length > length) {
-        input.value = input.value.slice(0, length);
-    }
-}
 
 function validateFormAgregarNuevoTecnico() {
     // Obtener referencias a los campos de entrada
@@ -70,7 +61,7 @@ function validateFormAgregarNuevoTecnico() {
     var isValid = true;
     for (var key in fields) {
         if (!fields[key].value) {
-            console.log(fields[key].message);
+            //console.log(fields[key].message);
             isValid = false;
         }
     }
@@ -78,11 +69,42 @@ function validateFormAgregarNuevoTecnico() {
     return isValid;
 }
 
+function validateInputLength(input, length) {
+    return input.value.length === length;
+}
+
 function guardarModalAgregarNuevoTecnico(idModal, idForm) {
-    if (validateFormAgregarNuevoTecnico()) {
+    // Validar campos del formulario
+    if (!validateFormAgregarNuevoTecnico()) {
+        multiMessageError.textContent = 'Debe completar todos los campos del formulario.';
+        multiMessageError.classList.add('shown');
+        console.log("Debe completar todos los campos del formulario.");
+        return; // Salir si la validación de campos falla
+    }
+
+    // Validar longitud de DNI y celular
+    var isDniValid = validateInputLength(dniInput, 8);
+    var isPhoneValid = validateInputLength(phoneInput, 9);
+
+    if (!isDniValid && !isPhoneValid) { 
+        multiMessageError.innerHTML  = `El campo DNI debe contener 8 caracteres. <br>
+                                        El campo Celular debe contener 9 dígitos`; // Template literals → ALT GR + } = `
+        multiMessageError.classList.add('shown');
+        console.log("El campo DNI debe contener 8 caracteres.");
+    } else if (!isDniValid) {
+        multiMessageError.textContent = 'El campo DNI debe contener 8 caracteres.';
+        multiMessageError.classList.add('shown');
+        console.log("El campo DNI debe contener 8 caracteres.");
+    } else if (!isPhoneValid) {
+        multiMessageError.textContent = 'El campo Celular debe contener 9 dígitos.';
+        multiMessageError.classList.add('shown');
+        console.log("El campo Celular debe contener 9 dígitos.");
+    }
+
+    // Si ambas validaciones de longitud son correctas, enviar el formulario
+    if (isDniValid && isPhoneValid) {
+        multiMessageError.classList.remove('shown');
         document.getElementById(idForm).submit();
         closeModal(idModal);
-    } else {
-        console.log("No es un formulario valido")
     }
 }

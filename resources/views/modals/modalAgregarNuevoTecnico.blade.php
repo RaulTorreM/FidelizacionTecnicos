@@ -5,20 +5,20 @@
                 <h5 class="modal-title">Registrar nuevo técnico</h5>
                 <button class="close" onclick="closeModal('modalAgregarNuevoTecnico')">&times;</button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" id="idModalBodyAgregarNuevoTecnico">
                 <form id="formAgregarNuevoTecnico" action="{{ route('nuevoTecnico.store') }}" method="POST">
                     @csrf
                     <div class="form-group">
                         <label class="primary-label" id="dniLabel" for="dniInput">DNI:</label>
                         <input class="input-item" type="number" id="dniInput" placeholder="Ingresar DNI" 
-                               oninput="validateInputLength(this, 8)" name="idTecnico">
+                               oninput="validateRealTimeInputLength(this, 8)" name="idTecnico">
                         <label class="primary-label" id="nameLabel"  for="nameInput">Nombre:</label>
                         <input class="input-item" type="text" id="nameInput" placeholder="Ingresar nombre" name="nombreTecnico">
                     </div>
                     <div class="form-group">
                         <label class="primary-label" id="phoneLabel" for="phoneInput">Celular:</label>
                         <input class="input-item" type="number" id="phoneInput" placeholder="Ingresar celular"
-                               oninput="validateInputLength(this, 9)" name="celularTecnico">
+                               oninput="validateRealTimeInputLength(this, 9)" name="celularTecnico">
                         <label class="primary-label" id="oficioLabel" for="oficioInput">Oficio:</label>
                         <div class="input-select" id="oficioSelect">
                             @php
@@ -50,12 +50,11 @@
                         <label class="primary-label" id="bornDateLabel" for="bornDateInput">Fecha de nacimiento:</label>
                         <input class="input-item" type="date" id="bornDateInput"
                                placeholder="Ingresar fecha de nacimiento" name="fechaNacimiento_Tecnico">
-                        <span class="inline-alert-message" id="dateMessageError"> Mensaje dinámico </span>      
+                        <span class="inline-alert-message" id="dateMessageError"> dateMessageError </span>      
                     </div>
                     
                     <div class="form-group start">
-                        <label class="aa"> askdasjdlksajdalk </label>
-                        <span class="inline-alert-message"> Mensaje dinámico </span>      
+                        <span class="inline-alert-message" id="multiMessageError"> multiMessageError. </span>      
                     </div>
                 </form>
             </div>

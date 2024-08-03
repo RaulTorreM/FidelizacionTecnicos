@@ -3,6 +3,10 @@
     background-color: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente */
 }
 
+#idModalBodyAgregarNuevoTecnico {
+    padding: 10px 0 0 0;
+}
+
 #modalAgregarNuevoTecnico .modal-dialog {
     transform: translateY(15px); /* Inicialmente desplazado hacia arriba */
 }

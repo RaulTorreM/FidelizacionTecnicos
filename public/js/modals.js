@@ -194,4 +194,9 @@ function guardarModal(idModal, idForm) {
     closeModal(idModal);
 }
 
+function validateRealTimeInputLength(input, length) {
+    if (input.value.length > length) {
+        input.value = input.value.slice(0, length);
+    }
+}
 
