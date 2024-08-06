@@ -110,21 +110,16 @@ function analizarXML(file) {
     // Aquí puedes agregar más lógica para analizar o procesar el archivo XML según tus necesidades
 }
 
-function toggleOptions(idOptions) {
-    var options = document.getElementById(idOptions);
-    options.style.display = (options.style.display === 'block') ? 'none' : 'block';
-}
-
 document.addEventListener("DOMContentLoaded", function() {
     closeOptionsOnClickOutside();
-    initializeClickOutside();
+    setOnlySelectInputInputFocusColor();
 
     let openModals = JSON.parse(localStorage.getItem('openModals')) || [];
     openModals.forEach(modalId => openModal(modalId));
 });
 
-function initializeClickOutside() {
-    document.addEventListener('click', function(event) {
+function setOnlySelectInputInputFocusColor() {
+    document.   addEventListener('click', function(event) {
         var elements = document.querySelectorAll('.onlySelectInput-container');
         elements.forEach(function(element) {
             var isClickInside = element.contains(event.target);
@@ -137,26 +132,22 @@ function initializeClickOutside() {
     });
 }
 
-function closeOptionsOnClickOutside() {
-    // Encuentra todos los elementos select en el documento
-    var selects = document.querySelectorAll('.input-select');
+function toggleOptions(idInput, idOptions) {
+    var options = document.getElementById(idOptions);
+    var input = document.getElementById(idInput);
 
-    selects.forEach(function(select) {
-        // Obtiene el elemento ul hijo
-        var optionsContainer = select.querySelector('ul');
-       
-        if (optionsContainer) {
-            // Obtiene el ID del ul
-            var optionsContainerId = optionsContainer.id;
-            // Configura el event listener para cerrar las opciones al hacer clic fuera
-            document.addEventListener('click', function(event) {
-                var isClickInside = select.contains(event.target);
-                if (!isClickInside) {
-                    document.getElementById(optionsContainerId).style.display = "none";
-                }
-            });
+    if (options) {
+        if (input.value) {
+            filterOptions(idInput, idOptions);
+        } else {
+            if (options.classList.contains('show')) {
+                options.classList.remove('show');
+                console.log("Cerrando si es que esta abierto");
+            } else {
+                options.classList.add('show');
+            }
         }
-    });
+    }
 }
 
 function filterOptions(idInput, idOptions) {
@@ -166,7 +157,7 @@ function filterOptions(idInput, idOptions) {
     ul = document.getElementById(idOptions);
     li = ul.getElementsByTagName('li');
 
-    for (i = 0; i < li.length; i++) {
+    for (i = 0; i < li.length;   i++) {
         txtValue = li[i].textContent || li[i].innerText;
         if (txtValue.toUpperCase().indexOf(filter) > -1) {
             li[i].style.display = "";
@@ -176,8 +167,11 @@ function filterOptions(idInput, idOptions) {
         }
     }
 
-    // Mostrar la lista de opciones si hay coincidencias, ocultarla si no
-    ul.style.display = hasVisibleOptions ? "block" : "none";
+    if (hasVisibleOptions) {
+        ul.classList.add('show');
+    } else {
+        ul.classList.remove('show');
+    }
 }
 
 function selectOption(value, idInput, idOptions) {
@@ -186,9 +180,9 @@ function selectOption(value, idInput, idOptions) {
 
     if (input) {
         input.value = value;
-        options.style.display = 'none'; // Ocultar las opciones
+        options.classList.remove('show'); // Ocultar las opciones
     } else {
-        console.error('El elemento con id tecnicoInput no se encontró en el DOM');
+        console.error('El elemento con id ' + idOptions + ' no se encontró en el DOM');
     }
 }
 
@@ -204,6 +198,35 @@ function clearInput(containerClassName) {
     } else {
         console.error('Elemento con la clase "' + containerClassName + '" no encontrado.');
     }
+}
+
+function closeOptionsOnClickOutside() {
+    // Encuentra todos los elementos select en el documento
+    var selects = document.querySelectorAll('.input-select');
+    
+    // Función para manejar el clic fuera del select
+    function handleClickOutside(event) {
+        var isClickInside = false;
+
+        // Recorre todos los selects y verifica si el clic fue dentro de uno
+        selects.forEach(function(select) {
+            var options = select.querySelector('ul');
+            if (options) {
+                if (select.contains(event.target) || options.contains(event.target)) {
+                    isClickInside = true;
+                } else {
+                    options.classList.remove('show');
+                }
+            }
+        });
+
+        if (!isClickInside) {
+            console.log("Clickeando afuera");
+        }
+    }
+
+    // Añadir el event listener de clic en el documento
+    document.addEventListener('click', handleClickOutside);
 }
 
 // Función para enviar el formulario del las ventanas modales

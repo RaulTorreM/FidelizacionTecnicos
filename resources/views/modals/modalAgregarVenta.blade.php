@@ -21,7 +21,8 @@
                             $idOptions = 'tecnicoOptions';
                         @endphp
                         <input class="input-select-item" type="text" id="tecnicoInput" placeholder="Ingresar técnico"
-                               oninput="filterOptions('{{ $idInput }}', '{{ $idOptions }}')" onclick="toggleOptions('{{ $idOptions }}')" autocomplete="off">
+                               oninput="filterOptions('{{ $idInput }}', '{{ $idOptions }}')" 
+                               onclick="toggleOptions('{{ $idInput }}', '{{ $idOptions }}')" autocomplete="off">
                         <ul class="select-items" id="tecnicoOptions">
                             @foreach ($tecnicos as $tecnico)
                                 @php
