@@ -11,6 +11,6 @@ class TecnicoController extends Controller
     {
         Tecnico::create($request->all()); // Crear un técnico con todos los campos de la request recepcionada
         // Los datos que no se envian tienen valores por default en la migración   
-        return redirect(route('ventasIntermediadas.create'));
+        return redirect()->route('ventasIntermediadas.create');
     }
 }

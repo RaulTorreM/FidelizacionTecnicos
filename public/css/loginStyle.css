@@ -221,3 +221,7 @@
 		width: 20rem;
 	}
 }
+
+.error {
+	color: rgb(222, 25, 25);
+}

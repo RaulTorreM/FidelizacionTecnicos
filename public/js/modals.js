@@ -1,4 +1,3 @@
-// JavaScript para el modal
 function openModal(modalId) {
     var modal = document.getElementById(modalId);
     if (modal) {
@@ -8,6 +7,13 @@ function openModal(modalId) {
             modal.querySelector('.modal-dialog').classList.add('open');
         }, 50); // Pequeño retraso para asegurar la transición CSS
         document.body.style.overflow = 'hidden'; // Evita el scroll de fondo cuando está abierto el modal
+        
+        // Recuperar el array de modales abiertos y agregar el nuevo
+        let openModals = JSON.parse(localStorage.getItem('openModals')) || [];
+        if (!openModals.includes(modalId)) {
+            openModals.push(modalId);
+            localStorage.setItem('openModals', JSON.stringify(openModals));
+        }
     }
 }
 
@@ -19,6 +25,15 @@ function closeModal(modalId) {
             modal.style.display = 'none';
             document.body.style.overflow = ''; // Permite el scroll de nuevo cuando se cierra el modal
         }, 300); // Espera 0.3 segundos (igual a la duración de la transición CSS)
+        
+         // Elimina el modal de la lista de modales abiertos
+         let openModals = JSON.parse(localStorage.getItem('openModals')) || [];
+         openModals = openModals.filter(id => id !== modalId);
+         if (openModals.length > 0) {
+             localStorage.setItem('openModals', JSON.stringify(openModals));
+         } else {
+             localStorage.removeItem('openModals');
+         }
     }
 }
 
@@ -103,6 +118,9 @@ function toggleOptions(idOptions) {
 document.addEventListener("DOMContentLoaded", function() {
     closeOptionsOnClickOutside();
     initializeClickOutside();
+
+    let openModals = JSON.parse(localStorage.getItem('openModals')) || [];
+    openModals.forEach(modalId => openModal(modalId));
 });
 
 function initializeClickOutside() {

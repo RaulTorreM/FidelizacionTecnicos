@@ -23,12 +23,12 @@
                     <span class="material-symbols-outlined">note_add</span>
                 </button>
             </div>
-
+           
             <!--Modal para agregar nueva venta-->
             @include('modals.modalAgregarVenta')
 
-             <!--Modal para agregar nuevo técnico-->
-             @include('modals.modalAgregarNuevoTecnico')
+            <!--Modal para agregar nuevo técnico-->
+            @include('modals.modalAgregarNuevoTecnico')
         </div>
 
         <!--Tabla de cursos locales-->

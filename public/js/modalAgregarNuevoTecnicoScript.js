@@ -1,12 +1,13 @@
+var today = new Date();
+var minDate = '1900-01-01';
+var maxDate = today.toISOString().split('T')[0];
+
 document.addEventListener("DOMContentLoaded", function() {
     var dniInput = document.getElementById('dniInput');
     var phoneInput = document.getElementById('phoneInput');
     var dateInput = document.getElementById('bornDateInput');
     var dateMessageError = document.getElementById('dateMessageError');
     var multiMessageError = document.getElementById('multiMessageError');
-    var today = new Date();
-    var minDate = '1900-01-01';
-    var maxDate = today.toISOString().split('T')[0];
 
     if (dateInput) {
         // Establecer los atributos min y max una sola vez
@@ -14,17 +15,17 @@ document.addEventListener("DOMContentLoaded", function() {
         dateInput.setAttribute('max', maxDate);
 
         dateInput.addEventListener('input', function() {
-            validateDate();
+            validateRealTimeDate();
         });
     }
 
-    // Función para validar la fecha
-    function validateDate() {
+     // Función para validar la fecha
+    function validateRealTimeDate() {
         var selectedDate = dateInput.value;
 
         // Verificar si el campo de fecha está vacío
         if (!selectedDate) {
-            dateMessageError.classList.remove('shown'); // Mostrar mensaje de error
+            dateMessageError.classList.remove('shown'); 
             return; // Salir de la función si el campo está vacío
         }
         
@@ -39,6 +40,24 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 });
+
+function validateDate() {
+    var selectedDate = document.getElementById('bornDateInput').value;
+
+    // Verificar si el campo de fecha está vacío
+    if (!selectedDate) {
+        dateMessageError.classList.remove('shown'); 
+        return true; // Salir de la función si el campo está vacío
+    }
+    
+    if (selectedDate < minDate) {
+        return false;
+    } else if (selectedDate > maxDate) {
+        return false;
+    } else {
+        return true;
+    }
+}
 
 function validateFormAgregarNuevoTecnico() {
     // Obtener referencias a los campos de entrada
@@ -102,7 +121,7 @@ function guardarModalAgregarNuevoTecnico(idModal, idForm) {
     }
 
     // Si ambas validaciones de longitud son correctas, enviar el formulario
-    if (isDniValid && isPhoneValid) {
+    if (isDniValid && isPhoneValid && validateDate()) {
         multiMessageError.classList.remove('shown');
         document.getElementById(idForm).submit();
         closeModal(idModal);

@@ -37,11 +37,6 @@
                     <input id="email" class="credential-box-input" type="email" name="email" 
                             value="{{ old('email') }}" required placeholder="Ingrese email" 
                             required autofocus autocomplete="username">
-                    @error('email')
-                        <div class="error">
-                            {{ $message }}
-                        </div>
-                    @enderror
                 </div>
 
                 <!-- Password -->
@@ -52,12 +47,19 @@
                     <input id="password" class="credential-box-input" type="password" 
                             name="password" required placeholder="Ingrese contraseña" 
                             required autocomplete="current-password">
-                    @error('password')
-                        <div class="error">
-                            {{ $message }}
-                        </div>
-                    @enderror
                 </div>
+                
+                @error('email')
+                    <div class="error">
+                        {{ $message }}
+                    </div>
+                @enderror
+
+                @error('password')
+                    <div class="error">
+                        {{ $message }}
+                    </div>
+                @enderror
 
                 <!-- Remember Me -->
                 <div class="remember_check">
