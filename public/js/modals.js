@@ -112,13 +112,13 @@ function analizarXML(file) {
 
 document.addEventListener("DOMContentLoaded", function() {
     closeOptionsOnClickOutside();
-    setOnlySelectInputInputFocusColor();
+    setOnlySelectInputFocusColor();
 
     let openModals = JSON.parse(localStorage.getItem('openModals')) || [];
     openModals.forEach(modalId => openModal(modalId));
 });
 
-function setOnlySelectInputInputFocusColor() {
+function setOnlySelectInputFocusColor() {
     document.   addEventListener('click', function(event) {
         var elements = document.querySelectorAll('.onlySelectInput-container');
         elements.forEach(function(element) {
@@ -137,6 +137,7 @@ function toggleOptions(idInput, idOptions) {
     var input = document.getElementById(idInput);
 
     if (options) {
+        /* 
         if (input.value) {
             filterOptions(idInput, idOptions);
         } else {
@@ -145,7 +146,16 @@ function toggleOptions(idInput, idOptions) {
                 console.log("Cerrando si es que esta abierto");
             } else {
                 options.classList.add('show');
+                console.log("Mostrando lista de opciones");
             }
+        }
+        */
+        if (options.classList.contains('show')) {
+            options.classList.remove('show');
+            console.log("Cerrando si es que esta abierto");
+        } else {
+            options.classList.add('show');
+            console.log("Mostrando lista de opciones");
         }
     }
 }
@@ -156,7 +166,7 @@ function filterOptions(idInput, idOptions) {
     filter = input.value.toUpperCase();
     ul = document.getElementById(idOptions);
     li = ul.getElementsByTagName('li');
-
+    
     for (i = 0; i < li.length;   i++) {
         txtValue = li[i].textContent || li[i].innerText;
         if (txtValue.toUpperCase().indexOf(filter) > -1) {

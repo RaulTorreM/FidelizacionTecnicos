@@ -89,4 +89,11 @@
             </div>
         </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Limpiar el localStorage
+            localStorage.removeItem('openModals');
+        });
+    </script>
 @endsection

@@ -26,9 +26,9 @@
                                 $idOptions = 'oficioOptions';
                             @endphp
                            <div class="onlySelectInput-container">
-                                <input class="onlySelectInput" type="text" id="oficioInput" placeholder="Seleccionar oficio"
-                                    readonly oninput="filterOptions('{{ $idInput }}', '{{ $idOptions }}')" 
-                                    onclick="toggleOptions('{{ $idOptions }}')" autocomplete="off" name="oficioTecnico">
+                                <input class="onlySelectInput" type="text" id="oficioInput" placeholder="Seleccionar oficio" readonly 
+                                    oninput="filterOptions('{{ $idInput }}', '{{ $idOptions }}')" 
+                                    onclick="toggleOptions('{{ $idInput }}', '{{ $idOptions }}')" autocomplete="off" name="oficioTecnico">
                                 <span class="material-symbols-outlined"
                                       onclick="clearInput('.onlySelectInput-container')">cancel</span>
                             </div>

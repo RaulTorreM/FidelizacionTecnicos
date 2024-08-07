@@ -98,9 +98,9 @@
         </div>
 
         <!-- main section -->
-        <div class="main">
+        <main class="main">
             @yield('main-content')
-        </div>
+        </main>
     </div>
 
     <script src="{{ asset('js/dashboardScript.js') }}"></script>
