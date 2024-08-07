@@ -135,10 +135,10 @@ function setOnlySelectInputFocusColor() {
 function toggleOptions(idInput, idOptions) {
     var options = document.getElementById(idOptions);
     var input = document.getElementById(idInput);
+    var inputClassName = input.className;
 
     if (options) {
-        /* 
-        if (input.value) {
+        if (input.value && inputClassName != "onlySelectInput") {
             filterOptions(idInput, idOptions);
         } else {
             if (options.classList.contains('show')) {
@@ -148,14 +148,6 @@ function toggleOptions(idInput, idOptions) {
                 options.classList.add('show');
                 console.log("Mostrando lista de opciones");
             }
-        }
-        */
-        if (options.classList.contains('show')) {
-            options.classList.remove('show');
-            console.log("Cerrando si es que esta abierto");
-        } else {
-            options.classList.add('show');
-            console.log("Mostrando lista de opciones");
         }
     }
 }
