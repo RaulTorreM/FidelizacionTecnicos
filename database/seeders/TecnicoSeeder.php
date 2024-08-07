@@ -13,7 +13,7 @@ class TecnicoSeeder extends Seeder
     {
         Tecnico::create([
             'idTecnico' => '77043114',
-            'nombreTecnico' => 'Josué García Betancourt',
+            'nombreTecnico' => 'Josué Daniel García Betancourt',
             'celularTecnico' =>'964866527', 
             'oficioTecnico' => 'Enchapador',
             'fechaNacimiento_Tecnico' => '2005-05-16',
@@ -24,7 +24,7 @@ class TecnicoSeeder extends Seeder
         
         Tecnico::create([
             'idTecnico' => '77665544',
-            'nombreTecnico' => 'Manuel Carrasco',
+            'nombreTecnico' => 'Manuel Carrasco Flores',
             'celularTecnico' =>'999888777', 
             'oficioTecnico' => 'Albañil',
             'fechaNacimiento_Tecnico' => '1998-10-13',

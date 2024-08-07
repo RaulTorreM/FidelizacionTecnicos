@@ -87,4 +87,12 @@ class VentaIntermediadaController extends Controller
         $tecnicos = Tecnico::all();
         return view('dashboard.ventasIntermediadas', compact('ventas', 'tecnicos'));
     }
+
+    function store(Request $request) 
+    {
+        // Crear una venta intermeidada con todos los campos de la request recepcionada
+        VentaIntermediada::create($request->all());
+        // Los datos que no se envian tienen valores por default en la migración   
+        return redirect()->route('ventasIntermediadas.create');
+    }
 }

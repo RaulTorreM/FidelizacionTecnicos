@@ -123,7 +123,8 @@ function guardarModalAgregarNuevoTecnico(idModal, idForm) {
     // Si ambas validaciones de longitud son correctas, enviar el formulario
     if (isDniValid && isPhoneValid && validateDate()) {
         multiMessageError.classList.remove('shown');
-        document.getElementById(idForm).submit();
-        closeModal(idModal);
+        guardarModal(idModal, idForm);
+        /*document.getElementById(idForm).submit();
+        closeModal(idModal);*/
     }
 }

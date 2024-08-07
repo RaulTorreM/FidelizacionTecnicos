@@ -104,12 +104,6 @@ function checkFileAccess(file) {
     });
 }
 
-//Lógica para manejar el archivo xml seleccionado
-function analizarXML(file) {
-    console.log('Archivo seleccionado:', file.name, "analizando...");
-    // Aquí puedes agregar más lógica para analizar o procesar el archivo XML según tus necesidades
-}
-
 document.addEventListener("DOMContentLoaded", function() {
     closeOptionsOnClickOutside();
     setOnlySelectInputFocusColor();
@@ -136,6 +130,7 @@ function toggleOptions(idInput, idOptions) {
     var options = document.getElementById(idOptions);
     var input = document.getElementById(idInput);
     var inputClassName = input.className;
+    console.log(inputClassName);
 
     if (options) {
         if (input.value && inputClassName != "onlySelectInput") {
@@ -143,10 +138,8 @@ function toggleOptions(idInput, idOptions) {
         } else {
             if (options.classList.contains('show')) {
                 options.classList.remove('show');
-                console.log("Cerrando si es que esta abierto");
             } else {
                 options.classList.add('show');
-                console.log("Mostrando lista de opciones");
             }
         }
     }
@@ -221,10 +214,6 @@ function closeOptionsOnClickOutside() {
                 }
             }
         });
-
-        if (!isClickInside) {
-            console.log("Clickeando afuera");
-        }
     }
 
     // Añadir el event listener de clic en el documento
@@ -235,6 +224,11 @@ function closeOptionsOnClickOutside() {
 function guardarModal(idModal, idForm) {
     document.getElementById(idForm).submit();
     closeModal(idModal);
+}
+
+function validateNumberRealTime(input) {
+    // Elimina todos los caracteres que no sean dígitos como "e" ó "-"
+    input.value = input.value.replace(/[^0-9]/g, '');
 }
 
 function validateRealTimeInputLength(input, length) {

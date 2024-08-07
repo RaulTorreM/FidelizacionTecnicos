@@ -7,7 +7,7 @@
             </div>
             <div class="modal-body" id="idModalBodyAgregarVenta">
                 <!-- Formulario para agregar nueva venta -->
-                <form id="formAgregarVenta" action="{{ route('ventasIntermediadas.post') }}" method="POST">
+                <form id="formAgregarVenta" action="{{ route('ventasIntermediadas.store') }}" method="POST">
                     @csrf
                     <div class="form-group">
                         <label class="primary-label" id="idLabelTecnico">
@@ -21,8 +21,8 @@
                             $idOptions = 'tecnicoOptions';
                         @endphp
                         <input class="input-select-item" type="text" id="tecnicoInput" placeholder="Ingresar técnico"
-                               oninput="filterOptions('{{ $idInput }}', '{{ $idOptions }}')" 
-                               onclick="toggleOptions('{{ $idInput }}', '{{ $idOptions }}')" autocomplete="off">
+                               oninput="filterOptions('{{ $idInput }}', '{{ $idOptions }}'), validateRealTimeInputLength(this, 60)" 
+                               onclick="toggleOptions('{{ $idInput }}', '{{ $idOptions }}')">
                         <ul class="select-items" id="tecnicoOptions">
                             @foreach ($tecnicos as $tecnico)
                                 @php
@@ -51,7 +51,7 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" onclick="closeModal('modalAgregarVenta')">Cancelar</button>
                 <button type="button" class="btn btn-primary"
-                        onclick="guardarModal('modalAgregarVenta', 'formAgregarVenta')">Guardar</button>
+                        onclick="guardarModalAgregarVenta('modalAgregarVenta', 'formAgregarVenta')">Guardar</button>
             </div>
         </div>
     </div>
