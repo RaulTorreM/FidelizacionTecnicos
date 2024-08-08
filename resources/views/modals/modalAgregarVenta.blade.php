@@ -9,6 +9,9 @@
                 <!-- Formulario para agregar nueva venta -->
                 <form id="formAgregarVenta" action="{{ route('ventasIntermediadas.store') }}" method="POST">
                     @csrf
+                    <!-- Campos ocultos para id y nombre del técnico -->
+                    <input id="tecnicoId" name="tecnicoId">
+                    <input id="tecnicoNombre" name="tecnicoNombre">
                     <div class="form-group">
                         <label class="primary-label" id="idLabelTecnico">
                             Técnico 
@@ -20,19 +23,24 @@
                             $idInput = 'tecnicoInput';
                             $idOptions = 'tecnicoOptions';
                         @endphp
-                        <input class="input-select-item" type="text" id="tecnicoInput" placeholder="Ingresar técnico"
-                               oninput="filterOptions('{{ $idInput }}', '{{ $idOptions }}'), validateRealTimeInputLength(this, 60)" 
+                        <input class="input-select-item" type="text" id="tecnicoInput" placeholder="DNI - Nombre"
+                               oninput="filterOptions('{{ $idInput }}', '{{ $idOptions }}'), validateRealTimeInputLength(this, 60),
+                                        validateValueOnRealTime(this)" 
                                onclick="toggleOptions('{{ $idInput }}', '{{ $idOptions }}')">
                         <ul class="select-items" id="tecnicoOptions">
                             @foreach ($tecnicos as $tecnico)
                                 @php
                                     $value = $tecnico->idTecnico . " - " . $tecnico->nombreTecnico;
                                 @endphp
-                                <li onclick="selectOption('{{ $value }}', '{{ $idInput }}', '{{ $idOptions }}')">
+                                <li onclick="selectOptionAgregarVenta('{{ $value }}', '{{ $idInput }}', '{{ $idOptions }}')">
                                     {{ $value }}
                                 </li>
                             @endforeach
                         </ul>
+                    </div>
+
+                    <div class="form-group start">
+                        <span class="inline-alert-message" id="nuevaVentaMessageError"> No se encontró el técnico buscado </span>      
                     </div>
                 </form>
 
@@ -56,4 +64,7 @@
         </div>
     </div>
 </div>
+
+<script src="{{ asset('js/modalAgregarVentaScript.js') }}"></script>
+
 

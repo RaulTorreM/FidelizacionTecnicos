@@ -130,7 +130,6 @@ function toggleOptions(idInput, idOptions) {
     var options = document.getElementById(idOptions);
     var input = document.getElementById(idInput);
     var inputClassName = input.className;
-    console.log(inputClassName);
 
     if (options) {
         if (input.value && inputClassName != "onlySelectInput") {
@@ -220,7 +219,6 @@ function closeOptionsOnClickOutside() {
     document.addEventListener('click', handleClickOutside);
 }
 
-// Función para enviar el formulario del las ventanas modales
 function guardarModal(idModal, idForm) {
     document.getElementById(idForm).submit();
     closeModal(idModal);

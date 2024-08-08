@@ -1,5 +1,73 @@
 let idVentaIntermediadaXML = [];
 
+function selectOptionAgregarVenta(value, idInput, idOptions) {
+    //Colocar en el input la opción seleccionada 
+    selectOption(value, idInput, idOptions); 
+
+    // Extraer id y nombre del valor
+    const [id, nombre] = value.split(' - ');
+    
+    // Actualizar los campos ocultos
+    if (id && nombre) {
+        document.getElementById('tecnicoId').value = id;
+        document.getElementById('tecnicoNombre').value = nombre;
+    } else {
+        document.getElementById('tecnicoId').value = "";
+        document.getElementById('tecnicoNombre').value = "";
+    }
+}
+
+function validateValueOnRealTime(input) {
+    var nuevaVentaMessageError = document.getElementById('nuevaVentaMessageError');
+
+    const value = input.value;
+    
+    // Obtener todos los valores de técnicos
+    const allTecnicos = getAllIdNombreTecnicos();
+    
+    // Comparar el valor ingresado con la lista de técnicos
+    const tecnicoEncontrado = allTecnicos.includes(value);
+
+    const [id, nombre] = value.split(' - ');
+
+    if (value === "") {
+        console.log("El campo Técnico está vacío");
+    } else {
+        if (!tecnicoEncontrado) {
+            console.log("No se encontró el técnico buscado");
+            nuevaVentaMessageError.classList.add('shown'); 
+            
+            document.getElementById('tecnicoId').value = "";
+            document.getElementById('tecnicoNombre').value = "";
+        } else {
+            console.log("Sí se encontró el técnico buscado");
+            nuevaVentaMessageError.classList.remove('shown'); 
+
+            // Actualizar los inputs ocultos
+            if (id && nombre) {
+                document.getElementById('tecnicoId').value = id;
+                document.getElementById('tecnicoNombre').value = nombre;
+            } 
+        }
+    }
+}
+
+function getAllIdNombreTecnicos() {
+    // Obtener el elemento UL que contiene todas las opciones
+    const ul = document.getElementById('tecnicoOptions');
+    
+    // Obtener todos los elementos LI dentro de la UL
+    const liElements = ul.getElementsByTagName('li');
+    
+    // Extraer el texto de cada LI y almacenarlo en un array
+    let tecnicos = [];
+    for (let li of liElements) {
+        tecnicos.push(li.textContent.trim());
+    }
+    
+    return tecnicos;
+}
+
 function analizarXML(file) {
     const reader = new FileReader();
 
