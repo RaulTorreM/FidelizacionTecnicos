@@ -4,6 +4,14 @@
     background-color: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente */
 }
 
+#modalAgregarVenta-dialog {
+    max-width: 800px; 
+}
+
+#modalAgregarVenta-content {
+    height: 600px;
+}
+
 #idLabelTecnico {
     margin-left: 0;
 }
@@ -16,5 +24,18 @@
 #idSelectFilesContainer {
     height: 15rem;
     margin: auto;
+}
+
+#labelClienteAgregarVenta,
+#labelVentaAgregarVenta {
+    margin-left: 0;
+}
+
+#tipoCodigoCliente {
+    max-width: 3.5rem;
+}
+
+#puntosGanadosInput {
+    max-width: 5rem;
 }
 

@@ -16,6 +16,7 @@
     position: relative;
     margin: 10% auto;
     width: 80%; /* Ancho del modal */
+    height: 100%;
     max-width: 600px; /* Ancho máximo del modal */
     opacity: 0; /* Inicialmente transparente */
     transform: translateY(0); /* En su posición original */
@@ -31,6 +32,7 @@
     background-color: #F9F9F9;
     padding: 20px;
     border-radius: 5px;
+    overflow: auto; 
 }
 
 .modal-header {
@@ -59,6 +61,11 @@
     align-items: center;
     justify-content: left;
 }
+
+.form-group.gap {
+    gap: 1rem;
+}
+
 
 .modal-footer {
     border-top: 1px solid #ddd;
@@ -118,6 +125,7 @@
 	color: var(--clr-primary-variant);
 	font-weight: 700;
     margin: 0 0.8rem;
+    font-size: 1rem;
 }
 
 .primary-label a {
@@ -127,12 +135,18 @@
 
 .primary-label a:hover{
 	color: #444;
-
 }
 
 .secondary-label {
-	color: var(--clr-dark);
-	font-weight: 700;
+	color: #606266;
+	font-weight: 600;
+    font-size: 0.85rem;
+}
+
+.important-label {
+	color: #139161;
+	font-weight: 600;
+    font-size: 1rem;
 }
 
 /*Estilos de los inputs*/
