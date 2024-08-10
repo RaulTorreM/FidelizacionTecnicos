@@ -6,7 +6,7 @@ let tipoCodigoClienteInput = document.getElementById('tipoCodigoClienteInput');
 let codigoClienteInput = document.getElementById('idClienteInput');
 let nombreClienteInput = document.getElementById('nombreClienteInput');
 let fechaHoraEmisionInput = document.getElementById('fechaHoraEmisionVentaIntermediadaInput');
-let montoTotalInput = document.getElementById('montoTotalnput');
+let montoTotalInput = document.getElementById('montoTotalInput');
 let puntosGanadosInput = document.getElementById('puntosGanadosInput');
 
 let formInputsArray = [
@@ -232,3 +232,21 @@ function guardarModalAgregarVenta(idModal, idForm) {
         console.log("Todos los campos del formulario deben estar rellenados correctamente.")
     }
 }
+
+function validatePositiveNumber(input) {
+    const inputNumber = parseFloat(input.value);
+    if (isNaN(inputNumber) || inputNumber < 0) {
+        input.value = 0;
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    function updatePuntosGanados() {
+        // Copia el valor de "Monto total" al campo de "Puntos generados"
+        puntosGanadosInput.value = Math.round(parseFloat(montoTotalInput.value));
+    }
+
+    // Agrega un listener para el evento "input" en "Monto total"
+    montoTotalInput.addEventListener('input', updatePuntosGanados);
+});
+

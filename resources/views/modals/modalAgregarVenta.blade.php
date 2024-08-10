@@ -52,13 +52,36 @@
                     <div class="form-group gap">
                         <div class = "group-items">
                             <label class="secondary-label"> Tipo </label>
-                            <input class="input-item" id="tipoCodigoClienteInput" name="tipoCodigoCliente_VentaIntermediada"
-                                oninput="validateRealTimeInputLength(this, 3)" placeholder="DNI" readonly>
+                           
+                            <div class="input-select" id="tipoDocumentoSelect">
+                                @php
+                                    $idInput = 'tipoCodigoClienteInput';
+                                    $idOptions = 'tipoDocumentoOptions';
+                                @endphp
+                               <div class="onlySelectInput-container">
+                                    <input class="onlySelectInput" type="text" id='{{ $idInput }}' placeholder="DNI" readonly 
+                                        oninput="filterOptions('{{ $idInput }}', '{{ $idOptions }}')" 
+                                        onclick="toggleOptions('{{ $idInput }}', '{{ $idOptions }}')" autocomplete="off" name="tipoCodigoCliente_VentaIntermediada">
+                                    <span class="material-symbols-outlined"
+                                          onclick="clearInput('.onlySelectInput-container')">cancel</span>
+                                </div>
+                                <ul class="select-items" id="tipoDocumentoOptions">
+                                    <li onclick="selectOption('DNI', '{{ $idInput }}', '{{ $idOptions }}')">
+                                        DNI
+                                    </li>
+                                    <li onclick="selectOption('RUC', '{{ $idInput }}', '{{ $idOptions }}')">
+                                        RUC
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                            <!--<input class="input-item" id="tipoCodigoClienteInput" name="tipoCodigoCliente_VentaIntermediada"
+                                oninput="validateRealTimeInputLength(this, 3)" placeholder="DNI" readonly>-->
                         </div>
                         <div class = "group-items">
                             <label class="secondary-label"> Num. Documento </label>
                             <input class="input-item" id="idClienteInput" name="codigoCliente_VentaIntermediada"
-                                   oninput="validateRealTimeInputLength(this, 11)" placeholder="12345678">
+                                   oninput="validateRealTimeInputLength(this, 11), validateNumberRealTime(this)" placeholder="12345678">
                         </div>
                         <div class = "group-items">
                             <label class="secondary-label"> Nombre </label>
@@ -84,8 +107,8 @@
                         </div>
                         <div class = "group-items">
                             <label class="secondary-label"> Monto total </label>
-                            <input class="input-item" id="montoTotalnput" name="montoTotal_VentaIntermediada" type="number"
-                                   oninput="validateRealTimeInputLength(this, 10), validateNumberRealTime(this)"
+                            <input class="input-item" id="montoTotalInput" name="montoTotal_VentaIntermediada" type="number" step="any"
+                                   oninput="validateRealTimeInputLength(this, 10), validatePositiveNumber(this)"
                                    placeholder="25.50">
                         </div>
                     </div>

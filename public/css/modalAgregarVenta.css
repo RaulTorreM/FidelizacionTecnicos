@@ -38,11 +38,12 @@
 }
 
 #tipoCodigoClienteInput {
-    max-width: 3.5rem;
+    max-width: 5rem;
 }
 
 #puntosGanadosInput {
     max-width: 7rem;
+    cursor: default;
 }
 
 #nombreClienteInput {
