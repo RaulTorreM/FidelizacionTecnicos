@@ -63,7 +63,7 @@
                                         oninput="filterOptions('{{ $idInput }}', '{{ $idOptions }}')" 
                                         onclick="toggleOptions('{{ $idInput }}', '{{ $idOptions }}')" autocomplete="off" name="tipoCodigoCliente_VentaIntermediada">
                                     <span class="material-symbols-outlined"
-                                          onclick="clearInput('.onlySelectInput-container')">cancel</span>
+                                          onclick="clearInput('{{ $idInput }}')">cancel</span>
                                 </div>
                                 <ul class="select-items" id="tipoDocumentoOptions">
                                     <li onclick="selectOption('DNI', '{{ $idInput }}', '{{ $idOptions }}')">
@@ -74,9 +74,6 @@
                                     </li>
                                 </ul>
                             </div>
-                            
-                            <!--<input class="input-item" id="tipoCodigoClienteInput" name="tipoCodigoCliente_VentaIntermediada"
-                                oninput="validateRealTimeInputLength(this, 3)" placeholder="DNI" readonly>-->
                         </div>
                         <div class = "group-items">
                             <label class="secondary-label"> Num. Documento </label>
@@ -102,13 +99,14 @@
                         </div>
                         <div class = "group-items">
                             <label class="secondary-label"> Fecha y hora de emisión </label>
-                            <input class="input-item" id="fechaHoraEmisionVentaIntermediadaInput" name="fechaHoraEmision_VentaIntermediada"
+                            <input class="input-item" id="fechaHoraEmisionVentaIntermediadaInput"
+                                   oninput="validateDateTimeManualInput(this)" name="fechaHoraEmision_VentaIntermediada"
                                    placeholder="aaaa-mm-dd hh:mm:ss">
                         </div>
-                        <div class = "group-items">
-                            <label class="secondary-label"> Monto total </label>
-                            <input class="input-item" id="montoTotalInput" name="montoTotal_VentaIntermediada" type="number" step="any"
-                                   oninput="validateRealTimeInputLength(this, 10), validatePositiveNumber(this)"
+                        <div class="group-items">
+                            <label class="secondary-label">Monto total</label>
+                            <input class="input-item" id="montoTotalInput" name="montoTotal_VentaIntermediada" type="text" 
+                                   oninput="validateRealTimeInputLength(this, 10), validatePositiveFloat(this)" 
                                    placeholder="25.50">
                         </div>
                     </div>
@@ -119,6 +117,7 @@
                     
                     <div class="form-group start">
                         <input class="input-item" id="puntosGanadosInput" name="puntosGanados_VentaIntermediada"  placeholder="26" readonly>
+                        <span class="inline-alert-message" id="multiMessageError2"> multiMessageError2 </span> 
                     </div>
                 </form>
                 <!-- Seleccionar archivos -->

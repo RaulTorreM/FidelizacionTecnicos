@@ -44,6 +44,8 @@
 #puntosGanadosInput {
     max-width: 7rem;
     cursor: default;
+    color: rgb(12, 179, 12);
+    font-weight: bold;
 }
 
 #nombreClienteInput {
@@ -54,15 +56,10 @@
     align-items: center;
 }
 
-#montoTotalnput {
+#montoTotalInput {
     max-width: 8rem;
 }
 
 .marginTop {
     margin: 15px 0 0 0;
-}
-
-.modal-dialog.open {
-    opacity: 1; /* Totalmente opaco */
-    transform: translateY(-70px); /* Inicialmente desplazado hacia arriba */
 }

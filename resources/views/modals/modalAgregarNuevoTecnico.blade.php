@@ -31,7 +31,7 @@
                                     oninput="filterOptions('{{ $idInput }}', '{{ $idOptions }}')" 
                                     onclick="toggleOptions('{{ $idInput }}', '{{ $idOptions }}')" autocomplete="off" name="oficioTecnico">
                                 <span class="material-symbols-outlined"
-                                      onclick="clearInput('.onlySelectInput-container')">cancel</span>
+                                      onclick="clearInput('{{ $idInput }}')">cancel</span>
                             </div>
                             <ul class="select-items" id="oficioOptions">
                                 <li onclick="selectOption('Albañil', '{{ $idInput }}', '{{ $idOptions }}')">

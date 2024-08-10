@@ -356,3 +356,17 @@
     border-color: #007bff;
 }
 
+.form-group .start {
+    justify-content: start;
+}
+
+.inline-alert-message {
+    padding: 0 10px;
+    font-size: 0.9rem;
+    color: #fc4f4b;
+    display: none;
+}
+
+.inline-alert-message.shown {
+    display: inline;
+}

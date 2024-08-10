@@ -209,43 +209,116 @@ function detectarTipoCodigoCliente(codigoCliente) {
     return codigoCliente.length === 8 ? 'DNI' : codigoCliente.length === 11 ? 'RUC' : 'Desconocido';
 }
 
+function validateDateTimeManualInput(dateTimeInput) {
+    let dateTimeValue = dateTimeInput.value;
+    console.log("Valor original:", dateTimeValue);
+
+    // Expresión regular para el formato aaaa-mm-dd hh:mm:ss
+    const regex = /^(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})$/;
+
+    // Verificar si el valor tiene el formato correcto
+    if (dateTimeValue.length >= 19) {
+        if (regex.test(dateTimeValue)) {
+            const [, year, month, day, hour, minute, second] = dateTimeValue.match(regex);
+
+            // Convertir a números
+            const yearNum = parseInt(year, 10);
+            const monthNum = parseInt(month, 10);
+            const dayNum = parseInt(day, 10);
+            const hourNum = parseInt(hour, 10);
+            const minuteNum = parseInt(minute, 10);
+            const secondNum = parseInt(second, 10);
+
+            // Validar rangos
+            if (yearNum >= 1900 && yearNum <= 2100 &&
+                monthNum >= 1 && monthNum <= 12 &&
+                hourNum >= 0 && hourNum <= 23 &&
+                minuteNum >= 0 && minuteNum <= 59 &&
+                secondNum >= 0 && secondNum <= 59) {
+
+                // Validar días del mes
+                const daysInMonth = new Date(yearNum, monthNum, 0).getDate();
+                if (dayNum >= 1 && dayNum <= daysInMonth) {
+                    console.log("Fecha y hora válidas");
+                    return true;
+                }
+            }
+        }
+
+        console.log("Fecha y hora inválidas");
+        // Limpiar el input si es inválido
+        dateTimeInput.value = ''; 
+    }
+}
+
+function validatePositiveFloat(input) {
+    // Obtener el valor del input
+    let value = input.value;
+    
+    // Eliminar todos los caracteres que no sean dígitos o punto decimal
+    let newValue = value.replace(/[^\d.]/g, '');
+    
+    // Asegurar que solo haya un punto decimal
+    let parts = newValue.split('.');
+    if (parts.length > 2) {
+        parts = [parts[0], parts.slice(1).join('')];
+    }
+    newValue = parts.join('.');
+    
+    // Limitar a dos decimales
+    if (parts.length > 1) {
+        parts[1] = parts[1].slice(0, 2);
+        newValue = parts.join('.');
+    }
+    
+    // Remover ceros iniciales innecesarios
+    newValue = newValue.replace(/^0+(?=\d)/, '');
+    
+    // Si el valor es vacío o solo un punto, establecer a cero
+    if (newValue === '' || newValue === '.') {
+        newValue = '0';
+    }
+    
+    // Actualizar el campo de entrada con el valor filtrado
+    if (newValue !== value) {
+        input.value = newValue;
+        
+        // Mover el cursor al final del input
+        input.setSelectionRange(newValue.length, newValue.length);
+    }
+}
+
 function validarCamposFormulario() {
     let allFilled = true;
     formInputsArray.forEach(input => {
         if (!input.value.trim()) {
             allFilled = false;
-            input.classList.add('error'); // Añadir una clase de error para mostrar un mensaje
-        } else {
-            input.classList.remove('error');
         }
     });
     return allFilled;
 }
 
 function guardarModalAgregarVenta(idModal, idForm) {
-     // Validar campos antes de enviar
+    var multiMessageError = document.getElementById('multiMessageError2');
     if (validarCamposFormulario()) {
-        // Si la validación es correcta, enviar el formulario
         //guardarModal(idModal, idForm);
         console.log("Enviando formulario correctamente.")
+        multiMessageError.textContent = "Enviando formulario correctamente.";
+        multiMessageError.classList.remove("shown");
     } else {
         console.log("Todos los campos del formulario deben estar rellenados correctamente.")
-    }
-}
-
-function validatePositiveNumber(input) {
-    const inputNumber = parseFloat(input.value);
-    if (isNaN(inputNumber) || inputNumber < 0) {
-        input.value = 0;
+        multiMessageError.textContent = "Todos los campos del formulario deben estar rellenados correctamente.";
+        multiMessageError.classList.add("shown");
     }
 }
 
 document.addEventListener('DOMContentLoaded', function() {
+
     function updatePuntosGanados() {
         // Copia el valor de "Monto total" al campo de "Puntos generados"
         puntosGanadosInput.value = Math.round(parseFloat(montoTotalInput.value));
     }
-
+   
     // Agrega un listener para el evento "input" en "Monto total"
     montoTotalInput.addEventListener('input', updatePuntosGanados);
 });

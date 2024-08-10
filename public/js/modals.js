@@ -180,17 +180,12 @@ function selectOption(value, idInput, idOptions) {
     }
 }
 
-function clearInput(containerClassName) {
-    var container = document.querySelector(containerClassName); 
-    if (container) {
-        var input = container.querySelector('input');
-        if (input) {
-            input.value = ''; // Limpia el valor del input
-        } else {
-            console.error('No se encontró un input siguiente para el contenedor ' + container + '.');
-        }
+function clearInput(idInput) {
+    var input = document.getElementById(idInput); 
+    if (input) {
+        input.value = ''; // Limpia el valor del input
     } else {
-        console.error('Elemento con la clase "' + containerClassName + '" no encontrado.');
+        console.error('No se encontró un input siguiente para el contenedor ' + container + '.');
     }
 }
 
