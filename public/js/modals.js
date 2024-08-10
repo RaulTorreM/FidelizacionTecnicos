@@ -23,16 +23,16 @@ function closeModal(modalId) {
         modal.querySelector('.modal-dialog').classList.remove('open');
         setTimeout(function() {
             modal.style.display = 'none';
-            document.body.style.overflow = ''; // Permite el scroll de nuevo cuando se cierra el modal
         }, 300); // Espera 0.3 segundos (igual a la duración de la transición CSS)
         
          // Elimina el modal de la lista de modales abiertos
          let openModals = JSON.parse(localStorage.getItem('openModals')) || [];
          openModals = openModals.filter(id => id !== modalId);
          if (openModals.length > 0) {
-             localStorage.setItem('openModals', JSON.stringify(openModals));
+            localStorage.setItem('openModals', JSON.stringify(openModals));
          } else {
-             localStorage.removeItem('openModals');
+            document.body.style.overflow = ''; //Permitir el scroll de fondo luego de cerrar todos los modales
+            localStorage.removeItem('openModals');
          }
     }
 }

@@ -5,20 +5,26 @@
 }
 
 #modalAgregarVenta-dialog {
-    max-width: 800px; 
+    max-width: 1100px; 
+}
+
+#modalAgregarVenta-dialog.open {
+    transform: translateY(-15%); /* En su posición original */
 }
 
 #modalAgregarVenta-content {
-    height: 600px;
+    max-height: 700px;
+}
+
+#modalAgregarVenta-body {
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
 }
 
 #idLabelTecnico {
     margin-left: 0;
-}
-
-#idModalBodyAgregarVenta {
-    padding: 20px 0 0 0;
-    max-height: 20rem;
 }
 
 #idSelectFilesContainer {
@@ -31,11 +37,31 @@
     margin-left: 0;
 }
 
-#tipoCodigoCliente {
+#tipoCodigoClienteInput {
     max-width: 3.5rem;
 }
 
 #puntosGanadosInput {
-    max-width: 5rem;
+    max-width: 7rem;
 }
 
+#nombreClienteInput {
+    width: 20rem;
+}
+
+#group-items-centered {
+    align-items: center;
+}
+
+#montoTotalnput {
+    max-width: 8rem;
+}
+
+.marginTop {
+    margin: 15px 0 0 0;
+}
+
+.modal-dialog.open {
+    opacity: 1; /* Totalmente opaco */
+    transform: translateY(-70px); /* Inicialmente desplazado hacia arriba */
+}

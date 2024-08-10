@@ -5,17 +5,17 @@
                 <h5 class="modal-title">Nueva Venta Intermediada</h5>
                 <button class="close" onclick="closeModal('modalAgregarVenta')">&times;</button>
             </div>
-            <div class="modal-body" id="idModalBodyAgregarVenta">
+            <div class="modal-body" id="modalAgregarVenta-body">
                 <!-- Formulario para agregar nueva venta -->
                 <form id="formAgregarVenta" action="{{ route('ventasIntermediadas.store') }}" method="POST">
                     @csrf
 
                     <!-- Campos ocultos para el formulario -->
                    
-                    <input type="hidden" id="tecnicoId" name="idTecnico">
-                    <input type="hidden" id="tecnicoNombre" name="nombreTecnico">
+                    <input type="hidden" id="idTecnicoInput" name="idTecnico">
+                    <input type="hidden" id="nombreTecnicoInput" name="nombreTecnico">
                    
-                    <div class="form-group">
+                    <div class="form-group marginTop">
                         <label class="primary-label" id="idLabelTecnico">
                             Técnico 
                             <a onclick="openModal('modalAgregarNuevoTecnico')">[+ Nuevo]</a>
@@ -27,7 +27,7 @@
                                 $idInput = 'tecnicoInput';
                                 $idOptions = 'tecnicoOptions';
                             @endphp
-                            <input class="input-select-item" type="text" id="tecnicoInput" placeholder="DNI - Nombre"
+                            <input class="input-select-item" type="text" id='{{ $idInput }}' placeholder="DNI - Nombre"
                                 oninput="filterOptions('{{ $idInput }}', '{{ $idOptions }}'), validateRealTimeInputLength(this, 60),
                                             validateValueOnRealTime(this)" 
                                 onclick="toggleOptions('{{ $idInput }}', '{{ $idOptions }}')">
@@ -44,41 +44,58 @@
                         </div>
                         <span class="inline-alert-message" id="nuevaVentaMessageError"> No se encontró el técnico buscado </span>      
                     </div>
-                    <div class="form-group start">
+                    
+                    <div class="form-group start marginTop">
                         <label class="primary-label" id="labelClienteAgregarVenta"> Cliente </label>
                     </div>
 
                     <div class="form-group gap">
-                        <label class="secondary-label"> Tipo de documento </label>
-                        <input class="input-item" id="tipoCodigoCliente" name="tipoCodigoCliente_VentaIntermediada"
-                               oninput="validateRealTimeInputLength(this, 3)" readonly>
-                        <label class="secondary-label"> # Documento </label>
-                        <input class="input-item" id="clienteId" name="codigoCliente_VentaIntermediada"
-                               oninput="validateRealTimeInputLength(this, 11)">
-                        <label class="secondary-label"> Nombre </label>
-                        <input class="input-item" id="clienteNombre" name="nombreCliente_VentaIntermediada"
-                               oninput="validateRealTimeInputLength(this, 60)">
+                        <div class = "group-items">
+                            <label class="secondary-label"> Tipo </label>
+                            <input class="input-item" id="tipoCodigoClienteInput" name="tipoCodigoCliente_VentaIntermediada"
+                                oninput="validateRealTimeInputLength(this, 3)" placeholder="DNI" readonly>
+                        </div>
+                        <div class = "group-items">
+                            <label class="secondary-label"> Num. Documento </label>
+                            <input class="input-item" id="idClienteInput" name="codigoCliente_VentaIntermediada"
+                                   oninput="validateRealTimeInputLength(this, 11)" placeholder="12345678">
+                        </div>
+                        <div class = "group-items">
+                            <label class="secondary-label"> Nombre </label>
+                            <input class="input-item" id="nombreClienteInput" name="nombreCliente_VentaIntermediada"
+                                   oninput="validateRealTimeInputLength(this, 60)" placeholder="CARRASCO GONZALES, MANUEL">
+                        </div>
                     </div>  
 
-                    <div class="form-group start">
+                    <div class="form-group start marginTop">
                         <label class="primary-label" id="labelVentaAgregarVenta"> Venta </label>
                     </div>
 
                     <div class="form-group gap">
-                        <label class="secondary-label"> Número de comprobante </label>
-                        <input class="input-item" id="ventaIntermediadaId" name="idVentaIntermediada">
-                        <label class="secondary-label"> Fecha y hora de emisión </label>
-                        <input class="input-item" id="fechaHoraEmisionVentaIntermediada" name="fechaHoraEmision_VentaIntermediada">
-                        <label class="secondary-label"> Monto total </label>
-                        <input class="input-item" id="montoTotal" name="montoTotal_VentaIntermediada">
+                        <div class = "group-items">
+                            <label class="secondary-label"> Número de comprobante </label>
+                            <input class="input-item" id="idVentaIntermediadaInput" name="idVentaIntermediada"
+                                   placeholder="B001-72">
+                        </div>
+                        <div class = "group-items">
+                            <label class="secondary-label"> Fecha y hora de emisión </label>
+                            <input class="input-item" id="fechaHoraEmisionVentaIntermediadaInput" name="fechaHoraEmision_VentaIntermediada"
+                                   placeholder="aaaa-mm-dd hh:mm:ss">
+                        </div>
+                        <div class = "group-items">
+                            <label class="secondary-label"> Monto total </label>
+                            <input class="input-item" id="montoTotalnput" name="montoTotal_VentaIntermediada" type="number"
+                                   oninput="validateRealTimeInputLength(this, 10), validateNumberRealTime(this)"
+                                   placeholder="25.50">
+                        </div>
                     </div>
                     
-                    <div class="form-group start">
+                    <div class="form-group start marginTop">
                         <label class="important-label"> Puntos generados </label>
                     </div>
                     
-                    <div class="form-group gap">
-                        <input class="input-item" id="puntosGanadosInput" name="puntosGanados_VentaIntermediada">
+                    <div class="form-group start">
+                        <input class="input-item" id="puntosGanadosInput" name="puntosGanados_VentaIntermediada"  placeholder="26" readonly>
                     </div>
                 </form>
                 <!-- Seleccionar archivos -->

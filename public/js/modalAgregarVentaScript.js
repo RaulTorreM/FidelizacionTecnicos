@@ -1,12 +1,12 @@
 let ventaIntermediadaObject = {};
-let idVentaIntermediadaInput = document.getElementById('ventaIntermediadaId');
-let idTecnicoInput = document.getElementById('tecnicoId');
-let nombreTecnicoInput = document.getElementById('tecnicoNombre');
-let tipoCodigoClienteInput = document.getElementById('tipoCodigoCliente');
-let codigoClienteInput = document.getElementById('clienteId');
-let nombreClienteInput = document.getElementById('clienteNombre');
-let fechaHoraEmisionInput = document.getElementById('fechaHoraEmisionVentaIntermediada');
-let montoTotalInput = document.getElementById('montoTotal');
+let idVentaIntermediadaInput = document.getElementById('idVentaIntermediadaInput');
+let idTecnicoInput = document.getElementById('idTecnicoInput');
+let nombreTecnicoInput = document.getElementById('nombreTecnicoInput');
+let tipoCodigoClienteInput = document.getElementById('tipoCodigoClienteInput');
+let codigoClienteInput = document.getElementById('idClienteInput');
+let nombreClienteInput = document.getElementById('nombreClienteInput');
+let fechaHoraEmisionInput = document.getElementById('fechaHoraEmisionVentaIntermediadaInput');
+let montoTotalInput = document.getElementById('montoTotalnput');
 let puntosGanadosInput = document.getElementById('puntosGanadosInput');
 
 let formInputsArray = [
@@ -30,11 +30,11 @@ function selectOptionAgregarVenta(value, idInput, idOptions) {
     
     // Actualizar los campos ocultos
     if (id && nombre) {
-        document.getElementById('tecnicoId').value = id;
-        document.getElementById('tecnicoNombre').value = nombre;
+        idTecnicoInput.value = id;
+        nombreTecnicoInput.value = nombre;
     } else {
-        document.getElementById('tecnicoId').value = "";
-        document.getElementById('tecnicoNombre').value = "";
+        idTecnicoInput.value = "";
+        nombreTecnicoInput.value = "";
     }
 
     var nuevaVentaMessageError = document.getElementById('nuevaVentaMessageError');
@@ -62,16 +62,16 @@ function validateValueOnRealTime(input) {
             console.log("No se encontró el técnico buscado");
             nuevaVentaMessageError.classList.add('shown'); 
             
-            document.getElementById('tecnicoId').value = "";
-            document.getElementById('tecnicoNombre').value = "";
+            idTecnicoInput.value = "";
+            nombreTecnicoInput.value = "";
         } else {
             console.log("Sí se encontró el técnico buscado");
             nuevaVentaMessageError.classList.remove('shown'); 
 
             // Actualizar los inputs ocultos
             if (id && nombre) {
-                document.getElementById('tecnicoId').value = id;
-                document.getElementById('tecnicoNombre').value = nombre;
+                idTecnicoInput.value = id;
+                nombreTecnicoInput.value = nombre;
             } 
         }
     }

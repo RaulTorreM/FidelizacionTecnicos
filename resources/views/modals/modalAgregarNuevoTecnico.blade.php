@@ -1,4 +1,4 @@
-<div id="modalAgregarNuevoTecnico" class="modal">
+<div class="modal"  id="modalAgregarNuevoTecnico">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
