@@ -230,3 +230,6 @@ function validateRealTimeInputLength(input, length) {
     }
 }
 
+function validateInputLength(input, length) {
+    return input.value.length === length;
+}

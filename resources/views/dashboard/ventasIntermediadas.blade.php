@@ -3,6 +3,7 @@
 @section('title', 'Ventas Intermediadas')
 
 @push('styles')
+    <link rel="stylesheet" href="{{ asset('css/tooltip.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/ventasIntermediadasStyling.css') }}">
     <link rel="stylesheet" href="{{ asset('css/modals.css') }}">
     <link rel="stylesheet" href="{{ asset('css/modalAgregarVenta.css') }}">
@@ -84,6 +85,10 @@
             </table>
         </div>
     </div>
+@endsection
+
+@push('scripts')
+    <script src="{{ asset('js/tooltip.js') }}"></script>
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/jszip.min.js') }}"></script>
     <script src="{{ asset('js/datatables.js') }}"></script>
@@ -96,7 +101,7 @@
                 lengthMenu: [3, 10, 15], 
                 pageLength: 3, 
                 dom: "Blifrtp", //B:buttons f:filter r:processing t:table
-                                  //i:info l:length ("Mostrar n registros") p:paging
+                                //i:info l:length ("Mostrar n registros") p:paging
                 buttons: [
                     {   extend: "excelHtml5",
                         text: "<i class='fa-solid fa-file-excel'></i>",
@@ -365,5 +370,4 @@
             });
         });
     </script>
-@endsection
-
+@endpush

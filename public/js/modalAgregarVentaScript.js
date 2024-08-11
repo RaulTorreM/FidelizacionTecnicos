@@ -21,6 +21,9 @@ let formInputsArray = [
     puntosGanadosInput,
 ];
 
+let codigoClienteTooltip = document.getElementById("idCodigoClienteTooltip");
+let fechaHoraEmisionTooltip = document.getElementById("fechaHoraEmisionTooltip");
+
 function selectOptionAgregarVenta(value, idInput, idOptions) {
     //Colocar en el input la opción seleccionada 
     selectOption(value, idInput, idOptions); 
@@ -244,10 +247,9 @@ function validateDateTimeManualInput(dateTimeInput) {
                 }
             }
         }
-
-        console.log("Fecha y hora inválidas");
         // Limpiar el input si es inválido
         dateTimeInput.value = ''; 
+        showHideTooltip(fechaHoraEmisionTooltip, "Fecha y hora inválidas");
     }
 }
 
@@ -298,13 +300,35 @@ function validarCamposFormulario() {
     return allFilled;
 }
 
+function validateRealTimeDNIRUCInputLength(numDocumentoInput, idTipoDocumentoInput) {
+    const tipoDocumentoInput = document.getElementById(idTipoDocumentoInput).value;
+    let numDocumentoInputValue = numDocumentoInput.value;
+    
+    const limites = {
+        DNI: 8,
+        RUC: 11
+    };
+
+    if (limites[tipoDocumentoInput] !== undefined) {
+        if (numDocumentoInputValue.length > limites[tipoDocumentoInput]) {
+            numDocumentoInputValue = numDocumentoInputValue.slice(0, limites[tipoDocumentoInput]);
+            numDocumentoInput.value = numDocumentoInputValue;
+        }
+    } else {
+        numDocumentoInput.value = "";
+
+         // Mostrar y ocultar el tooltip
+        showHideTooltip(codigoClienteTooltip, "Seleccione tipo de documento primero");
+    }
+}
+
 function guardarModalAgregarVenta(idModal, idForm) {
     var multiMessageError = document.getElementById('multiMessageError2');
     if (validarCamposFormulario()) {
-        //guardarModal(idModal, idForm);
         console.log("Enviando formulario correctamente.")
         multiMessageError.textContent = "Enviando formulario correctamente.";
         multiMessageError.classList.remove("shown");
+        //guardarModal(idModal, idForm);
     } else {
         console.log("Todos los campos del formulario deben estar rellenados correctamente.")
         multiMessageError.textContent = "Todos los campos del formulario deben estar rellenados correctamente.";

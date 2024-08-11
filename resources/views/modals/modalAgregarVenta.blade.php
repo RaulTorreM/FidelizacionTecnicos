@@ -77,8 +77,11 @@
                         </div>
                         <div class = "group-items">
                             <label class="secondary-label"> Num. Documento </label>
+                            <div class="tooltip-container">
+                                <span class="tooltip" id="idCodigoClienteTooltip">Este es el mensaje del tooltip</span>
+                            </div>
                             <input class="input-item" id="idClienteInput" name="codigoCliente_VentaIntermediada"
-                                   oninput="validateRealTimeInputLength(this, 11), validateNumberRealTime(this)" placeholder="12345678">
+                                   oninput="validateRealTimeDNIRUCInputLength(this, '{{ $idInput }}'), validateNumberRealTime(this)" placeholder="12345678">
                         </div>
                         <div class = "group-items">
                             <label class="secondary-label"> Nombre </label>
@@ -99,7 +102,10 @@
                         </div>
                         <div class = "group-items">
                             <label class="secondary-label"> Fecha y hora de emisión </label>
-                            <input class="input-item" id="fechaHoraEmisionVentaIntermediadaInput"
+                            <div class="tooltip-container">
+                                <span class="tooltip" id="fechaHoraEmisionTooltip">Este es el mensaje del tooltip</span>
+                            </div>
+                            <input class="input-item" id="fechaHoraEmisionVentaIntermediadaInput" type="text"
                                    oninput="validateDateTimeManualInput(this)" name="fechaHoraEmision_VentaIntermediada"
                                    placeholder="aaaa-mm-dd hh:mm:ss">
                         </div>

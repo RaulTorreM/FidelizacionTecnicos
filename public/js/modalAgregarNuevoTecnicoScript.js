@@ -88,10 +88,6 @@ function validateFormAgregarNuevoTecnico() {
     return isValid;
 }
 
-function validateInputLength(input, length) {
-    return input.value.length === length;
-}
-
 function guardarModalAgregarNuevoTecnico(idModal, idForm) {
     // Validar campos del formulario
     if (!validateFormAgregarNuevoTecnico()) {

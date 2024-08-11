@@ -103,5 +103,8 @@
         </main>
     </div>
 
-    <script src="{{ asset('js/dashboardScript.js') }}"></script>
 @endsection
+
+@push('scripts')
+    <script src="{{ asset('js/dashboardScript.js') }}"></script>
+@endpush
