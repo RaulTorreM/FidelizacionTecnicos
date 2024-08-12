@@ -23,6 +23,7 @@ let formInputsArray = [
 
 let codigoClienteTooltip = document.getElementById("idCodigoClienteTooltip");
 let fechaHoraEmisionTooltip = document.getElementById("fechaHoraEmisionTooltip");
+let multiMessageError = document.getElementById('multiMessageError2');
 
 function selectOptionAgregarVenta(value, idInput, idOptions) {
     //Colocar en el input la opción seleccionada 
@@ -60,6 +61,8 @@ function validateValueOnRealTime(input) {
     if (value === "") {
         console.log("El campo Técnico está vacío");
         nuevaVentaMessageError.classList.remove('shown'); 
+        idTecnicoInput.value = "";
+        nombreTecnicoInput.value = "";
     } else {
         if (!tecnicoEncontrado) {
             console.log("No se encontró el técnico buscado");
@@ -100,7 +103,7 @@ function analizarXML(file) {
     /*
     HACER PRUEBA UNITARIA PARA ESTA FUNCIÓN 
     */
-
+    
     const reader = new FileReader();
 
     reader.onload = function(event) {
@@ -147,8 +150,11 @@ function analizarXML(file) {
 
         if (!idTecnicoInput.value.trim() || !nombreTecnicoInput.value.trim()) {
             console.log("Tiene que rellenar los campos del técnico");
+            multiMessageError.classList.add("shown");
+            multiMessageError.textContent = "Tiene que rellenar el campo de Técnico primero";
             clearSomeHiddenInputs();
         } else {
+            multiMessageError.classList.remove("shown");
             console.log("Sí se rellenó los campos del técnico");
             fillSomeHiddenInputs(ventaIntermediadaObject);
         }
@@ -323,7 +329,6 @@ function validateRealTimeDNIRUCInputLength(numDocumentoInput, idTipoDocumentoInp
 }
 
 function guardarModalAgregarVenta(idModal, idForm) {
-    var multiMessageError = document.getElementById('multiMessageError2');
     if (validarCamposFormulario()) {
         console.log("Enviando formulario correctamente.")
         multiMessageError.textContent = "Enviando formulario correctamente.";

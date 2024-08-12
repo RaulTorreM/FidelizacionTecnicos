@@ -110,7 +110,7 @@
                                    placeholder="aaaa-mm-dd hh:mm:ss">
                         </div>
                         <div class="group-items">
-                            <label class="secondary-label">Monto total</label>
+                            <label class="secondary-label">Monto to tal</label>
                             <input class="input-item" id="montoTotalInput" name="montoTotal_VentaIntermediada" type="text" 
                                    oninput="validateRealTimeInputLength(this, 10), validatePositiveFloat(this)" 
                                    placeholder="25.50">

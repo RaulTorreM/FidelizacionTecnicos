@@ -9,7 +9,7 @@
 }
 
 #modalAgregarVenta-dialog.open {
-    transform: translateY(-15%); /* En su posición original */
+    transform: translateY(-20%); /* En su posición original */
 }
 
 #modalAgregarVenta-content {

@@ -41,7 +41,9 @@ function closeModal(modalId) {
 /*Selección de archivos, falta agregar la lógica para evitar arrastrar archivos con acceso denegado */
 // Función para simular clic en el input file al hacer clic en el botón
 function handleFileSelect() {
-    document.getElementById('fileInput').click();
+    const fileInput = document.getElementById('fileInput');
+    fileInput.value = ''; // Limpia el valor del input antes de seleccionar el archivo
+    fileInput.click();
 }
 
 // Event listener para cuando ya se seleccionó un archivo
