@@ -21,6 +21,7 @@ let formInputsArray = [
     puntosGanadosInput,
 ];
 
+let tecnicoTooltip = document.getElementById("idTecnicoTooltip");
 let codigoClienteTooltip = document.getElementById("idCodigoClienteTooltip");
 let fechaHoraEmisionTooltip = document.getElementById("fechaHoraEmisionTooltip");
 let multiMessageError = document.getElementById('multiMessageError2');
@@ -103,7 +104,7 @@ function analizarXML(file) {
     /*
     HACER PRUEBA UNITARIA PARA ESTA FUNCIÓN 
     */
-    
+
     const reader = new FileReader();
 
     reader.onload = function(event) {
@@ -144,14 +145,13 @@ function analizarXML(file) {
         }
 
 		// Imprimir en consola usando Object.entries()
-        Object.entries(ventaIntermediadaObject).forEach(([key, value]) => {
+        /*Object.entries(ventaIntermediadaObject).forEach(([key, value]) => {
             console.log(`${key}: ${value}`);
-        });
+        });*/
 
         if (!idTecnicoInput.value.trim() || !nombreTecnicoInput.value.trim()) {
-            console.log("Tiene que rellenar los campos del técnico");
-            multiMessageError.classList.add("shown");
-            multiMessageError.textContent = "Tiene que rellenar el campo de Técnico primero";
+            //console.log("Tiene que rellenar el campo Técnico primero");
+            showHideTooltip(tecnicoTooltip, "Tiene que rellenar el campo Técnico primero");
             clearSomeHiddenInputs();
         } else {
             multiMessageError.classList.remove("shown");

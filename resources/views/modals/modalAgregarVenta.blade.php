@@ -23,6 +23,9 @@
                     </div>
                     <div class="form-group start">
                         <div class="input-select" id="tecnicoSelect">
+                            <div class="tooltip-container">
+                                <span class="tooltip" id="idTecnicoTooltip">Este es el mensaje del tooltip</span>
+                            </div>
                             @php
                                 $idInput = 'tecnicoInput';
                                 $idOptions = 'tecnicoOptions';
@@ -110,9 +113,9 @@
                                    placeholder="aaaa-mm-dd hh:mm:ss">
                         </div>
                         <div class="group-items">
-                            <label class="secondary-label">Monto to tal</label>
+                            <label class="secondary-label">Monto total</label>
                             <input class="input-item" id="montoTotalInput" name="montoTotal_VentaIntermediada" type="text" 
-                                   oninput="validateRealTimeInputLength(this, 10), validatePositiveFloat(this)" 
+                                   oninput="validateRealTimeInputLength(this, 6), validatePositiveFloat(this)" 
                                    placeholder="25.50">
                         </div>
                     </div>
