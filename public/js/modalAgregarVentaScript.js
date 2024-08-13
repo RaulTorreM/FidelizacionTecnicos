@@ -21,9 +21,12 @@ let formInputsArray = [
     puntosGanadosInput,
 ];
 
-let tecnicoTooltip = document.getElementById("idTecnicoTooltip");
-let codigoClienteTooltip = document.getElementById("idCodigoClienteTooltip");
-let fechaHoraEmisionTooltip = document.getElementById("fechaHoraEmisionTooltip");
+let tecnicoTooltip = document.getElementById('idTecnicoTooltip');
+let codigoClienteTooltip = document.getElementById('idCodigoClienteTooltip');
+let fechaHoraEmisionTooltip = document.getElementById('fechaHoraEmisionTooltip');
+let fechaEmisionTooltip = document.getElementById('idFechaEmisionTooltip');
+let horaEmisionTooltip = document.getElementById('idHoraEmisionTooltip');
+
 let multiMessageError = document.getElementById('multiMessageError2');
 
 function selectOptionAgregarVenta(value, idInput, idOptions) {
@@ -259,6 +262,60 @@ function validateDateTimeManualInput(dateTimeInput) {
     }
 }
 
+function validateManualDateInput(dateInput) {
+    const wantedCharacters = ['-', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+    keepWantedCharacters(dateInput, wantedCharacters)
+/*
+    // Expresión regular para validar el formato YYYY-MM-DD
+    const dateFormatRegex = /^(\d{4})-(\d{2})-(\d{2})$/;
+    const value = dateInput.value.trim();
+
+    // Extraer año, mes y día de la fecha
+    const match = value.match(dateFormatRegex);
+    if (!match) {
+        console.log('Formato de fecha inválido.');
+        showHideTooltip(fechaEmisionTooltip, "Formato de fecha inválido. Debe ser YYYY-MM-DD.");
+        return;
+    }
+    
+    const [_, year, month, day] = match;
+
+    // Crear un objeto Date con el año, mes y día
+    const inputDate = new Date(year, month - 1, day);
+    const now = new Date();
+    now.setHours(0, 0, 0, 0); // Ajustar la hora de la fecha actual para que sea medianoche
+
+    // Verificar si la fecha es válida
+    if (
+        inputDate.getFullYear() === parseInt(year, 10) &&
+        inputDate.getMonth() === parseInt(month, 10) - 1 &&
+        inputDate.getDate() === parseInt(day, 10)
+    ) {
+        // Verificar si la fecha no es mayor que la fecha actual
+        if (inputDate > now) {
+            console.log('La fecha no puede ser mayor que la fecha actual.');
+            showHideTooltip(fechaEmisionTooltip, "La fecha no puede ser mayor que la fecha actual.");
+        } else {
+            console.log('Fecha válida y no mayor que la fecha actual:', value);
+        }
+    } else {
+        console.log('Fecha inválida.');
+        showHideTooltip(fechaEmisionTooltip, "Fecha inválida.");
+    }
+*/
+}
+
+function validateManualTimeInput(timeInput) {
+    // Expresión regular para validar el formato hh-mm-ss
+    const regex = /^(\d{2})-(\d{2})-(\d{2})$/;
+    const value = timeInput.value.trim();  
+    
+    // Verificar si el valor coincide con el formato
+    if (!regex.test(value)) {
+        console.log('Formato de hora inválido. Debe ser mm-hh-ss.');
+    } 
+}
+
 function validatePositiveFloat(input) {
     // Obtener el valor del input
     let value = input.value;
@@ -296,6 +353,39 @@ function validatePositiveFloat(input) {
     }
 }
 
+function keepWantedCharacters(input, charactersArray) {
+    // Obtener el valor del input y la posición del cursor actual
+    const value = input.value;
+    const valueLength = input.value.length;
+    const cursorPos = input.selectionStart; // Posición del cursor antes del filtrado
+
+    // Crear una expresión regular que coincida con los caracteres no deseados
+    const escapedCharacters = charactersArray.map(char => char.replace(/[-[\]/{}()*+?.\\^$|]/g, '\\$&')).join('');
+    const regex = new RegExp(`[^${escapedCharacters}]`, 'g'); // Coincide con caracteres NO deseados
+
+    // Eliminar todos los caracteres no deseados
+    let newValue = value.replace(regex, '');
+
+    // Actualizar el campo de entrada con el valor filtrado
+    if (newValue !== value) {
+        input.value = newValue;
+        // Calcular la nueva posición del cursor
+        // Usamos cursorPos para mantener la posición relativa al texto original
+        // No ajustamos cursorPos con la longitud del texto, ya que queremos mantener la posición relativa
+        const newCursorPos = cursorPos;
+
+        // Verificar que la nueva posición del cursor no exceda la longitud del nuevo valor
+        const maxNewCursorPosition = Math.min(newValue.length, newCursorPos);
+        
+        // Mover el cursor a la posición anterior o la más cercana posible
+        if (valueLength !== cursorPos) {
+            input.setSelectionRange(maxNewCursorPosition-1, maxNewCursorPosition-1);
+        } else {
+            input.setSelectionRange(maxNewCursorPosition, maxNewCursorPosition);
+        }
+    }   
+}
+
 function validarCamposFormulario() {
     let allFilled = true;
     formInputsArray.forEach(input => {
@@ -304,6 +394,46 @@ function validarCamposFormulario() {
         }
     });
     return allFilled;
+}
+
+function updateDNIRUCMaxLength(numDocumentoClienteInput) {
+
+    // Obtén el tipo de documento seleccionado
+    const tipoDocumentoInput = document.getElementById('tipoCodigoClienteInput');
+    const numDocumentoInput = numDocumentoClienteInput;
+
+    // Verifica si los elementos se encontraron correctamente
+    if (!tipoDocumentoInput || !numDocumentoInput) {
+        console.error('No se encontraron los elementos con los IDs proporcionados.');
+        return;
+    }
+
+    // Define los límites de longitud para cada tipo de documento
+    const limites = {
+        DNI: 8,
+        RUC: 11
+    };
+
+    // Obtiene la longitud máxima correspondiente al tipo de documento seleccionado
+    const tipoDocumento = tipoDocumentoInput.value.trim(); // Usa trim() para eliminar espacios en blanco
+    const maxLength = limites[tipoDocumento] || null;
+
+    // Establece el atributo maxlength o elimina el valor del input
+    if (maxLength !== null) {
+        numDocumentoInput.maxLength = maxLength;
+    } else {
+        numDocumentoInput.removeAttribute('maxlength'); // Elimina el atributo maxlength si no es válido
+        numDocumentoInput.value = ''; // Vacía el valor del input
+        showHideTooltip(codigoClienteTooltip, "Seleccione tipo de documento primero");
+    }
+
+    // Debugging
+    console.log("Tipo de Documento:", tipoDocumento);
+    console.log("Longitud Máxima:", maxLength);
+}
+
+function clearNumDocumento() {
+    codigoClienteInput.value = "";
 }
 
 function validateRealTimeDNIRUCInputLength(numDocumentoInput, idTipoDocumentoInput) {

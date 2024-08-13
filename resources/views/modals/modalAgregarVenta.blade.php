@@ -54,7 +54,7 @@
 
                     <div class="form-group gap">
                         <div class = "group-items">
-                            <label class="secondary-label"> Tipo </label>
+                            <label class="secondary-label"> Tipo de Documento </label>
                            
                             <div class="input-select" id="tipoDocumentoSelect">
                                 @php
@@ -62,17 +62,18 @@
                                     $idOptions = 'tipoDocumentoOptions';
                                 @endphp
                                <div class="onlySelectInput-container">
-                                    <input class="onlySelectInput" type="text" id='{{ $idInput }}' placeholder="DNI" readonly 
+                                    <input class="onlySelectInput" type="text" id='{{ $idInput }}' placeholder="DNI" 
                                         oninput="filterOptions('{{ $idInput }}', '{{ $idOptions }}')" 
-                                        onclick="toggleOptions('{{ $idInput }}', '{{ $idOptions }}')" autocomplete="off" name="tipoCodigoCliente_VentaIntermediada">
+                                        onclick="toggleOptions('{{ $idInput }}', '{{ $idOptions }}')" 
+                                        readonly autocomplete="off" name="tipoCodigoCliente_VentaIntermediada">
                                     <span class="material-symbols-outlined"
-                                          onclick="clearInput('{{ $idInput }}')">cancel</span>
+                                          onclick="clearInput('{{ $idInput }}'), clearNumDocumento()">cancel</span>
                                 </div>
                                 <ul class="select-items" id="tipoDocumentoOptions">
-                                    <li onclick="selectOption('DNI', '{{ $idInput }}', '{{ $idOptions }}')">
+                                    <li onclick="selectOption('DNI', '{{ $idInput }}', '{{ $idOptions }}'), clearNumDocumento() ">
                                         DNI
                                     </li>
-                                    <li onclick="selectOption('RUC', '{{ $idInput }}', '{{ $idOptions }}')">
+                                    <li onclick="selectOption('RUC', '{{ $idInput }}', '{{ $idOptions }}'), clearNumDocumento()">
                                         RUC
                                     </li>
                                 </ul>
@@ -83,13 +84,13 @@
                             <div class="tooltip-container">
                                 <span class="tooltip" id="idCodigoClienteTooltip">Este es el mensaje del tooltip</span>
                             </div>
-                            <input class="input-item" id="idClienteInput" name="codigoCliente_VentaIntermediada"
-                                   oninput="validateRealTimeDNIRUCInputLength(this, '{{ $idInput }}'), validateNumberRealTime(this)" placeholder="12345678">
+                            <input class="input-item" id="idClienteInput" name="codigoCliente_VentaIntermediada" maxlength="11"
+                                   oninput="updateDNIRUCMaxLength(this), validateNumberRealTime(this)" placeholder="12345678">
                         </div>
                         <div class = "group-items">
                             <label class="secondary-label"> Nombre </label>
                             <input class="input-item" id="nombreClienteInput" name="nombreCliente_VentaIntermediada"
-                                   oninput="validateRealTimeInputLength(this, 60)" placeholder="CARRASCO GONZALES, MANUEL">
+                                   oninput="validateRealTimeInputLength(this, 60)" placeholder="APELLIDO1 APELLIDO2, NOMBRE">
                         </div>
                     </div>  
 
@@ -101,21 +102,40 @@
                         <div class = "group-items">
                             <label class="secondary-label"> Número de comprobante </label>
                             <input class="input-item" id="idVentaIntermediadaInput" name="idVentaIntermediada"
-                                   placeholder="B001-72">
+                                   oninput="validateRealTimeInputLength(this, 13)" placeholder="B001-72">
                         </div>
-                        <div class = "group-items">
-                            <label class="secondary-label"> Fecha y hora de emisión </label>
+                        <div class = "group-items dateTime">
+                            <label class="secondary-label centered"> Fecha y hora de emisión </label>
+                            <!--
                             <div class="tooltip-container">
                                 <span class="tooltip" id="fechaHoraEmisionTooltip">Este es el mensaje del tooltip</span>
                             </div>
                             <input class="input-item" id="fechaHoraEmisionVentaIntermediadaInput" type="text"
-                                   oninput="validateDateTimeManualInput(this)" name="fechaHoraEmision_VentaIntermediada"
-                                   placeholder="aaaa-mm-dd hh:mm:ss">
+                                oninput="validateDateTimeManualInput(this)" name="fechaHoraEmision_VentaIntermediada"
+                                placeholder="aaaa-mm-dd hh:mm:ss">
+                            -->
+                            
+                            <div class="dateTimeContainer">
+                                <div class="tooltip-container">
+                                    <span class="tooltip" id="idFechaEmisionTooltip">Este es el mensaje del tooltip</span>
+                                </div>
+                                <input class="input-item date" id="fechaEmisionVentaIntermediadaInput" type="text"
+                                        oninput="validateManualDateInput(this)" maxlength="10"
+                                        placeholder="aaaa-mm-dd">
+
+                                <div class="tooltip-container">
+                                    <span class="tooltip" id="idHoraEmisionTooltip">Este es el mensaje del tooltip</span>
+                                </div>
+                                <input class="input-item time" id="horaEmisionVentaIntermediadaInput" type="text"
+                                        oninput="validateRealTimeInputLength(this, 8), validateManualTimeInput(this)"
+                                        placeholder="hh:mm:ss">
+                                <input type="hidden" id="fechaHoraEmisionVentaIntermediadaInput" name="fechaHoraEmision_VentaIntermediada">
+                            </div>
                         </div>
                         <div class="group-items">
-                            <label class="secondary-label">Monto total</label>
+                            <label class="secondary-label centered">Monto total</label>
                             <input class="input-item" id="montoTotalInput" name="montoTotal_VentaIntermediada" type="text" 
-                                   oninput="validateRealTimeInputLength(this, 6), validatePositiveFloat(this)" 
+                                   oninput="validateRealTimeInputLength(this, 8), validatePositiveFloat(this)" 
                                    placeholder="25.50">
                         </div>
                     </div>

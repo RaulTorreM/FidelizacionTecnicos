@@ -62,9 +62,9 @@
 .agregarNuevaVentaContainer {
     background: #2E1572;
     border-radius: 40px;
-    display: flex; /* Establece el contenedor como Flex */
-    max-width: 10rem; /* Asegura que el contenedor tome todo el ancho disponible */
-    min-height: 3rem; /* Establece una altura mínima para evitar que sea demasiado pequeño */
+    display: flex; 
+    max-width: 10rem; 
+    min-height: 3rem; 
     align-items: center;
     padding: 0.1rem 1rem;
     margin: 0;
@@ -96,6 +96,7 @@
     color: #FFF;
 }
 
+/* ESTILOS DE DATATABLE*/
 .date {
     display: inline-block;
     background: var(--clr-white);

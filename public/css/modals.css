@@ -155,6 +155,10 @@
     font-size: 0.85rem;
 }
 
+.secondary-label.centered {
+    align-self: center;
+}
+
 .important-label {
 	color: #139161;
 	font-weight: 600;
@@ -369,4 +373,25 @@
 
 .inline-alert-message.shown {
     display: inline;
+}
+
+.group-items.dateTime {
+    max-width: 20rem;
+}
+
+.dateTimeContainer {
+    display: flex;
+    flex-direction: row;
+    max-width: 100%;
+    gap: 0.5rem;
+}
+
+.input-item.date {
+    margin: 0;
+    max-width: 7rem;
+}
+
+.input-item.time {
+    margin: 0;
+    max-width: 6rem;
 }
