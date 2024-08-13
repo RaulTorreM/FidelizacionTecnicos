@@ -263,18 +263,25 @@ function validateDateTimeManualInput(dateTimeInput) {
 }
 
 function validateManualDateInput(dateInput) {
-    const wantedCharacters = ['-', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+    const wantedCharacters = ['-', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
     keepWantedCharacters(dateInput, wantedCharacters)
-/*
-    // Expresión regular para validar el formato YYYY-MM-DD
+
+    // Expresión regular para validar el formato AAAA-MM-DD
     const dateFormatRegex = /^(\d{4})-(\d{2})-(\d{2})$/;
     const value = dateInput.value.trim();
+
+     // Verificar que el primer carácter del año, mes y día no sea 0
+     if (value.startsWith('0')) {
+        console.log('El primer carácter no puede ser 0.');
+        showHideTooltip(fechaEmisionTooltip, "El primer carácter no puede ser 0.");
+        return;
+    }
 
     // Extraer año, mes y día de la fecha
     const match = value.match(dateFormatRegex);
     if (!match) {
         console.log('Formato de fecha inválido.');
-        showHideTooltip(fechaEmisionTooltip, "Formato de fecha inválido. Debe ser YYYY-MM-DD.");
+        showHideTooltip(fechaEmisionTooltip, "Formato de fecha inválido. Debe ser AAAA-MM-DD.");
         return;
     }
     
@@ -288,24 +295,28 @@ function validateManualDateInput(dateInput) {
     // Verificar si la fecha es válida
     if (
         inputDate.getFullYear() === parseInt(year, 10) &&
-        inputDate.getMonth() === parseInt(month, 10) - 1 &&
+        inputDate.getMonth() === parseInt(month, 10) - 1 && //Enero 0, Febrero 1, etc.
         inputDate.getDate() === parseInt(day, 10)
     ) {
         // Verificar si la fecha no es mayor que la fecha actual
         if (inputDate > now) {
             console.log('La fecha no puede ser mayor que la fecha actual.');
             showHideTooltip(fechaEmisionTooltip, "La fecha no puede ser mayor que la fecha actual.");
-        } else {
-            console.log('Fecha válida y no mayor que la fecha actual:', value);
-        }
+            return
+        } 
     } else {
-        console.log('Fecha inválida.');
-        showHideTooltip(fechaEmisionTooltip, "Fecha inválida.");
+        console.log('Fecha inválida según calendario.');
+        showHideTooltip(fechaEmisionTooltip, "Fecha inválida según calendario.");
+        return
     }
-*/
+
+    showHideTooltip(fechaEmisionTooltip, "Fecha válida.");
 }
 
 function validateManualTimeInput(timeInput) {
+    const wantedCharacters = [':', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+    keepWantedCharacters(timeInput, wantedCharacters)
+/*
     // Expresión regular para validar el formato hh-mm-ss
     const regex = /^(\d{2})-(\d{2})-(\d{2})$/;
     const value = timeInput.value.trim();  
@@ -313,7 +324,7 @@ function validateManualTimeInput(timeInput) {
     // Verificar si el valor coincide con el formato
     if (!regex.test(value)) {
         console.log('Formato de hora inválido. Debe ser mm-hh-ss.');
-    } 
+    } */
 }
 
 function validatePositiveFloat(input) {

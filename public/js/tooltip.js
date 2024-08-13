@@ -20,9 +20,17 @@ function showHideTooltip(tooltipSpan, message) {
     tooltipSpan.style.left = `${tooltipLeft}px`;
     tooltipSpan.style.top = `${inputTop - containerTop - tooltipHeight - offset}px`;
 
-    // Mostrar el tooltip
+    // Asegúrate de que el tooltip está visible
     tooltipSpan.classList.add("shown");
 
+    // Limpiar cualquier temporizador previo
+    if (tooltipSpan.hideTimeout) {
+        clearTimeout(tooltipSpan.hideTimeout);
+    }
+
     // Ocultar el tooltip después de 3 segundos
-    setTimeout(() => tooltipSpan.classList.remove("shown"), 3000);
+    tooltipSpan.hideTimeout = setTimeout(() => {
+        tooltipSpan.classList.remove("shown");
+        tooltipSpan.hideTimeout = null; // Limpiar el temporizador
+    }, 3000);
 }

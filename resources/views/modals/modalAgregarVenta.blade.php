@@ -127,7 +127,7 @@
                                     <span class="tooltip" id="idHoraEmisionTooltip">Este es el mensaje del tooltip</span>
                                 </div>
                                 <input class="input-item time" id="horaEmisionVentaIntermediadaInput" type="text"
-                                        oninput="validateRealTimeInputLength(this, 8), validateManualTimeInput(this)"
+                                        oninput="validateManualTimeInput(this)"  maxlength="8"
                                         placeholder="hh:mm:ss">
                                 <input type="hidden" id="fechaHoraEmisionVentaIntermediadaInput" name="fechaHoraEmision_VentaIntermediada">
                             </div>
