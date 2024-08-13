@@ -35,7 +35,7 @@
                         <h3>Correo electrónico</h3>
                     </div>   
                     <input id="email" class="credential-box-input" type="email" name="email" 
-                            value="{{ old('email') }}" required placeholder="Ingrese email" 
+                            value="admin@dimacof.com" required placeholder="Ingrese email" 
                             required autofocus autocomplete="username">
                 </div>
 
@@ -45,7 +45,7 @@
                         <h3>Contraseña</h3>
                     </div>   
                     <input id="password" class="credential-box-input" type="password" 
-                            name="password" required placeholder="Ingrese contraseña" 
+                            name="password" value="12345678" required placeholder="Ingrese contraseña" 
                             required autocomplete="current-password">
                 </div>
                 

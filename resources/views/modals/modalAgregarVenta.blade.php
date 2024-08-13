@@ -30,8 +30,8 @@
                                 $idInput = 'tecnicoInput';
                                 $idOptions = 'tecnicoOptions';
                             @endphp
-                            <input class="input-select-item" type="text" id='{{ $idInput }}' placeholder="DNI - Nombre"
-                                oninput="filterOptions('{{ $idInput }}', '{{ $idOptions }}'), validateRealTimeInputLength(this, 60),
+                            <input class="input-select-item" type="text" id='{{ $idInput }}' maxlength="50" placeholder="DNI - Nombre"
+                                oninput="filterOptions('{{ $idInput }}', '{{ $idOptions }}'),
                                             validateValueOnRealTime(this)" 
                                 onclick="toggleOptions('{{ $idInput }}', '{{ $idOptions }}')">
                             <ul class="select-items" id="tecnicoOptions">
@@ -80,7 +80,7 @@
                             </div>
                         </div>
                         <div class = "group-items">
-                            <label class="secondary-label"> Num. Documento </label>
+                            <label class="secondary-label"> Número de documento </label>
                             <div class="tooltip-container">
                                 <span class="tooltip" id="idCodigoClienteTooltip">Este es el mensaje del tooltip</span>
                             </div>
@@ -101,8 +101,11 @@
                     <div class="form-group gap">
                         <div class = "group-items">
                             <label class="secondary-label"> Número de comprobante </label>
+                            <div class="tooltip-container">
+                                <span class="tooltip" id="idNumComprobanteTooltip">Este es el mensaje del tooltip</span>
+                            </div>
                             <input class="input-item" id="idVentaIntermediadaInput" name="idVentaIntermediada"
-                                   oninput="validateRealTimeInputLength(this, 13)" placeholder="B001-72">
+                                   oninput="validateNumComprobanteInput(this)" maxlength="13" placeholder="B001-72">
                         </div>
                         <div class = "group-items dateTime">
                             <label class="secondary-label centered"> Fecha y hora de emisión </label>

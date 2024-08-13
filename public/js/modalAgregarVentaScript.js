@@ -23,11 +23,11 @@ let formInputsArray = [
 
 let tecnicoTooltip = document.getElementById('idTecnicoTooltip');
 let codigoClienteTooltip = document.getElementById('idCodigoClienteTooltip');
+let numComprobanteTooltip = document.getElementById('idNumComprobanteTooltip');
 let fechaHoraEmisionTooltip = document.getElementById('fechaHoraEmisionTooltip');
 let fechaEmisionTooltip = document.getElementById('idFechaEmisionTooltip');
 let horaEmisionTooltip = document.getElementById('idHoraEmisionTooltip');
-
-let multiMessageError = document.getElementById('multiMessageError2');
+let multiMessageError2 = document.getElementById('multiMessageError2');
 
 function selectOptionAgregarVenta(value, idInput, idOptions) {
     //Colocar en el input la opción seleccionada 
@@ -157,7 +157,7 @@ function analizarXML(file) {
             showHideTooltip(tecnicoTooltip, "Tiene que rellenar el campo Técnico primero");
             clearSomeHiddenInputs();
         } else {
-            multiMessageError.classList.remove("shown");
+            multiMessageError2.classList.remove("shown");
             console.log("Sí se rellenó los campos del técnico");
             fillSomeHiddenInputs(ventaIntermediadaObject);
         }
@@ -221,6 +221,79 @@ function detectarTipoCodigoCliente(codigoCliente) {
     return codigoCliente.length === 8 ? 'DNI' : codigoCliente.length === 11 ? 'RUC' : 'Desconocido';
 }
 
+function limitSpecificCharacters(input, characterLimits) {
+    const originalValue = input.value;
+    const cursorPos = input.selectionStart;
+    let newValue = '';
+    let charCounts = {};
+
+    // Inicializar los contadores de caracteres
+    for (const char in characterLimits) {
+        charCounts[char] = 0;
+    }
+
+    // Iterar sobre cada carácter en el valor de entrada
+    for (let i = 0; i < originalValue.length; i++) {
+        const char = originalValue[i];
+
+        if (char in characterLimits) {
+            if (charCounts[char] < characterLimits[char]) {
+                newValue += char;
+                charCounts[char]++;
+            }
+        } else {
+            newValue += char;
+        }
+    }
+
+    // Actualizar el valor del input solo si ha cambiado
+    if (newValue !== originalValue) {
+        input.value = newValue;
+
+        // Calcular la nueva posición del cursor
+        const maxNewCursorPosition = Math.min(newValue.length, cursorPos);
+        
+        // Mover el cursor a la posición anterior o la más cercana posible
+        if (originalValue.length !== cursorPos) {
+            input.setSelectionRange(maxNewCursorPosition - 1, maxNewCursorPosition - 1);
+        } else {
+            input.setSelectionRange(maxNewCursorPosition, maxNewCursorPosition);
+        }
+    }
+}
+
+function keepWantedCharacters(input, charactersArray) {
+    // Obtener el valor del input y la posición del cursor actual
+    const value = input.value;
+    const valueLength = input.value.length;
+    const cursorPos = input.selectionStart; // Posición del cursor antes del filtrado
+
+    // Crear una expresión regular que coincida con los caracteres no deseados
+    const escapedCharacters = charactersArray.map(char => char.replace(/[-[\]/{}()*+?.\\^$|]/g, '\\$&')).join('');
+    const regex = new RegExp(`[^${escapedCharacters}]`, 'g'); // Coincide con caracteres NO deseados
+
+    // Eliminar todos los caracteres no deseados
+    let newValue = value.replace(regex, '');
+
+    // Actualizar el campo de entrada con el valor filtrado
+    if (newValue !== value) {
+        input.value = newValue;
+        const newCursorPos = cursorPos;
+
+        // Verificar que la nueva posición del cursor no exceda la longitud del nuevo valor
+        const maxNewCursorPosition = Math.min(newValue.length, newCursorPos);
+        
+        // Mover el cursor a la posición anterior o la más cercana posible
+        if (valueLength !== cursorPos) {
+            input.setSelectionRange(maxNewCursorPosition-1, maxNewCursorPosition-1);
+        } else {
+            input.setSelectionRange(maxNewCursorPosition, maxNewCursorPosition);
+        }
+    }   
+}
+
+
+/*
 function validateDateTimeManualInput(dateTimeInput) {
     let dateTimeValue = dateTimeInput.value;
     console.log("Valor original:", dateTimeValue);
@@ -260,18 +333,54 @@ function validateDateTimeManualInput(dateTimeInput) {
         dateTimeInput.value = ''; 
         showHideTooltip(fechaHoraEmisionTooltip, "Fecha y hora inválidas");
     }
+}*/
+
+function validateNumComprobanteInput(numComprobanteInput) {
+    // Convertir el valor del campo de entrada a mayúsculas
+    numComprobanteInput.value = numComprobanteInput.value.toUpperCase();
+
+    // Definir los caracteres permitidos y sus límites
+    const wantedCharacters = ['B', 'F', '-', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+    const characterLimits = {
+        'B': 1,
+        'F': 1,
+        '-': 1,
+    };
+
+    // Filtrar los caracteres permitidos y limitar los caracteres según el objeto characterLimits
+    keepWantedCharacters(numComprobanteInput, wantedCharacters);
+    limitSpecificCharacters(numComprobanteInput, characterLimits);
+
+    // Expresión regular mejorada para validar el formato F001-00000096 o B001-00000096
+    const regex = /^[BF]\d{3}-\d{8}$/;
+    const value = numComprobanteInput.value.trim();
+
+    // Verificar si el valor coincide con el formato
+    if (!regex.test(value)) {
+        console.log('Número de comprobante inválido. Debe seguir la forma: F001-00000096 ó B001-00000096');
+        showHideTooltip(numComprobanteTooltip, "Número de comprobante inválido. Debe seguir la forma: F001-00000096 ó B001-00000096");
+        return;
+    }
+
+    console.log('Número de comprobante válido');
+    showHideTooltip(numComprobanteTooltip, "Número de comprobante válido");
 }
 
 function validateManualDateInput(dateInput) {
-    const wantedCharacters = ['-', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+    const wantedCharacters = ['-', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+    const characterLimits = {
+        '-': 2,
+    };
+
     keepWantedCharacters(dateInput, wantedCharacters)
+    limitSpecificCharacters(dateInput, characterLimits)
 
     // Expresión regular para validar el formato AAAA-MM-DD
     const dateFormatRegex = /^(\d{4})-(\d{2})-(\d{2})$/;
     const value = dateInput.value.trim();
 
-     // Verificar que el primer carácter del año, mes y día no sea 0
-     if (value.startsWith('0')) {
+    // Verificar que el primer carácter del año, mes y día no sea 0
+    if (value.startsWith('0')) {
         console.log('El primer carácter no puede ser 0.');
         showHideTooltip(fechaEmisionTooltip, "El primer carácter no puede ser 0.");
         return;
@@ -302,29 +411,65 @@ function validateManualDateInput(dateInput) {
         if (inputDate > now) {
             console.log('La fecha no puede ser mayor que la fecha actual.');
             showHideTooltip(fechaEmisionTooltip, "La fecha no puede ser mayor que la fecha actual.");
-            return
+            return;
         } 
     } else {
         console.log('Fecha inválida según calendario.');
         showHideTooltip(fechaEmisionTooltip, "Fecha inválida según calendario.");
-        return
+        return;
     }
 
     showHideTooltip(fechaEmisionTooltip, "Fecha válida.");
 }
 
 function validateManualTimeInput(timeInput) {
-    const wantedCharacters = [':', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+    const wantedCharacters = [':', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
     keepWantedCharacters(timeInput, wantedCharacters)
-/*
+    const characterLimits = {
+        ':': 2,
+    };
+
+    limitSpecificCharacters(timeInput, characterLimits)
+
     // Expresión regular para validar el formato hh-mm-ss
-    const regex = /^(\d{2})-(\d{2})-(\d{2})$/;
+    const regex = /^(\d{2}):(\d{2}):(\d{2})$/;
     const value = timeInput.value.trim();  
     
     // Verificar si el valor coincide con el formato
     if (!regex.test(value)) {
-        console.log('Formato de hora inválido. Debe ser mm-hh-ss.');
-    } */
+        console.log('Formato de hora inválido. Debe ser hh:mm:ss.');
+        showHideTooltip(horaEmisionTooltip, "Formato de hora inválido. Debe ser hh:mm:ss");
+        return;
+    } 
+
+    // Verificar los límites de horas, minutos y segundos
+    // Extraer horas, minutos y segundos
+    const [_, hours, minutes, seconds] = value.match(regex);
+
+    // Convertir a números
+    const hour = parseInt(hours, 10);
+    const minute = parseInt(minutes, 10);
+    const second = parseInt(seconds, 10);
+
+    // Verificar límites de horas, minutos y segundos
+    if (hour < 0 || hour > 23) {
+        console.log('Las horas deben estar entre 00 y 23.');
+        showHideTooltip(horaEmisionTooltip, "La horas deben estar entre 00 y 23.");
+        return;
+    }
+    if (minute < 0 || minute > 59) {
+        console.log('Los minutos deben estar entre 00 y 59.');
+        showHideTooltip(horaEmisionTooltip, "Los minutos deben estar entre 00 y 59.");
+        return;
+    }
+    if (second < 0 || second > 59) {
+        console.log('Los segundos deben estar entre 00 y 59.');
+        showHideTooltip(horaEmisionTooltip, "Los segundos deben estar entre 00 y 59.");
+        return;
+    }
+
+    console.log('Formato de hora válido');
+    showHideTooltip(horaEmisionTooltip,"Hora válida");
 }
 
 function validatePositiveFloat(input) {
@@ -362,39 +507,6 @@ function validatePositiveFloat(input) {
         // Mover el cursor al final del input
         input.setSelectionRange(newValue.length, newValue.length);
     }
-}
-
-function keepWantedCharacters(input, charactersArray) {
-    // Obtener el valor del input y la posición del cursor actual
-    const value = input.value;
-    const valueLength = input.value.length;
-    const cursorPos = input.selectionStart; // Posición del cursor antes del filtrado
-
-    // Crear una expresión regular que coincida con los caracteres no deseados
-    const escapedCharacters = charactersArray.map(char => char.replace(/[-[\]/{}()*+?.\\^$|]/g, '\\$&')).join('');
-    const regex = new RegExp(`[^${escapedCharacters}]`, 'g'); // Coincide con caracteres NO deseados
-
-    // Eliminar todos los caracteres no deseados
-    let newValue = value.replace(regex, '');
-
-    // Actualizar el campo de entrada con el valor filtrado
-    if (newValue !== value) {
-        input.value = newValue;
-        // Calcular la nueva posición del cursor
-        // Usamos cursorPos para mantener la posición relativa al texto original
-        // No ajustamos cursorPos con la longitud del texto, ya que queremos mantener la posición relativa
-        const newCursorPos = cursorPos;
-
-        // Verificar que la nueva posición del cursor no exceda la longitud del nuevo valor
-        const maxNewCursorPosition = Math.min(newValue.length, newCursorPos);
-        
-        // Mover el cursor a la posición anterior o la más cercana posible
-        if (valueLength !== cursorPos) {
-            input.setSelectionRange(maxNewCursorPosition-1, maxNewCursorPosition-1);
-        } else {
-            input.setSelectionRange(maxNewCursorPosition, maxNewCursorPosition);
-        }
-    }   
 }
 
 function validarCamposFormulario() {
@@ -447,40 +559,7 @@ function clearNumDocumento() {
     codigoClienteInput.value = "";
 }
 
-function validateRealTimeDNIRUCInputLength(numDocumentoInput, idTipoDocumentoInput) {
-    const tipoDocumentoInput = document.getElementById(idTipoDocumentoInput).value;
-    let numDocumentoInputValue = numDocumentoInput.value;
-    
-    const limites = {
-        DNI: 8,
-        RUC: 11
-    };
 
-    if (limites[tipoDocumentoInput] !== undefined) {
-        if (numDocumentoInputValue.length > limites[tipoDocumentoInput]) {
-            numDocumentoInputValue = numDocumentoInputValue.slice(0, limites[tipoDocumentoInput]);
-            numDocumentoInput.value = numDocumentoInputValue;
-        }
-    } else {
-        numDocumentoInput.value = "";
-
-         // Mostrar y ocultar el tooltip
-        showHideTooltip(codigoClienteTooltip, "Seleccione tipo de documento primero");
-    }
-}
-
-function guardarModalAgregarVenta(idModal, idForm) {
-    if (validarCamposFormulario()) {
-        console.log("Enviando formulario correctamente.")
-        multiMessageError.textContent = "Enviando formulario correctamente.";
-        multiMessageError.classList.remove("shown");
-        //guardarModal(idModal, idForm);
-    } else {
-        console.log("Todos los campos del formulario deben estar rellenados correctamente.")
-        multiMessageError.textContent = "Todos los campos del formulario deben estar rellenados correctamente.";
-        multiMessageError.classList.add("shown");
-    }
-}
 
 document.addEventListener('DOMContentLoaded', function() {
 
@@ -493,3 +572,15 @@ document.addEventListener('DOMContentLoaded', function() {
     montoTotalInput.addEventListener('input', updatePuntosGanados);
 });
 
+function guardarModalAgregarVenta(idModal, idForm) {
+    if (validarCamposFormulario()) {
+        console.log("Enviando formulario correctamente.")
+        multiMessageError2.textContent = "Enviando formulario correctamente.";
+        multiMessageError2.classList.remove("shown");
+        //guardarModal(idModal, idForm);
+    } else {
+        console.log("Todos los campos del formulario deben estar rellenados correctamente.")
+        multiMessageError2.textContent = "Todos los campos del formulario deben estar rellenados correctamente.";
+        multiMessageError2.classList.add("shown");
+    }
+}

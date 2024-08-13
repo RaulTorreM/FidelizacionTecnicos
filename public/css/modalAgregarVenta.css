@@ -68,3 +68,7 @@
 #fechaHoraEmisionVentaIntermediadaInput {
     max-width: 25rem;
 }
+
+#tecnicoInput {
+    width: 28rem;
+}
