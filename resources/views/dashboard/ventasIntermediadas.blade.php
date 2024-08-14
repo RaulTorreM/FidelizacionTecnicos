@@ -21,7 +21,7 @@
             <div class="agregarNuevaVentaContainer">
                 <button class="btnAgregarNuevaVenta" onclick="openModal('modalAgregarVenta')">
                     Agregar nueva venta
-                    <span class="material-symbols-outlined">note_add</span>
+                    <span class="material-symbols-outlined">add_circle</span>
                 </button>
             </div>
            

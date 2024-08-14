@@ -156,9 +156,13 @@
 .main {
     grid-column: 2; 
     grid-row: 2; 
-    background-color: #F6F7F9;
-    padding: 0 2rem 0 1rem;
+    background-color: #e7ebf2;
+    padding-top: var(--padding-top-mainDashboardContainer);
+    padding-right: var(--padding-right-mainDashboardContainer);
+    padding-bottom: var(--padding-bottom-mainDashboardContainer);
+    padding-left: var(--padding-left-mainDashboardContainer);
     width: auto;
+    height: auto;
 }
 
 aside {

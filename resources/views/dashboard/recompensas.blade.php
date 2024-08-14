@@ -7,5 +7,26 @@
 @endpush
 
 @section('main-content')
-	Aquí se gestionarán las recompensas
+	<div class="recompensasContainer">
+		<div class="firstRow">
+			<div class="btnCreateItem-container">
+				<button class="btnCreateItem" onclick="">
+					Registrar nueva recompensa
+					<span class="material-symbols-outlined">add_circle</span>
+				</button>
+			</div>
+			<div class="btnEditItem-container">
+				<button class="btnEditItem" onclick="">
+					Editar
+					<span class="material-symbols-outlined">edit</span>
+				</button>
+			</div>
+			<div class="btnCreateItem-container">
+				<button class="btnCreateItem" onclick="">
+					Registrar nueva recompensa
+					<span class="material-symbols-outlined">add_circle</span>
+				</button>
+			</div>
+		</div>
+	</div>
 @endsection
