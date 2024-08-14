@@ -5,6 +5,8 @@ let nombreTecnicoInput = document.getElementById('nombreTecnicoInput');
 let tipoCodigoClienteInput = document.getElementById('tipoCodigoClienteInput');
 let codigoClienteInput = document.getElementById('idClienteInput');
 let nombreClienteInput = document.getElementById('nombreClienteInput');
+let fechaEmisionVentaIntermediadaInput = document.getElementById('fechaEmisionVentaIntermediadaInput');
+let horaEmisionVentaIntermediadaInput = document.getElementById('horaEmisionVentaIntermediadaInput');
 let fechaHoraEmisionInput = document.getElementById('fechaHoraEmisionVentaIntermediadaInput');
 let montoTotalInput = document.getElementById('montoTotalInput');
 let puntosGanadosInput = document.getElementById('puntosGanadosInput');
@@ -158,7 +160,6 @@ function analizarXML(file) {
             clearSomeHiddenInputs();
         } else {
             multiMessageError2.classList.remove("shown");
-            console.log("Sí se rellenó los campos del técnico");
             fillSomeHiddenInputs(ventaIntermediadaObject);
         }
     };
@@ -178,11 +179,24 @@ function clearSomeHiddenInputs() {
     });
 }
 
+function fillWithZerosIdVentaIntermediada(idVentaIntermediada) {
+    // Dividir el identificador en la parte antes y después del guion
+    const [prefix, suffix] = idVentaIntermediada.split('-');
+
+    // Rellenar la parte después del guion con ceros hasta alcanzar 8 caracteres
+    const filledSuffix = suffix.padStart(8, '0');
+
+    // Recombinar las partes
+    return `${prefix}-${filledSuffix}`;
+}
+
 function fillSomeHiddenInputs(ventaIntermediadaObject) {
-    idVentaIntermediadaInput.value = ventaIntermediadaObject.idVentaIntermediada || '';
+    idVentaIntermediadaInput.value = fillWithZerosIdVentaIntermediada(ventaIntermediadaObject.idVentaIntermediada) || '';
     tipoCodigoClienteInput.value = ventaIntermediadaObject.tipoCodigoCliente || '';
     codigoClienteInput.value = ventaIntermediadaObject.clienteCodigo || '';
     nombreClienteInput.value = ventaIntermediadaObject.clienteNombre || '';
+    fechaEmisionVentaIntermediadaInput.value = ventaIntermediadaObject.fechaEmision;
+    horaEmisionVentaIntermediadaInput.value = ventaIntermediadaObject.horaEmision;
     fechaHoraEmisionInput.value = ventaIntermediadaObject.fechaEmision + " " + ventaIntermediadaObject.horaEmision || '';
     montoTotalInput.value = ventaIntermediadaObject.montoTotal || '';
     puntosGanadosInput.value = ventaIntermediadaObject.puntosGanados || ''; 
@@ -292,48 +306,7 @@ function keepWantedCharacters(input, charactersArray) {
     }   
 }
 
-
-/*
-function validateDateTimeManualInput(dateTimeInput) {
-    let dateTimeValue = dateTimeInput.value;
-    console.log("Valor original:", dateTimeValue);
-
-    // Expresión regular para el formato aaaa-mm-dd hh:mm:ss
-    const regex = /^(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})$/;
-
-    // Verificar si el valor tiene el formato correcto
-    if (dateTimeValue.length >= 19) {
-        if (regex.test(dateTimeValue)) {
-            const [, year, month, day, hour, minute, second] = dateTimeValue.match(regex);
-
-            // Convertir a números
-            const yearNum = parseInt(year, 10);
-            const monthNum = parseInt(month, 10);
-            const dayNum = parseInt(day, 10);
-            const hourNum = parseInt(hour, 10);
-            const minuteNum = parseInt(minute, 10);
-            const secondNum = parseInt(second, 10);
-
-            // Validar rangos
-            if (yearNum >= 1900 && yearNum <= 2100 &&
-                monthNum >= 1 && monthNum <= 12 &&
-                hourNum >= 0 && hourNum <= 23 &&
-                minuteNum >= 0 && minuteNum <= 59 &&
-                secondNum >= 0 && secondNum <= 59) {
-
-                // Validar días del mes
-                const daysInMonth = new Date(yearNum, monthNum, 0).getDate();
-                if (dayNum >= 1 && dayNum <= daysInMonth) {
-                    console.log("Fecha y hora válidas");
-                    return true;
-                }
-            }
-        }
-        // Limpiar el input si es inválido
-        dateTimeInput.value = ''; 
-        showHideTooltip(fechaHoraEmisionTooltip, "Fecha y hora inválidas");
-    }
-}*/
+let numComprobanteIsValid = true;
 
 function validateNumComprobanteInput(numComprobanteInput) {
     // Convertir el valor del campo de entrada a mayúsculas
@@ -357,14 +330,16 @@ function validateNumComprobanteInput(numComprobanteInput) {
 
     // Verificar si el valor coincide con el formato
     if (!regex.test(value)) {
-        console.log('Número de comprobante inválido. Debe seguir la forma: F001-00000096 ó B001-00000096');
+        numComprobanteIsValid = false;
         showHideTooltip(numComprobanteTooltip, "Número de comprobante inválido. Debe seguir la forma: F001-00000096 ó B001-00000096");
         return;
     }
 
-    console.log('Número de comprobante válido');
     showHideTooltip(numComprobanteTooltip, "Número de comprobante válido");
+    numComprobanteIsValid = true;
 }
+
+let fechaEmisionIsValid = true;
 
 function validateManualDateInput(dateInput) {
     const wantedCharacters = ['-', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
@@ -381,16 +356,16 @@ function validateManualDateInput(dateInput) {
 
     // Verificar que el primer carácter del año, mes y día no sea 0
     if (value.startsWith('0')) {
-        console.log('El primer carácter no puede ser 0.');
         showHideTooltip(fechaEmisionTooltip, "El primer carácter no puede ser 0.");
+        fechaEmisionIsValid = false;
         return;
     }
 
     // Extraer año, mes y día de la fecha
     const match = value.match(dateFormatRegex);
     if (!match) {
-        console.log('Formato de fecha inválido.');
         showHideTooltip(fechaEmisionTooltip, "Formato de fecha inválido. Debe ser AAAA-MM-DD.");
+        fechaEmisionIsValid = false;
         return;
     }
     
@@ -402,25 +377,27 @@ function validateManualDateInput(dateInput) {
     now.setHours(0, 0, 0, 0); // Ajustar la hora de la fecha actual para que sea medianoche
 
     // Verificar si la fecha es válida
-    if (
-        inputDate.getFullYear() === parseInt(year, 10) &&
+    if (inputDate.getFullYear() === parseInt(year, 10) &&
         inputDate.getMonth() === parseInt(month, 10) - 1 && //Enero 0, Febrero 1, etc.
         inputDate.getDate() === parseInt(day, 10)
     ) {
         // Verificar si la fecha no es mayor que la fecha actual
         if (inputDate > now) {
-            console.log('La fecha no puede ser mayor que la fecha actual.');
             showHideTooltip(fechaEmisionTooltip, "La fecha no puede ser mayor que la fecha actual.");
+            fechaEmisionIsValid = false;
             return;
         } 
     } else {
-        console.log('Fecha inválida según calendario.');
         showHideTooltip(fechaEmisionTooltip, "Fecha inválida según calendario.");
+        fechaEmisionIsValid = false;
         return;
     }
 
+    fechaEmisionIsValid = true;
     showHideTooltip(fechaEmisionTooltip, "Fecha válida.");
 }
+
+let horaEmisionIsValid = true;
 
 function validateManualTimeInput(timeInput) {
     const wantedCharacters = [':', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
@@ -437,8 +414,8 @@ function validateManualTimeInput(timeInput) {
     
     // Verificar si el valor coincide con el formato
     if (!regex.test(value)) {
-        console.log('Formato de hora inválido. Debe ser hh:mm:ss.');
         showHideTooltip(horaEmisionTooltip, "Formato de hora inválido. Debe ser hh:mm:ss");
+        horaEmisionIsValid = false;
         return;
     } 
 
@@ -453,22 +430,22 @@ function validateManualTimeInput(timeInput) {
 
     // Verificar límites de horas, minutos y segundos
     if (hour < 0 || hour > 23) {
-        console.log('Las horas deben estar entre 00 y 23.');
         showHideTooltip(horaEmisionTooltip, "La horas deben estar entre 00 y 23.");
+        horaEmisionIsValid = false;
         return;
     }
     if (minute < 0 || minute > 59) {
-        console.log('Los minutos deben estar entre 00 y 59.');
         showHideTooltip(horaEmisionTooltip, "Los minutos deben estar entre 00 y 59.");
+        horaEmisionIsValid = false;
         return;
     }
     if (second < 0 || second > 59) {
-        console.log('Los segundos deben estar entre 00 y 59.');
         showHideTooltip(horaEmisionTooltip, "Los segundos deben estar entre 00 y 59.");
+        horaEmisionIsValid = false;
         return;
     }
 
-    console.log('Formato de hora válido');
+    horaEmisionIsValid = true;
     showHideTooltip(horaEmisionTooltip,"Hora válida");
 }
 
@@ -509,16 +486,6 @@ function validatePositiveFloat(input) {
     }
 }
 
-function validarCamposFormulario() {
-    let allFilled = true;
-    formInputsArray.forEach(input => {
-        if (!input.value.trim()) {
-            allFilled = false;
-        }
-    });
-    return allFilled;
-}
-
 function updateDNIRUCMaxLength(numDocumentoClienteInput) {
 
     // Obtén el tipo de documento seleccionado
@@ -549,17 +516,11 @@ function updateDNIRUCMaxLength(numDocumentoClienteInput) {
         numDocumentoInput.value = ''; // Vacía el valor del input
         showHideTooltip(codigoClienteTooltip, "Seleccione tipo de documento primero");
     }
-
-    // Debugging
-    console.log("Tipo de Documento:", tipoDocumento);
-    console.log("Longitud Máxima:", maxLength);
 }
 
 function clearNumDocumento() {
     codigoClienteInput.value = "";
 }
-
-
 
 document.addEventListener('DOMContentLoaded', function() {
 
@@ -572,12 +533,105 @@ document.addEventListener('DOMContentLoaded', function() {
     montoTotalInput.addEventListener('input', updatePuntosGanados);
 });
 
+let dateValue = ''; // Variable para almacenar la fecha
+let timeValue = ''; // Variable para almacenar la hora
+
+function updateDateInput(input) {
+    dateValue = input.value; // Actualiza la variable de fecha
+    updateHiddenDateTimeInput(); // Actualiza el campo oculto
+}
+
+function updateTimeInput(input) {
+    timeValue = input.value; // Actualiza la variable de hora
+    updateHiddenDateTimeInput(); // Actualiza el campo oculto
+}
+
+function updateHiddenDateTimeInput() {
+    // Combinar la fecha y la hora en el formato deseado
+    const combinedDateTime = `${dateValue} ${timeValue}`;
+    fechaHoraEmisionInput.value = combinedDateTime;
+}
+
+function validarCamposVacíosFormulario() {
+    let allFilled = true;
+    formInputsArray.forEach(input => {
+        if (!input.value.trim()) {
+            allFilled = false;
+
+        }
+    });
+    return allFilled;
+}
+
+let mensajeCombinado = "";
+
+function validateDNIRUCLength() {
+    if (tipoCodigoClienteInput.value === "DNI") {
+        if (codigoClienteInput.value.length !== 8) {
+            mensajeCombinado += "Número de documento no es de longitud 8. ";
+            return false;
+        }
+    } else {
+        if (codigoClienteInput.value.length !== 11) {
+            mensajeCombinado += "Número de documento no es de longitud 11. ";
+            return false;
+        }
+    }
+
+    return true;
+}
+
+function validarCamposCorrectosFormulario() {
+    mensajeCombinado = "";
+    var returnError = false;
+
+    // Validando documento de cliente
+    if (!validateDNIRUCLength()) {
+        returnError = true;
+    }
+
+    // Validando número de comprobante
+    if (!numComprobanteIsValid) {
+        mensajeCombinado += "Número de comprobante inválido. ";
+        returnError = true;
+    }
+
+    // Validando fecha de emisión
+    if (!fechaEmisionIsValid) {
+        mensajeCombinado += "Fecha de emisión inválida. ";
+        returnError = true;
+    }
+
+    // Validando hora de emisión
+    if (!horaEmisionIsValid) {
+        mensajeCombinado += "Hora de emisión inválida. ";
+        returnError = true;
+    }
+
+    // Validando monto total
+    if (montoTotalInput.value == 0) {
+        mensajeCombinado += "Monto total no puede ser 0.";
+        returnError = true;
+    }
+    
+    if (returnError) {
+        return false;
+    }
+
+    multiMessageError2.classList.remove("shown");
+    return true;
+}
+
 function guardarModalAgregarVenta(idModal, idForm) {
-    if (validarCamposFormulario()) {
-        console.log("Enviando formulario correctamente.")
-        multiMessageError2.textContent = "Enviando formulario correctamente.";
-        multiMessageError2.classList.remove("shown");
-        //guardarModal(idModal, idForm);
+    if (validarCamposVacíosFormulario()) {
+        if (validarCamposCorrectosFormulario()) {
+            multiMessageError2.classList.remove("shown");
+            //guardarModal(idModal, idForm);
+        } else {
+            //Mostrar mensaje combinado
+            multiMessageError2.textContent = mensajeCombinado;
+            multiMessageError2.classList.add("shown");
+        }
     } else {
         console.log("Todos los campos del formulario deben estar rellenados correctamente.")
         multiMessageError2.textContent = "Todos los campos del formulario deben estar rellenados correctamente.";

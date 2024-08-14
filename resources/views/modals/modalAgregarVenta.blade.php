@@ -62,7 +62,7 @@
                                     $idOptions = 'tipoDocumentoOptions';
                                 @endphp
                                <div class="onlySelectInput-container">
-                                    <input class="onlySelectInput" type="text" id='{{ $idInput }}' placeholder="DNI" 
+                                    <input class="onlySelectInput" type="text" id='{{ $idInput }}' placeholder="DNI/RUC" 
                                         oninput="filterOptions('{{ $idInput }}', '{{ $idOptions }}')" 
                                         onclick="toggleOptions('{{ $idInput }}', '{{ $idOptions }}')" 
                                         readonly autocomplete="off" name="tipoCodigoCliente_VentaIntermediada">
@@ -123,14 +123,14 @@
                                     <span class="tooltip" id="idFechaEmisionTooltip">Este es el mensaje del tooltip</span>
                                 </div>
                                 <input class="input-item date" id="fechaEmisionVentaIntermediadaInput" type="text"
-                                        oninput="validateManualDateInput(this)" maxlength="10"
+                                        oninput="validateManualDateInput(this), updateDateInput(this)" maxlength="10"
                                         placeholder="aaaa-mm-dd">
 
                                 <div class="tooltip-container">
                                     <span class="tooltip" id="idHoraEmisionTooltip">Este es el mensaje del tooltip</span>
                                 </div>
                                 <input class="input-item time" id="horaEmisionVentaIntermediadaInput" type="text"
-                                        oninput="validateManualTimeInput(this)"  maxlength="8"
+                                        oninput="validateManualTimeInput(this), updateTimeInput(this)"  maxlength="8"
                                         placeholder="hh:mm:ss">
                                 <input type="hidden" id="fechaHoraEmisionVentaIntermediadaInput" name="fechaHoraEmision_VentaIntermediada">
                             </div>
@@ -149,7 +149,6 @@
                     
                     <div class="form-group start">
                         <input class="input-item" id="puntosGanadosInput" name="puntosGanados_VentaIntermediada"  placeholder="26" readonly>
-                        <span class="inline-alert-message" id="multiMessageError2"> multiMessageError2 </span> 
                     </div>
                 </form>
                 <!-- Seleccionar archivos -->
@@ -164,6 +163,11 @@
                     </div>
                 </div>
             </div>
+
+            <div class="form-group start">
+                <span class="inline-alert-message" id="multiMessageError2"> multiMessageError2 </span> 
+            </div>
+            
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" onclick="closeModal('modalAgregarVenta')">Cancelar</button>
                 <button type="button" class="btn btn-primary"
