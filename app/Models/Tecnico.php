@@ -13,6 +13,10 @@ class Tecnico extends Model
     
     protected $primaryKey = 'idTecnico';
 
+    public $incrementing = false;  // Indica que la clave primaria no es auto-incrementable
+
+    protected $keyType = 'string';  // Indica que la clave primaria es de tipo string
+
     protected $fillable = [
         'idTecnico',
         'nombreTecnico',

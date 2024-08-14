@@ -8,6 +8,7 @@ use function Psy\debug;
 use App\Models\VentaIntermediada;
 use App\Models\Canje;
 use App\Models\Tecnico;
+use Illuminate\Support\Facades\Log;
 
 class VentaIntermediadaController extends Controller
 {
@@ -15,6 +16,10 @@ class VentaIntermediadaController extends Controller
     {
         // Dividir la cadena usando el guion '-' como delimitador
         $partes = explode('-', $id);
+        
+        if (count($partes) < 2) {
+            return $id;  // Devuelve el ID original si el formato es inválido
+        }
 
         // Obtener el último elemento del array $partes, que sería '00xx'
         $numero = end($partes);
@@ -25,26 +30,32 @@ class VentaIntermediadaController extends Controller
         // Construir el nuevo ID con los ceros eliminados
         $idLimpio = $partes[0] . '-'  . $numeroLimpio; // F001-72
 
-        // Concatenar tipoComprobante e idLimpio
         return $idLimpio;
     }
 
     public function detectarTipoComprobante($id) 
     {
+        $tipoComprobante = '';
+
         if (strpos($id, 'F') !== false) {
             $tipoComprobante = 'FACTURA ELECTRÓNICA';
         } elseif (strpos($id, 'B') !== false) {
             $tipoComprobante = 'BOLETA DE VENTA ELECTRÓNICA';
         }
+
         return $tipoComprobante;
     }
+
     
     public function create()
     {
         // Obtener todas las ventas intermediadas con sus canjes y cargar los modelos relacionados
         $ventasIntermediadas = VentaIntermediada::with('canjes')->get();
 
+        Log::info('ventasIntermediadas: ' . $ventasIntermediadas);
+
         $ventas = $ventasIntermediadas->map(function ($venta) {
+
             // Limpiar id
             $idLimpio = $this->limpiarIDs($venta->idVentaIntermediada);
 

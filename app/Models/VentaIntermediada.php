@@ -11,7 +11,11 @@ class VentaIntermediada extends Model
 
     protected $table = 'VentasIntermediadas';
 
-    protected $primarykey = 'idVentaIntermediada';
+    protected $primaryKey = 'idVentaIntermediada';
+
+    public $incrementing = false;  // Indica que la clave primaria no es auto-incrementable
+
+    protected $keyType = 'string';  // Indica que la clave primaria es de tipo string
 
     protected $fillable = [
         'idVentaIntermediada',
@@ -32,7 +36,7 @@ class VentaIntermediada extends Model
         return $this->belongsTo(Tecnico::class, 'idTecnico', 'idTecnico');
     }
 
-     // Relación uno a muchos
+    // Relación uno a muchos
     public function canjes()
     {
         return $this->hasMany(Canje::class, 'idVentaIntermediada', 'idVentaIntermediada'); 

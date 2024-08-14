@@ -13,6 +13,10 @@ class Recompensa extends Model
 
     protected $primaryKey = 'idRecompensa';
 
+    public $incrementing = false;  // Indica que la clave primaria no es auto-incrementable
+
+    protected $keyType = 'string';  // Indica que la clave primaria es de tipo string
+
     protected $fillable = [
         'idRecompensa',
         'tipoRecompensa',

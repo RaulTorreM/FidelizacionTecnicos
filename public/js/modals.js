@@ -216,11 +216,6 @@ function closeOptionsOnClickOutside() {
     document.addEventListener('click', handleClickOutside);
 }
 
-function guardarModal(idModal, idForm) {
-    document.getElementById(idForm).submit();
-    closeModal(idModal);
-}
-
 function validateNumberRealTime(input) {
     // Elimina todos los caracteres que no sean dígitos como "e" ó "-"
     input.value = input.value.replace(/[^0-9]/g, '');
@@ -234,4 +229,9 @@ function validateRealTimeInputLength(input, length) {
 
 function validateInputLength(input, length) {
     return input.value.length === length;
+}
+
+function guardarModal(idModal, idForm) {
+    document.getElementById(idForm).submit();
+    closeModal(idModal);
 }

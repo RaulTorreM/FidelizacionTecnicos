@@ -109,15 +109,6 @@
                         </div>
                         <div class = "group-items dateTime">
                             <label class="secondary-label centered"> Fecha y hora de emisión </label>
-                            <!--
-                            <div class="tooltip-container">
-                                <span class="tooltip" id="fechaHoraEmisionTooltip">Este es el mensaje del tooltip</span>
-                            </div>
-                            <input class="input-item" id="fechaHoraEmisionVentaIntermediadaInput" type="text"
-                                oninput="validateDateTimeManualInput(this)" name="fechaHoraEmision_VentaIntermediada"
-                                placeholder="aaaa-mm-dd hh:mm:ss">
-                            -->
-                            
                             <div class="dateTimeContainer">
                                 <div class="tooltip-container">
                                     <span class="tooltip" id="idFechaEmisionTooltip">Este es el mensaje del tooltip</span>

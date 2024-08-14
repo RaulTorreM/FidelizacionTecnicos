@@ -625,8 +625,9 @@ function validarCamposCorrectosFormulario() {
 function guardarModalAgregarVenta(idModal, idForm) {
     if (validarCamposVacíosFormulario()) {
         if (validarCamposCorrectosFormulario()) {
+            console.log("Enviando formulario satisfactoriamente");
             multiMessageError2.classList.remove("shown");
-            //guardarModal(idModal, idForm);
+            guardarModal(idModal, idForm);
         } else {
             //Mostrar mensaje combinado
             multiMessageError2.textContent = mensajeCombinado;
