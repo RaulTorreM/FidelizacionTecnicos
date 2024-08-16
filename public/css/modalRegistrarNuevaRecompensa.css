@@ -1,0 +1,21 @@
+#modalRegistrarNuevaRecompensa-dialog {
+	max-width: 650px; 
+}
+
+#idModalBodyRegistrarNuevaRecompensa {
+    padding: 10px 0 0 0;
+}
+
+#formRegistrarNuevaRecompensa {
+	display: flex;
+	flex-direction: column;
+	gap: 0.3rem;
+}
+
+#modalRegistrarNuevaRecompensa .modal-dialog {
+    transform: translateY(-30px); /* Inicialmente desplazado hacia arriba */
+}
+
+#modalRegistrarNuevaRecompensa .modal-dialog.open {
+    transform: translateY(-6rem);
+}

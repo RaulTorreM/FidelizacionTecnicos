@@ -1,8 +1,3 @@
-#modalAgregarNuevoTecnico {
-    z-index: 20;
-    background-color: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente */
-}
-
 #idModalBodyAgregarNuevoTecnico {
     padding: 10px 0 0 0;
 }
@@ -12,7 +7,6 @@
 }
 
 #modalAgregarNuevoTecnico .modal-dialog.open {
-    opacity: 1; /* Totalmente opaco */
     transform: translateY(0px); /* Inicialmente desplazado hacia arriba */
 }
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Recompensa;
+use Illuminate\Auth\Recaller;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
 
@@ -37,5 +38,12 @@ class RecompensaController extends Controller
         Log::info('Nuevo ID: '. $nuevoIdRecompensa);
 
         return $nuevoIdRecompensa;
+    }
+
+    function store(Request $request) 
+    {
+        Recompensa::create($request->all()); // Crear un técnico con todos los campos de la request recepcionada
+        // Los datos que no se envian tienen valores por default en la migración   
+        return redirect()->route('recompensas');
     }
 }

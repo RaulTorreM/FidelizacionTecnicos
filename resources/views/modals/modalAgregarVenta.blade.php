@@ -1,4 +1,4 @@
-<div id="modalAgregarVenta" class="modal">
+<div class="modal first" id="modalAgregarVenta">
     <div class="modal-dialog" id="modalAgregarVenta-dialog">
         <div class="modal-content" id="modalAgregarVenta-content">
             <div class="modal-header">

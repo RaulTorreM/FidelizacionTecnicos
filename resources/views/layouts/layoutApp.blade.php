@@ -25,5 +25,6 @@
     </footer>
 
     @stack('scripts')
+    <script src="{{ asset('js/tooltip.js') }}"> </script>
 </body>
 </html>

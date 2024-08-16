@@ -4,29 +4,20 @@
 
 @push('styles')
     <link rel="stylesheet" href="{{ asset('css/recompensasStyle.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/modalRegistrarNuevaRecompensa.css') }}">
 @endpush
 
 @section('main-content')
 	<div class="recompensasContainer">
 		<div class="firstRow">
-			<div class="btnCreateItem-container">
-				<button class="btnCreateItem" onclick="">
-					Registrar nueva recompensa
-					<span class="material-symbols-outlined">add_circle</span>
-				</button>
-			</div>
-			<div class="btnEditItem-container">
-				<button class="btnEditItem" onclick="">
-					Editar
-					<span class="material-symbols-outlined">edit</span>
-				</button>
-			</div>
-			<div class="btnCreateItem-container">
-				<button class="btnCreateItem" onclick="">
-					Registrar nueva recompensa
-					<span class="material-symbols-outlined">add_circle</span>
-				</button>
-			</div>
+			<x-btn-create-item onclick="openModal('modalRegistrarNuevaRecompensa')"> 
+				Registrar nueva recompensa
+			</x-btn-create-item>
+
+            @include('modals.modalRegistrarNuevaRecompensa')
+
+			<x-btn-edit-item onclick=""> Editar </x-btn-edit-item>
+			<x-btn-delete-item onclick=""> Eliminar </x-btn-delete-item>
 		</div>
 	</div>
 @endsection

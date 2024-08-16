@@ -37,8 +37,6 @@ function closeModal(modalId) {
     }
 }
 
-// Verificar longitud de 
-/*Selección de archivos, falta agregar la lógica para evitar arrastrar archivos con acceso denegado */
 // Función para simular clic en el input file al hacer clic en el botón
 function handleFileSelect() {
     const fileInput = document.getElementById('fileInput');
@@ -46,16 +44,42 @@ function handleFileSelect() {
     fileInput.click();
 }
 
-// Event listener para cuando ya se seleccionó un archivo
-document.getElementById('fileInput').addEventListener('change', function() {
-    var file = this.files[0]; // Obtener el archivo seleccionado
-    if (file) {
-        analizarXML(file);
-    }
-});
+var fileInput = document.getElementById('fileInput');
+var fileArea = document.getElementById('fileArea');
+
+if (fileInput) {
+    // Event listener para cuando ya se seleccionó un archivo
+    document.getElementById('fileInput').addEventListener('change', function() {
+        var file = this.files[0]; // Obtener el archivo seleccionado
+        if (file) {
+            analizarXML(file);
+        }
+    });
+} else {
+    console.warn('El elemento fileInput no existe en el DOM actual.');
+}
+
+if (fileArea) {
+    // Event listener para soltar sobre el área
+    document.getElementById('fileArea').addEventListener('drop', function(event) {
+        event.preventDefault();
+        var file = event.dataTransfer.files[0]; // Obtener el archivo soltado
+        if (file) {
+            checkFileAccess(file).then((isAccessible) => {
+                if (isAccessible) {
+                    analizarXML(file);
+                }
+            }).catch((error) => {
+                console.error('Error al revisar acceso a archivo:', error);
+            });
+        }
+    });
+} else {
+    console.warn('El elemento fileArea no existe en el DOM actual.');
+}
 
 function allowDrop(event) {
-    event.preventDefault();
+    event.preventDefault(); 
     document.getElementById('fileArea').classList.add('drag-over');
 }
 
@@ -69,20 +93,7 @@ function handleDrop(event) {
     document.getElementById('fileArea').classList.remove('drag-over');
 }
 
-// Event listener para soltar sobre el área
-document.getElementById('fileArea').addEventListener('drop', function(event) {
-    event.preventDefault();
-    var file = event.dataTransfer.files[0]; // Obtener el archivo soltado
-    if (file) {
-        checkFileAccess(file).then((isAccessible) => {
-            if (isAccessible) {
-                analizarXML(file);
-            }
-        }).catch((error) => {
-            console.error('Error al revisar acceso a archivo:', error);
-        });
-    }
-});
+
 
 // Función para verificar el acceso al archivo usando promesas
 function checkFileAccess(file) {

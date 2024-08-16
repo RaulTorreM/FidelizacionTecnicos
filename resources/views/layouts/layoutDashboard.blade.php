@@ -2,6 +2,13 @@
 
 @push('styles')
     <link rel="stylesheet" href="{{ asset('css/dashboardStyle.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/tooltip.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/modals.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/datatables.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" 
+    crossorigin="anonymous" 
+    referrerpolicy="no-referrer"/>
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     @stack('styles')
@@ -12,7 +19,7 @@
          data-routes='{
              "ventasIntermediadas": "{{ route('ventasIntermediadas.create') }}",
              "canjes": "{{ route('canjes') }}",
-             "recompensas": "{{ route('recompensas') }}",
+             "recompensas": "{{ route('recompensas.create') }}",
              "tecnicos": "{{ route('tecnicos') }}",
              "configuracion": "{{ route('configuracion') }}",
              "perfil": "{{ route('profile.edit') }}"
@@ -39,8 +46,8 @@
                     <h5>Canjes</h5>
                 </a>
                 
-                <a href="{{ route('recompensas') }}" 
-                    class="{{ Request::routeIs('recompensas') ? 'active' : '' }}">
+                <a href="{{ route('recompensas.create') }}" 
+                    class="{{ Request::routeIs('recompensas.create') ? 'active' : '' }}">
                     <span class="material-symbols-outlined">handyman</span>
                     <h5>Recompensas</h5>
                 </a>
@@ -107,4 +114,8 @@
 
 @push('scripts')
     <script src="{{ asset('js/dashboardScript.js') }}"></script>
+    <script src="{{ asset('js/jquery.min.js') }}"> </script>
+    <script src="{{ asset('js/datatables.js') }}"> </script>
+    <script src="{{ asset('js/datatableConfig.js') }}"> </script>
+    <script src="{{ asset('js/modals.js') }}"> </script>
 @endpush

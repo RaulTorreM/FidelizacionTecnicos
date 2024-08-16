@@ -10,6 +10,19 @@
     opacity: 0; /* Inicialmente transparente */
     transition: opacity 0.3s ease; /* Transición suave de 0.3 segundos */
 	overflow-y: none; /*Evitar el scroll vertical del modal*/
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente */
+}
+
+.modal.first {
+    z-index: 10;
+}
+
+.modal.second {
+    z-index: 20;
+}
+
+.modal.third {
+    z-index: 30;
 }
 
 .modal-dialog {
@@ -142,8 +155,12 @@
 .primary-label {
 	color: var(--clr-primary-variant);
 	font-weight: 700;
-    margin: 0 0.8rem;
+    margin: 0;
     font-size: 1rem;
+}
+
+.primary-label.marginX {
+    margin: 0 0.8rem;
 }
 
 .primary-label a {
