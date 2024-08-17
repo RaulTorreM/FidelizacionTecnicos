@@ -20,7 +20,7 @@ class RecompensaSeeder extends Seeder
                 'costoPuntos_Recompensa' => 1,
             ],
             [
-                'tipoRecompensa' => 'Herramienta',
+                'tipoRecompensa' => 'EPP',
                 'descripcionRecompensa' => 'Par de rodilleras para cerámica',
                 'costoPuntos_Recompensa' => 35,
             ],

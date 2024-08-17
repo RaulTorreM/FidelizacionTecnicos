@@ -21,30 +21,15 @@
                         <input class="input-item" type="number" id="phoneInput" placeholder="999888777"
                                oninput="validateRealTimeInputLength(this, 9), validateNumberRealTime(this)" name="celularTecnico">
                         <label class="primary-label marginX" id="oficioLabel" for="oficioInput">Oficio:</label>
-                        <div class="input-select" id="oficioSelect">
-                            @php
-                                $idInput = 'oficioInput';
-                                $idOptions = 'oficioOptions';
-                            @endphp
-                           <div class="onlySelectInput-container">
-                                <input class="onlySelectInput" type="text" id="oficioInput" placeholder="Seleccionar oficio" readonly 
-                                    oninput="filterOptions('{{ $idInput }}', '{{ $idOptions }}')" 
-                                    onclick="toggleOptions('{{ $idInput }}', '{{ $idOptions }}')" autocomplete="off" name="oficioTecnico">
-                                <span class="material-symbols-outlined"
-                                      onclick="clearInput('{{ $idInput }}')">cancel</span>
-                            </div>
-                            <ul class="select-items" id="oficioOptions">
-                                <li onclick="selectOption('Albañil', '{{ $idInput }}', '{{ $idOptions }}')">
-                                    Albañil
-                                </li>
-                                <li onclick="selectOption('Enchapador', '{{ $idInput }}', '{{ $idOptions }}')">
-                                    Enchapador
-                                </li>
-                                <li onclick="selectOption('Enchapador/Albañil', '{{ $idInput }}', '{{ $idOptions }}')">
-                                    Enchapador/Albañil
-                                </li>
-                            </ul>
-                        </div>
+                        <x-onlySelect-input 
+                            :idSelect="'oficioSelect'"
+                            :inputClassName="'onlySelectInput'"
+                            :idInput="'oficioInput'"
+                            :idOptions="'oficioOptions'"
+                            :placeholder="'Seleccionar oficio'"
+                            :name="'oficioTecnico'"
+                            :options="['Albañil', 'Enchapador', 'Enchapador/Albañil']"
+                            />
                     </div>
 
                     <div class="form-group start">

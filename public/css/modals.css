@@ -83,7 +83,7 @@
 }
 
 .form-group.gap {
-    gap: 2rem;
+    gap: 1.2rem;
     flex-wrap: wrap;
 }
 
@@ -213,6 +213,10 @@
     color: #666;
 }
 
+.input-item.readonly {
+    cursor: default;
+}
+
 .input-select-item::placeholder, .input-item::placeholder {
     color: #BBB;
 }
@@ -227,7 +231,6 @@
     display: flex;
     align-items: center;
     width: 100%;
-    max-width: 400px;
     height: fit-content;
     font-size: 14px;
     background-color: #FFF;
@@ -238,13 +241,17 @@
 
 .onlySelectInput{
     padding: 20px 10px;
-    width: 100%;
+    max-width: 100%;
     height: 30px;
     box-sizing: border-box;
     outline: none;
     background-color: transparent;
     color: #666;
     cursor: pointer;
+}
+
+.onlySelectInput.long{
+    width: 13.5rem;
 }
 
 .onlySelectInput::placeholder {

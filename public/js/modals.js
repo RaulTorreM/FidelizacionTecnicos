@@ -142,10 +142,9 @@ function setOnlySelectInputFocusColor() {
 function toggleOptions(idInput, idOptions) {
     var options = document.getElementById(idOptions);
     var input = document.getElementById(idInput);
-    var inputClassName = input.className;
 
     if (options) {
-        if (input.value && inputClassName != "onlySelectInput") {
+        if (input.value && !input.classList.contains("onlySelectInput")) {
             filterOptions(idInput, idOptions);
         } else {
             if (options.classList.contains('show')) {

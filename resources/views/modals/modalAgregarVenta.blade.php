@@ -55,29 +55,15 @@
                     <div class="form-group gap">
                         <div class = "group-items">
                             <label class="secondary-label"> Tipo de Documento </label>
-                           
-                            <div class="input-select" id="tipoDocumentoSelect">
-                                @php
-                                    $idInput = 'tipoCodigoClienteInput';
-                                    $idOptions = 'tipoDocumentoOptions';
-                                @endphp
-                               <div class="onlySelectInput-container">
-                                    <input class="onlySelectInput" type="text" id='{{ $idInput }}' placeholder="DNI/RUC" 
-                                        oninput="filterOptions('{{ $idInput }}', '{{ $idOptions }}')" 
-                                        onclick="toggleOptions('{{ $idInput }}', '{{ $idOptions }}')" 
-                                        readonly autocomplete="off" name="tipoCodigoCliente_VentaIntermediada">
-                                    <span class="material-symbols-outlined"
-                                          onclick="clearInput('{{ $idInput }}'), clearNumDocumento()">cancel</span>
-                                </div>
-                                <ul class="select-items" id="tipoDocumentoOptions">
-                                    <li onclick="selectOption('DNI', '{{ $idInput }}', '{{ $idOptions }}'), clearNumDocumento() ">
-                                        DNI
-                                    </li>
-                                    <li onclick="selectOption('RUC', '{{ $idInput }}', '{{ $idOptions }}'), clearNumDocumento()">
-                                        RUC
-                                    </li>
-                                </ul>
-                            </div>
+                            <x-onlySelect-input 
+                                :idSelect="'tipoDocumentoSelect'"
+                                :inputClassName="'onlySelectInput'"
+                                :idInput="'tipoCodigoClienteInput'"
+                                :idOptions="'tipoDocumentoOptions'"
+                                :placeholder="'DNI/RUC'"
+                                :name="'tipoCodigoCliente_VentaIntermediada'"
+                                :options="['DNI', 'RUC']"
+                            />
                         </div>
                         <div class = "group-items">
                             <label class="secondary-label"> Número de documento </label>
@@ -139,7 +125,7 @@
                     </div>
                     
                     <div class="form-group start">
-                        <input class="input-item" id="puntosGanadosInput" name="puntosGanados_VentaIntermediada"  placeholder="26" readonly>
+                        <input class="input-item readonly" id="puntosGanadosInput" name="puntosGanados_VentaIntermediada"  placeholder="26" readonly>
                     </div>
                 </form>
                 <!-- Seleccionar archivos -->

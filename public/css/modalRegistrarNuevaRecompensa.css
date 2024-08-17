@@ -13,9 +13,9 @@
 }
 
 #modalRegistrarNuevaRecompensa .modal-dialog {
-    transform: translateY(-30px); /* Inicialmente desplazado hacia arriba */
+    transform: translateY(0); /* Inicialmente desplazado hacia arriba */
 }
 
 #modalRegistrarNuevaRecompensa .modal-dialog.open {
-    transform: translateY(-6rem);
+    transform: translateY(-2rem);
 }
