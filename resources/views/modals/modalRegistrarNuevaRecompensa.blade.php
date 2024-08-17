@@ -17,7 +17,6 @@
                     
                     <div class="form-group gap">
                         <label class="primary-label" id="tipoRecompensaLabel" for="tipoRecompensaInput">Tipo:</label>
-
                         <x-onlySelect-input 
                             :idSelect="'tipoRecompensaSelect'"
                             :inputClassName="'onlySelectInput long'"

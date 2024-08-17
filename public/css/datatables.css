@@ -1616,8 +1616,11 @@ div.dt-container .dt-paging {
   margin: 0.5rem 0;
 }
 
-
 div.dt-container select.dt-input {
   border: 1px solid #333;
   cursor: pointer;
+}
+
+.celda-centered {
+  text-align: center !important;
 }

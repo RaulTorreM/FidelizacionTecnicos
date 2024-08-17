@@ -16,7 +16,7 @@ class RecompensaSeeder extends Seeder
         $recompensas = [
             [   
                 'tipoRecompensa' => 'Efectivo',
-                'descripcionRecompensa' => '',
+                'descripcionRecompensa' => '-',
                 'costoPuntos_Recompensa' => 1,
             ],
             [
