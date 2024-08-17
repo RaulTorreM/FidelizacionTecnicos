@@ -270,6 +270,35 @@
     color: #0b55a4;
 }
 
+
+/* Estilos de los textarea*/
+.textarea {
+    font-family: inherit;
+    outline: none;
+    padding: 5px 5px;
+    font-size: 14px;
+    background-color: #FFF;
+    border: 1px solid #ccc;
+    border-radius: 0.1rem;
+    transition: border-color 0.3s;
+    color: #666;
+    resize: none;
+}
+
+.textarea::placeholder {
+    color: #BBB;
+}
+
+.textarea:focus {
+    border-color: #007bff; 
+}
+
+.textarea.normal {
+    min-width: 16rem;
+    min-height: 4.5rem;
+}
+
+
 /* Estilos de las listas */
 .select-items { /* ul */
     position: absolute;

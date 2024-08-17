@@ -13,21 +13,9 @@ use Illuminate\Support\Facades\DB;
 class DashboardController extends Controller
 {   
     
-    public function ventasIntermediadas()
-    {
-        
-    }
-
-
-
     public function canjes()
     {
         return view('dashboard.canjes');
-    }
-
-    public function recompensas()
-    {
-        return view('dashboard.recompensas');
     }
 
     public function tecnicos()

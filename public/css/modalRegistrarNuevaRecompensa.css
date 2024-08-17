@@ -1,5 +1,5 @@
 #modalRegistrarNuevaRecompensa-dialog {
-	max-width: 650px; 
+	max-width: 460px; 
 }
 
 #idModalBodyRegistrarNuevaRecompensa {
@@ -19,3 +19,12 @@
 #modalRegistrarNuevaRecompensa .modal-dialog.open {
     transform: translateY(-2rem);
 }
+
+#codigoRecompensaInput {
+	width: 7rem;
+}
+
+#costoUnitarioInput {
+	width: 4rem;
+}
+

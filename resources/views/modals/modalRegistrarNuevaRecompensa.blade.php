@@ -3,7 +3,7 @@
         <div class="modal-content" id="modalRegistrarNuevaRecompensa-content">
             <div class="modal-header">
                 <h5 class="modal-title">Registar nueva recompensa</h5>
-                <button class="close" onclick="closeModal('formRegistrarNuevaRecompensa')">&times;</button>
+                <button class="close" onclick="closeModal('modalRegistrarNuevaRecompensa')">&times;</button>
             </div>
             <div class="modal-body" id="idModalBodyRegistrarNuevaRecompensa">
                 <form id="formRegistrarNuevaRecompensa" action="{{ route('nuevaRecompensa.store') }}" method="POST">
@@ -12,7 +12,7 @@
                     <div class="form-group gap">
                         <label class="primary-label" id="codigoRecompensaLabel" for="codigoRecompensaInput">Código de recompensa:</label>
                         <input class="input-item readonly" id="codigoRecompensaInput" name="idRecompensa" 
-                               oninput="" maxlength="13" value="RECOM-001" readonly>
+                               oninput="" maxlength="13" value="{{$ultimaRecompensa->idRecompensa}}" readonly>
                     </div>
                     
                     <div class="form-group gap">
@@ -25,17 +25,17 @@
                             :idOptions="'tipoRecompensaOptions'"
                             :placeholder="'Seleccionar tipo de recompensa'"
                             :name="'tipoRecompensa'"
-                            :options="['Accesorio', 'Efectivo', 'EPP', 'Herramienta']"
+                            :options="['Accesorio', 'EPP', 'Herramienta']"
                         />
                     </div>
 
                     <div class="form-group gap">
                         <label class="primary-label" id="descripcionLabel" for="idRecompensaDescripcion">Descripción:</label>
-                        <textarea id="idRecompensaDescripcion" name="descripcionRecompensa" placeholder="Ingresar una breve descripción"></textarea>
+                        <textarea class="textarea normal" id="descripcionRecompensaTextarea" name="descripcionRecompensa" placeholder="Ingresar una breve descripción"></textarea>
                     </div>
                 
                     <div class="form-group gap">
-                        <label class="primary-label" id="costoUnitarioLabel" for="costoUnitarioInput">CostoUnitario:</label>
+                        <label class="primary-label" id="costoUnitarioLabel" for="costoUnitarioInput">Costo unitario (puntos):</label>
                         <input class="input-item" id="costoUnitarioInput" name="costoPuntos_Recompensa" maxlength="4"
                                    oninput="validateNumberRealTime(this)" placeholder="1000">
                     </div>
@@ -48,7 +48,7 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" onclick="closeModal('modalRegistrarNuevaRecompensa')">Cancelar</button>
                 <button type="button" class="btn btn-primary" 
-                        onclick="guardarModalAgregarNuevoTecnico('modalRegistrarNuevaRecompensa', 'formRegistrarNuevaRecompensa')">Guardar</button>
+                        onclick="guardarModalRegistrarNuevaRecompensa('modalRegistrarNuevaRecompensa', 'formRegistrarNuevaRecompensa')">Guardar</button>
             </div>
         </div>
     </div>

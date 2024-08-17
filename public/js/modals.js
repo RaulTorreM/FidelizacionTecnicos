@@ -18,6 +18,7 @@ function openModal(modalId) {
 }
 
 function closeModal(modalId) {
+    console.log(modalId);
     var modal = document.getElementById(modalId);
     if (modal) {
         modal.querySelector('.modal-dialog').classList.remove('open');

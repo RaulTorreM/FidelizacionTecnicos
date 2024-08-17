@@ -21,7 +21,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('/dashboard-ventasIntermediadas', [VentaIntermediadaController::class, 'create'])->name('ventasIntermediadas.create');
     Route::get('/dashboard-canjes', [DashboardController::class, 'canjes'])->name('canjes');  
-    Route::get('/dashboard-recompensas', [DashboardController::class, 'recompensas'])->name('recompensas.create');  
+    Route::get('/dashboard-recompensas', [RecompensaController::class, 'create'])->name('recompensas.create');  
     Route::get('/dashboard-tecnicos', [DashboardController::class, 'tecnicos'])->name('tecnicos');  
     Route::get('/dashboard-configuracion', [DashboardController::class, 'configuracion'])->name('configuracion');  
     
