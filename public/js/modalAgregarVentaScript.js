@@ -552,7 +552,7 @@ function updateHiddenDateTimeInput() {
     fechaHoraEmisionInput.value = combinedDateTime;
 }
 
-function validarCamposVacíosFormulario() {
+function validarCamposVaciosFormulario() {
     let allFilled = true;
     formInputsArray.forEach(input => {
         if (!input.value.trim()) {
@@ -623,13 +623,12 @@ function validarCamposCorrectosFormulario() {
 }
 
 function guardarModalAgregarVenta(idModal, idForm) {
-    if (validarCamposVacíosFormulario()) {
+    if (validarCamposVaciosFormulario()) {
         if (validarCamposCorrectosFormulario()) {
             console.log("Enviando formulario satisfactoriamente");
             multiMessageError2.classList.remove("shown");
             guardarModal(idModal, idForm);
         } else {
-            //Mostrar mensaje combinado
             multiMessageError2.textContent = mensajeCombinado;
             multiMessageError2.classList.add("shown");
         }

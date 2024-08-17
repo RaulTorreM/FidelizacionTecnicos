@@ -28,7 +28,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/dashboard-ventasIntermediadas', [VentaIntermediadaController::class, 'create'])->name('ventasIntermediadas.post');
     Route::post('/modal-nuevaVenta', [VentaIntermediadaController::class, 'store'])->name('ventasIntermediadas.store');
     Route::post('/modal-nuevoTecnico', [TecnicoController::class, 'store'])->name('nuevoTecnico.store');  
-    Route::post('/modal-nuevaRecompensa', [RecompensaController::class, 'store'])->name('nuevaRecompensa.store');  
+    Route::post('/modal-nuevaRecompensa', [RecompensaController::class, 'store'])->name('recompensas.store');  
 
     Route::get('emailExample', function () {
         Mail::to('garciabetancourtjosue@gmail.com')

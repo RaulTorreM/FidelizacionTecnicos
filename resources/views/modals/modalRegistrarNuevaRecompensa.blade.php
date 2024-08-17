@@ -6,13 +6,13 @@
                 <button class="close" onclick="closeModal('modalRegistrarNuevaRecompensa')">&times;</button>
             </div>
             <div class="modal-body" id="idModalBodyRegistrarNuevaRecompensa">
-                <form id="formRegistrarNuevaRecompensa" action="{{ route('nuevaRecompensa.store') }}" method="POST">
+                <form id="formRegistrarNuevaRecompensa" action="{{ route('recompensas.store') }}" method="POST">
                     @csrf
 
                     <div class="form-group gap">
                         <label class="primary-label" id="codigoRecompensaLabel" for="codigoRecompensaInput">Código de recompensa:</label>
                         <input class="input-item readonly" id="codigoRecompensaInput" name="idRecompensa" 
-                               oninput="" maxlength="13" value="{{$ultimaRecompensa->idRecompensa}}" readonly>
+                               oninput="" maxlength="13" value="{{ $idNuevaRecompensa }}" readonly>
                     </div>
                     
                     <div class="form-group gap">
@@ -41,7 +41,7 @@
                     </div>
 
                     <div class="form-group start">
-                        <span class="inline-alert-message" id="multiMessageError"> multiMessageError </span>      
+                        <span class="inline-alert-message" id="multiMessageError3"> multiMessageError </span>      
                     </div>
                 </form>
             </div>

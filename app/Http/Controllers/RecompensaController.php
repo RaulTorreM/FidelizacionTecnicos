@@ -42,17 +42,16 @@ class RecompensaController extends Controller
 
     function create() {
         // Obtener la última recompensa
-        $ultimaRecompensa = Recompensa::latest('idRecompensa')->first();
-
+        $idNuevaRecompensa = $this->generarIdRecompensa();
+        
         $recompensas = Recompensa::all();   
         
-        return view('dashboard.recompensas', compact('recompensas', 'ultimaRecompensa'));
+        return view('dashboard.recompensas', compact('recompensas', 'idNuevaRecompensa'));
     }
 
     function store(Request $request) 
     {
-        Recompensa::create($request->all()); // Crear un técnico con todos los campos de la request recepcionada
-        // Los datos que no se envian tienen valores por default en la migración   
-        return redirect()->route('recompensas');
+        Recompensa::create($request->all());  
+        return redirect()->route('recompensas.create');
     }
 }
