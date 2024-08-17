@@ -30,6 +30,7 @@ let fechaHoraEmisionTooltip = document.getElementById('fechaHoraEmisionTooltip')
 let fechaEmisionTooltip = document.getElementById('idFechaEmisionTooltip');
 let horaEmisionTooltip = document.getElementById('idHoraEmisionTooltip');
 let multiMessageError2 = document.getElementById('multiMessageError2');
+let nuevaVentaMessageError = document.getElementById('nuevaVentaMessageError');
 
 function selectOptionAgregarVenta(value, idInput, idOptions) {
     //Colocar en el input la opción seleccionada 
@@ -46,14 +47,10 @@ function selectOptionAgregarVenta(value, idInput, idOptions) {
         idTecnicoInput.value = "";
         nombreTecnicoInput.value = "";
     }
-
-    var nuevaVentaMessageError = document.getElementById('nuevaVentaMessageError');
     nuevaVentaMessageError.classList.remove('shown'); 
 }
 
 function validateValueOnRealTime(input) {
-    var nuevaVentaMessageError = document.getElementById('nuevaVentaMessageError');
-
     const value = input.value;
     
     // Obtener todos los valores de técnicos

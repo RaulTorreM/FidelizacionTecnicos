@@ -40,18 +40,27 @@ class RecompensaController extends Controller
         return $nuevoIdRecompensa;
     }
 
-    function create() {
-        // Obtener la última recompensa
+    public function create()
+    {
+        // Obtener la última recompensa para generar el nuevo ID
         $idNuevaRecompensa = $this->generarIdRecompensa();
         
-        $recompensas = Recompensa::all();   
+        // Obtener todas las recompensas
+        $recompensas = Recompensa::all();
         
-        return view('dashboard.recompensas', compact('recompensas', 'idNuevaRecompensa'));
+        // Obtener todas las recompensas excepto la primera
+        $recompensasWithoutFirst = $recompensas->skip(1);
+        
+        return view('dashboard.recompensas', compact('recompensas', 'recompensasWithoutFirst', 'idNuevaRecompensa'));
     }
-
+    
     function store(Request $request) 
     {
         Recompensa::create($request->all());  
         return redirect()->route('recompensas.create');
+    }
+
+    function edit() {
+        return redirect()->route('recompensas.create'); 
     }
 }

@@ -1,22 +1,31 @@
-<div class ="input-select" id="{{ $idSelect }}">
-	<div class="onlySelectInput-container">
+@php
+    $uniqueId = uniqid();
+    $dynamicIdInput = $idInput ?? 'input-' . $uniqueId;
+    $dynamicIdOptions = $idOptions ?? 'options-' . $uniqueId;
+    $isDisabled = $disabled ?? false;
+@endphp
+
+<div class ="input-select">
+    <div class="onlySelectInput-container">
         <input 
-			class="{{ $inputClassName }}"
+            class="{{ $inputClassName }}"
             type="text" 
-            id="{{ $idInput }}" 
+            id="{{ $dynamicIdInput }}" 
             placeholder="{{ $placeholder ?? 'Seleccionar opción' }}" 
-            readonly 
-            oninput="filterOptions('{{ $idInput }}', '{{ $idOptions }}')" 
-            onclick="toggleOptions('{{ $idInput }}', '{{ $idOptions }}')" 
+            oninput="filterOptions('{{ $dynamicIdInput }}', '{{ $dynamicIdOptions }}')" 
+            onclick="toggleOptions('{{ $dynamicIdInput }}', '{{ $dynamicIdOptions }}')" 
             autocomplete="off" 
+            readonly
             name="{{ $name ?? '' }}"
+            {{ $isDisabled ? 'disabled' : '' }}
         >
-        <span class="material-symbols-outlined" onclick="clearInput('{{ $idInput }}')"> cancel </span>
-    </div>	
-    <ul class="select-items" id="{{ $idOptions }}">
+        <span class="material-symbols-outlined" 
+              onclick="{{ $isDisabled ? '' : "clearInput('{$dynamicIdInput}')" }}"> cancel </span>
+    </div>  
+    <ul class="select-items" id="{{ $dynamicIdOptions }}">
         @foreach ($options as $option)
             <li 
-                onclick="selectOption('{{ $option }}', '{{ $idInput }}', '{{ $idOptions }}')"
+                onclick="selectOption('{{ $option }}', '{{ $dynamicIdInput }}', '{{ $dynamicIdOptions }}')"
             >
                 {{ $option }}
             </li>

@@ -2,8 +2,8 @@ $(document).ready(function() {
 	$('#tblVentasIntermediadas').DataTable({
 
 		// Configuración inicial
-		lengthMenu: [3, 10, 15], 
-		pageLength: 10, 
+		lengthMenu: [5, 10, 20], 
+		pageLength: 5, 
 		dom: "Blifrtp", //B:buttons f:filter r:processing t:table
 						//i:info l:length ("Mostrar n registros") p:paging
 		buttons: [

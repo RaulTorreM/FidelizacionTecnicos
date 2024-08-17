@@ -78,4 +78,6 @@
 @endsection
 
 @push('scripts')
+    <script src="{{ asset('js/modalAgregarVentaScript.js') }}"></script>
+    <script src="{{ asset('js/modalAgregarNuevoTecnicoScript.js') }}"></script>
 @endpush

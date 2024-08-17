@@ -18,10 +18,7 @@
                     <div class="form-group gap">
                         <label class="primary-label" id="tipoRecompensaLabel" for="tipoRecompensaInput">Tipo:</label>
                         <x-onlySelect-input 
-                            :idSelect="'tipoRecompensaSelect'"
                             :inputClassName="'onlySelectInput long'"
-                            :idInput="'tipoRecompensaInput'"
-                            :idOptions="'tipoRecompensaOptions'"
                             :placeholder="'Seleccionar tipo de recompensa'"
                             :name="'tipoRecompensa'"
                             :options="['Accesorio', 'EPP', 'Herramienta']"
@@ -52,5 +49,3 @@
         </div>
     </div>
 </div>
-
-<script src="{{ asset('js/modalRegistrarNuevaRecompensa.js') }}"></script>

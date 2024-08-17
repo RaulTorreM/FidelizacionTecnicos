@@ -53,4 +53,3 @@
     </div>
 </div>
 
-<script src="{{ asset('js/modalAgregarNuevoTecnicoScript.js') }}"></script>

@@ -21,6 +21,7 @@
                             <a onclick="openModal('modalAgregarNuevoTecnico')">[+ Nuevo]</a>
                         </label>
                     </div>
+
                     <div class="form-group start">
                         <div class="input-select" id="tecnicoSelect">
                             <div class="tooltip-container">
@@ -34,7 +35,7 @@
                                 oninput="filterOptions('{{ $idInput }}', '{{ $idOptions }}'),
                                             validateValueOnRealTime(this)" 
                                 onclick="toggleOptions('{{ $idInput }}', '{{ $idOptions }}')">
-                            <ul class="select-items" id="tecnicoOptions">
+                            <ul class="select-items" id='{{ $idOptions }}'>
                                 @foreach ($tecnicos as $tecnico)
                                     @php
                                         $value = $tecnico->idTecnico . " - " . $tecnico->nombreTecnico;
@@ -153,7 +154,3 @@
         </div>
     </div>
 </div>
-
-<script src="{{ asset('js/modalAgregarVentaScript.js') }}"></script>
-
-

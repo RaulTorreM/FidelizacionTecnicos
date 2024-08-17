@@ -5,6 +5,7 @@
 @push('styles')
     <link rel="stylesheet" href="{{ asset('css/recompensasStyle.css') }}">
     <link rel="stylesheet" href="{{ asset('css/modalRegistrarNuevaRecompensa.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/modalEditarRecompensa.css') }}">
 @endpush
 
 @section('main-content')
@@ -16,7 +17,10 @@
 
             @include('modals.modalRegistrarNuevaRecompensa')
 
-			<x-btn-edit-item onclick=""> Editar </x-btn-edit-item>
+			<x-btn-edit-item onclick="openModal('modalEditarRecompensa')"> Editar </x-btn-edit-item>
+
+            @include('modals.modalEditarRecompensa')
+
 			<x-btn-delete-item onclick=""> Eliminar </x-btn-delete-item>
 		</div>
 
@@ -58,3 +62,8 @@
         </div>
 	</div>
 @endsection
+
+@push('scripts')
+    <script src="{{ asset('js/modalRegistrarNuevaRecompensa.js') }}"></script>
+    <script src="{{ asset('js/modalEditarRecompensa.js') }}"></script>
+@endpush
