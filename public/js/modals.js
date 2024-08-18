@@ -18,7 +18,6 @@ function openModal(modalId) {
 }
 
 function closeModal(modalId) {
-    console.log(modalId);
     var modal = document.getElementById(modalId);
     if (modal) {
         modal.querySelector('.modal-dialog').classList.remove('open');
@@ -185,6 +184,8 @@ function selectOption(value, idInput, idOptions) {
     var input = document.getElementById(idInput);
     var options = document.getElementById(idOptions);
 
+    console.log("selectOption: " + idInput);
+
     if (input) {
         input.value = value;
         options.classList.remove('show'); // Ocultar las opciones
@@ -245,4 +246,79 @@ function validateInputLength(input, length) {
 function guardarModal(idModal, idForm) {
     document.getElementById(idForm).submit();
     closeModal(idModal);
+}
+
+function getAllLiText(idOptions) {
+    // Obtener el elemento UL que contiene todas las opciones
+    const ul = document.getElementById(idOptions);
+    
+    // Obtener todos los elementos LI dentro de la UL
+    const liElements = ul.getElementsByTagName('li');
+    
+    // Extraer el texto de cada LI y almacenarlo en un array
+    let tecnicos = [];
+    for (let li of liElements) {
+        tecnicos.push(li.textContent.trim());
+    }
+    
+    return tecnicos;
+}
+
+function validateValueOnRealTime(input, idOptions, idMessageError, someHiddenIdInputsArray, otherInputsArray=null) {
+    const value = input.value;
+    const messageError = document.getElementById(idMessageError);
+   
+    // Recorrer el array y asignar valor vacío a cada input
+    const clearHiddenInputs = () => {
+        someHiddenIdInputsArray.forEach(idInput => {
+            const inputElement = document.getElementById(idInput);
+            if (inputElement) {
+                inputElement.value = ""; // Asignar valor vacío
+            }
+        });
+    };
+
+    // Obtener todos los valores de técnicos
+    const allItems = getAllLiText(idOptions);
+    
+    // Comparar el valor ingresado con la lista de técnicos
+    const itemEncontrado = allItems.includes(value);
+
+    const [id, nombre] = value.split(' - ');
+
+    if (value === "") {
+        messageError.classList.remove('shown'); 
+        clearHiddenInputs(); // Limpiar los inputs ocultos
+        if (otherInputsArray) {
+            otherInputsArray.forEach(idOtherInput => {
+                const otherInputElement = document.getElementById(idOtherInput);
+                if (otherInputElement) {
+                    otherInputElement.value = ""; 
+                }
+            });
+        }
+    } else {
+        if (!itemEncontrado) {
+            messageError.classList.add('shown'); 
+            clearHiddenInputs(); 
+            if (otherInputsArray) {
+                otherInputsArray.forEach(idOtherInput => {
+                    const otherInputElement = document.getElementById(idOtherInput);
+                    if (otherInputElement) {
+                        otherInputElement.value = ""; 
+                    }
+                });
+            }
+        } else {
+            messageError.classList.remove('shown'); 
+            // Actualizar los inputs ocultos
+            if (id && nombre) {
+                document.getElementById(someHiddenIdInputsArray[0]).value = id;
+                document.getElementById(someHiddenIdInputsArray[1]).value = nombre;
+
+                console.log(document.getElementById(someHiddenIdInputsArray[0]).value);
+                console.log(document.getElementById(someHiddenIdInputsArray[1]).value);
+            } 
+        }
+    }
 }

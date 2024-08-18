@@ -8,32 +8,39 @@
             <div class="modal-body" id="idModalBodyEditarRecompensa">
                 <form id="formEditarRecompensa" action="{{ route('recompensas.edit') }}" method="POST">
                     @csrf
-
-                    <input id="idRecompensaInput" maxlength="13" name="idRecompensa">
-
+                    <!-- Variables globales -->
+                    @php
+                        $idInput = 'recompensaEditInput';
+                        $idOptions = 'recompensaEditOptions';
+                        $idMessageError = 'searchEditRecompensaError';
+                        $someHiddenIdInputsArray = ['idEditTecnicoInput'];
+                        $idCostoPuntosInput = 'costoPuntosInput';
+                        $otherInputsArray = ['tipoRecompensaInputEdit' , 'descripcionRecompensaInputEdit', $idCostoPuntosInput];
+                    @endphp
+                    <input id='{{ $someHiddenIdInputsArray[0] }}' maxlength="13" name="idRecompensa">
                     <div class="form-group gap">
                         <label class="primary-label" for="recompensaSelect">Recompensa:</label>
                         <div class="input-select" id="recompensaSelect">
-                            @php
-                                $idInput = 'recompensaInput';
-                                $idOptions = 'recompensaOptions';
-                            @endphp
-                            <input class="input-select-item" type="text" id='{{ $idInput }}' maxlength="50" placeholder="Código - Descripción"
+                           
+                            <input class="input-select-item" type="text" id='{{ $idInput }}' maxlength="100" placeholder="Código - Descripción"
                                 oninput="filterOptions('{{ $idInput }}', '{{ $idOptions }}'),
-                                            validateValueOnRealTime(this)" 
+                                        validateValueOnRealTime(this, '{{ $idOptions }}', '{{ $idMessageError }}', 
+                                        {{ json_encode($someHiddenIdInputsArray) }}, {{ json_encode($otherInputsArray) }})" 
                                 onclick="toggleOptions('{{ $idInput }}', '{{ $idOptions }}')">
                             <ul class="select-items" id='{{ $idOptions }}'>
                                 @foreach ($recompensasWithoutFirst as $recompensa)
                                     @php
                                         $value = $recompensa->idRecompensa . " - " . $recompensa->descripcionRecompensa;
+                                        $costoPuntos = $recompensa->costoPuntos_Recompensa;
                                     @endphp
-                                    <li onclick="selectOptionEditarRecompensa('{{ $value }}', '{{ $idInput }}', '{{ $idOptions }}')">
+                                    <li onclick="selectOptionEditarRecompensa('{{ $value }}', '{{ $idInput }}', '{{ $idOptions }}', 
+                                        {{ json_encode($someHiddenIdInputsArray) }}, '{{ $costoPuntos }}')">
                                         {{ $value }}
                                     </li>
                                 @endforeach
                             </ul>
                         </div>
-                        <span class="inline-alert-message" id="editarRecompensaMessageError"> No se encontró la recompensa buscada </span>      
+                        <span class="noInline-alert-message" id='{{ $idMessageError }}'>No se encontró la recompensa buscada</span>      
                     </div>
 
                     <div class="form-group gap">
@@ -56,7 +63,7 @@
                 
                     <div class="form-group gap">
                         <label class="primary-label" for="costoUnitarioInput">Costo unitario (puntos):</label>
-                        <input class="input-item" name="costoPuntos_Recompensa" maxlength="4"
+                        <input class="input-item" id='{{ $idCostoPuntosInput }}' name="costoPuntos_Recompensa" maxlength="4"
                                    oninput="validateNumberRealTime(this)" placeholder="1000">
                     </div>
 

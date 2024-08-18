@@ -430,6 +430,17 @@
     display: inline-block;
 }
 
+.noInline-alert-message {
+    padding: 0;
+    font-size: 0.9rem;
+    color: #fc4f4b;
+    display: none;
+}
+
+.noInline-alert-message.shown {
+    display: inline-block;
+}
+
 .group-items.dateTime {
     max-width: 20rem;
 }

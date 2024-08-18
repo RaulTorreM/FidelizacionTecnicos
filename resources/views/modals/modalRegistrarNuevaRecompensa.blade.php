@@ -18,6 +18,7 @@
                     <div class="form-group gap">
                         <label class="primary-label" id="tipoRecompensaLabel" for="tipoRecompensaInput">Tipo:</label>
                         <x-onlySelect-input 
+                            :idInput="'tipoRecompensaInput'"
                             :inputClassName="'onlySelectInput long'"
                             :placeholder="'Seleccionar tipo de recompensa'"
                             :name="'tipoRecompensa'"
@@ -26,8 +27,8 @@
                     </div>
 
                     <div class="form-group gap">
-                        <label class="primary-label" id="descripcionLabel" for="idRecompensaDescripcion">Descripción:</label>
-                        <textarea class="textarea normal" id="descripcionRecompensaTextarea" name="descripcionRecompensa" placeholder="Ingresar una breve descripción"></textarea>
+                        <label class="primary-label" id="descripcionLabel" for="descripcionRecompensaTextarea">Descripción:</label>
+                        <textarea class="textarea normal" maxlength="100" id="descripcionRecompensaTextarea" name="descripcionRecompensa" placeholder="Ingresar una breve descripción"></textarea>
                     </div>
                 
                     <div class="form-group gap">
@@ -37,7 +38,7 @@
                     </div>
 
                     <div class="form-group start">
-                        <span class="inline-alert-message" id="multiMessageError3"> multiMessageError </span>      
+                        <span class="inline-alert-message" id="registrarRecompensaMessageError"> multiMessageError </span>      
                     </div>
                 </form>
             </div>

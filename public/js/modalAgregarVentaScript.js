@@ -50,57 +50,6 @@ function selectOptionAgregarVenta(value, idInput, idOptions) {
     nuevaVentaMessageError.classList.remove('shown'); 
 }
 
-function validateValueOnRealTime(input) {
-    const value = input.value;
-    
-    // Obtener todos los valores de técnicos
-    const allTecnicos = getAllIdNombreTecnicos();
-    
-    // Comparar el valor ingresado con la lista de técnicos
-    const tecnicoEncontrado = allTecnicos.includes(value);
-
-    const [id, nombre] = value.split(' - ');
-
-    if (value === "") {
-        console.log("El campo Técnico está vacío");
-        nuevaVentaMessageError.classList.remove('shown'); 
-        idTecnicoInput.value = "";
-        nombreTecnicoInput.value = "";
-    } else {
-        if (!tecnicoEncontrado) {
-            console.log("No se encontró el técnico buscado");
-            nuevaVentaMessageError.classList.add('shown'); 
-            
-            idTecnicoInput.value = "";
-            nombreTecnicoInput.value = "";
-        } else {
-            console.log("Sí se encontró el técnico buscado");
-            nuevaVentaMessageError.classList.remove('shown'); 
-
-            // Actualizar los inputs ocultos
-            if (id && nombre) {
-                idTecnicoInput.value = id;
-                nombreTecnicoInput.value = nombre;
-            } 
-        }
-    }
-}
-
-function getAllIdNombreTecnicos() {
-    // Obtener el elemento UL que contiene todas las opciones
-    const ul = document.getElementById('tecnicoOptions');
-    
-    // Obtener todos los elementos LI dentro de la UL
-    const liElements = ul.getElementsByTagName('li');
-    
-    // Extraer el texto de cada LI y almacenarlo en un array
-    let tecnicos = [];
-    for (let li of liElements) {
-        tecnicos.push(li.textContent.trim());
-    }
-    
-    return tecnicos;
-}
 
 function analizarXML(file) {
     /*

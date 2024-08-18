@@ -9,31 +9,31 @@
                 <!-- Formulario para agregar nueva venta -->
                 <form id="formAgregarVenta" action="{{ route('ventasIntermediadas.store') }}" method="POST">
                     @csrf
-
+                    <!-- Variables globales -->
+                    @php
+                        $idInput = 'tecnicoInput';
+                        $idOptions = 'tecnicoOptions';
+                        $idMessageError = 'nuevaVentaMessageError';
+                        $someHiddenIdInputsArray = ['idTecnicoInput', 'nombreTecnicoInput'];
+                    @endphp
                     <!-- Campos ocultos para el formulario -->
-                   
-                    <input type="hidden" id="idTecnicoInput" name="idTecnico">
-                    <input type="hidden" id="nombreTecnicoInput" name="nombreTecnico">
-                   
+                    <input type="" id='{{ $someHiddenIdInputsArray[0] }}' name="idTecnico">
+                    <input type="" id='{{ $someHiddenIdInputsArray[1] }}' name="nombreTecnico">
                     <div class="form-group marginTop">
                         <label class="primary-label" id="idLabelTecnico">
                             Técnico 
                             <a onclick="openModal('modalAgregarNuevoTecnico')">[+ Nuevo]</a>
                         </label>
                     </div>
-
                     <div class="form-group start">
                         <div class="input-select" id="tecnicoSelect">
                             <div class="tooltip-container">
                                 <span class="tooltip" id="idTecnicoTooltip">Este es el mensaje del tooltip</span>
                             </div>
-                            @php
-                                $idInput = 'tecnicoInput';
-                                $idOptions = 'tecnicoOptions';
-                            @endphp
                             <input class="input-select-item" type="text" id='{{ $idInput }}' maxlength="50" placeholder="DNI - Nombre"
                                 oninput="filterOptions('{{ $idInput }}', '{{ $idOptions }}'),
-                                            validateValueOnRealTime(this)" 
+                                        validateValueOnRealTime(this, '{{ $idOptions }}', '{{ $idMessageError }}', 
+                                        {{ json_encode($someHiddenIdInputsArray) }})" 
                                 onclick="toggleOptions('{{ $idInput }}', '{{ $idOptions }}')">
                             <ul class="select-items" id='{{ $idOptions }}'>
                                 @foreach ($tecnicos as $tecnico)
@@ -46,7 +46,7 @@
                                 @endforeach
                             </ul>
                         </div>
-                        <span class="inline-alert-message" id="nuevaVentaMessageError"> No se encontró el técnico buscado </span>      
+                        <span class="inline-alert-message" id='{{ $idMessageError }}'> No se encontró el técnico buscado </span>      
                     </div>
                     
                     <div class="form-group start marginTop">

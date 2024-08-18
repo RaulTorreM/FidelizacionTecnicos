@@ -2,7 +2,7 @@ let codigoRecompensaInput = document.getElementById('codigoRecompensaInput');
 let tipoRecompensaInput = document.getElementById('tipoRecompensaInput');
 let descripcionRecompensaTextarea = document.getElementById('descripcionRecompensaTextarea');
 let costoUnitarioInput = document.getElementById('costoUnitarioInput');
-let multiMessageError3 = document.getElementById('multiMessageError3');
+let registrarRecompensaMessageError = document.getElementById('registrarRecompensaMessageError');
 
 let formInputsArray = [
     codigoRecompensaInput,
@@ -18,7 +18,6 @@ function validarCamposVaciosFormulario() {
     formInputsArray.forEach(input => {
         if (!input.value.trim()) {
             allFilled = false;
-
         }
     });
     return allFilled;
@@ -37,7 +36,7 @@ function validarCamposCorrectosFormulario() {
         return false;
     }
 
-    multiMessageError3.classList.remove("shown");
+    registrarRecompensaMessageError.classList.remove("shown");
     return true;
 }
 
@@ -45,14 +44,14 @@ function guardarModalRegistrarNuevaRecompensa(idModal, idForm) {
 	if (validarCamposVaciosFormulario()) {
 		if (validarCamposCorrectosFormulario()) {
 			console.log("Enviando formulario satisfactoriamente");
-			multiMessageError3.classList.remove("shown");
+			registrarRecompensaMessageError.classList.remove("shown");
 			guardarModal(idModal, idForm);	
 		} else {
-			multiMessageError3.textContent = mensajeCombinado;
-			multiMessageError3.classList.add("shown");
+			registrarRecompensaMessageError.textContent = mensajeCombinado;
+			registrarRecompensaMessageError.classList.add("shown");
 		}
 	} else {
-        multiMessageError3.textContent = "Todos los campos del formulario deben estar rellenados correctamente.";
-        multiMessageError3.classList.add("shown");
+        registrarRecompensaMessageError.textContent = "Todos los campos del formulario deben estar rellenados correctamente.";
+        registrarRecompensaMessageError.classList.add("shown");
     }
 }
