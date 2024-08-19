@@ -32,7 +32,7 @@
                             </div>
                             <input class="input-select-item" type="text" id='{{ $idInput }}' maxlength="50" placeholder="DNI - Nombre"
                                 oninput="filterOptions('{{ $idInput }}', '{{ $idOptions }}'),
-                                        validateValueOnRealTime(this, '{{ $idOptions }}', '{{ $idMessageError }}', 
+                                        validateValueOnRealTime(this, '{{ $idOptions }}', '{{ $idMessageError }}',
                                         {{ json_encode($someHiddenIdInputsArray) }})" 
                                 onclick="toggleOptions('{{ $idInput }}', '{{ $idOptions }}')">
                             <ul class="select-items" id='{{ $idOptions }}'>

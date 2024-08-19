@@ -13,12 +13,13 @@ function selectOptionEditarRecompensa(value, idInput, idOptions, someHiddenIdInp
  
     // Actualizar los demás campos del formulario
     if (id && descripcion) {
-		tipoRecompensaInputEdit.value = id;
-		descripcionRecompensaInputEdit.value = descripcion;
-        costoPuntosInput.value = costoPuntos;
+      tipoRecompensaInputEdit.value = id;
+      descripcionRecompensaInputEdit.value = descripcion;
+      costoPuntosInput.value = costoPuntos;
 
-        // Llenar campos ocultos
-        document.getElementById(someHiddenIdInputsArray[0]).value = id;
+
+      // Llenar campos ocultos
+      document.getElementById(someHiddenIdInputsArray[0]).value = id;
     } else {
 		tipoRecompensaInputEdit.value = "";
 		descripcionRecompensaInputEdit.value = "";

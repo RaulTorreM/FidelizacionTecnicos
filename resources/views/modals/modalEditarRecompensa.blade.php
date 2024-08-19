@@ -10,12 +10,17 @@
                     @csrf
                     <!-- Variables globales -->
                     @php
+                        $recompensasDB = $recompensasWithoutFirst;
+                        $dbFieldsNameArray = ['tipoRecompensa', 'descripcionRecompensa', 'costoPuntos_Recompensa'];
                         $idInput = 'recompensaEditInput';
                         $idOptions = 'recompensaEditOptions';
                         $idMessageError = 'searchEditRecompensaError';
-                        $someHiddenIdInputsArray = ['idEditTecnicoInput'];
-                        $idCostoPuntosInput = 'costoPuntosInput';
-                        $otherInputsArray = ['tipoRecompensaInputEdit' , 'descripcionRecompensaInputEdit', $idCostoPuntosInput];
+                        $someHiddenIdInputsArray = ['idEditRecompensaInput'];
+                        $idCostoPuntosInput = 'costoPuntosInput'; //El valor se debe modificar también en modalEditarRecompensa.js
+                        $idTipoRecompensaInputEdit = 'tipoRecompensaInputEdit';
+                        $idDescripcionRecompensaInputEdit = 'descripcionRecompensaInputEdit';
+                        $otherInputsArray = [ $idTipoRecompensaInputEdit , 'descripcionRecompensaInputEdit', $idCostoPuntosInput];
+                        $searchField = 'idRecompensa';
                     @endphp
                     <input id='{{ $someHiddenIdInputsArray[0] }}' maxlength="13" name="idRecompensa">
                     <div class="form-group gap">
@@ -25,7 +30,9 @@
                             <input class="input-select-item" type="text" id='{{ $idInput }}' maxlength="100" placeholder="Código - Descripción"
                                 oninput="filterOptions('{{ $idInput }}', '{{ $idOptions }}'),
                                         validateValueOnRealTime(this, '{{ $idOptions }}', '{{ $idMessageError }}', 
-                                        {{ json_encode($someHiddenIdInputsArray) }}, {{ json_encode($otherInputsArray) }})" 
+                                        {{ json_encode($someHiddenIdInputsArray) }}, {{ json_encode($otherInputsArray) }}, 
+                                        {{ json_encode($recompensasDB) }}, '{{ $searchField }}', {{ json_encode($dbFieldsNameArray) }})"
+
                                 onclick="toggleOptions('{{ $idInput }}', '{{ $idOptions }}')">
                             <ul class="select-items" id='{{ $idOptions }}'>
                                 @foreach ($recompensasWithoutFirst as $recompensa)
@@ -46,9 +53,9 @@
                     <div class="form-group gap">
                         <label class="primary-label" id="tipoRecompensaLabelEdit" for="tipoRecompensaInput">Tipo:</label>
                         <x-onlySelect-input 
-                            :idInput="'tipoRecompensaInputEdit'"
+                            :idInput="$idTipoRecompensaInputEdit"
                             :inputClassName="'onlySelectInput long'"
-                            :placeholder="'Seleccionar tipo de recompensa'"
+                            :placeholder="'Tipo de recompensa'"
                             :name="'tipoRecompensa'"
                             :options="['Accesorio', 'EPP', 'Herramienta']"
                             :disabled="true"

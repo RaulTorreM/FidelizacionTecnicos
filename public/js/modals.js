@@ -264,7 +264,9 @@ function getAllLiText(idOptions) {
     return tecnicos;
 }
 
-function validateValueOnRealTime(input, idOptions, idMessageError, someHiddenIdInputsArray, otherInputsArray=null) {
+function validateValueOnRealTime(input, idOptions, idMessageError, someHiddenIdInputsArray, 
+                                otherInputsArray = null, itemsDB = null, searchField = null,
+                                dbFieldsNameArray = null) {
     const value = input.value;
     const messageError = document.getElementById(idMessageError);
    
@@ -284,11 +286,12 @@ function validateValueOnRealTime(input, idOptions, idMessageError, someHiddenIdI
     // Comparar el valor ingresado con la lista de técnicos
     const itemEncontrado = allItems.includes(value);
 
+    // Dividir el valor en partes (id y nombre)
     const [id, nombre] = value.split(' - ');
 
-    if (value === "") {
-        messageError.classList.remove('shown'); 
-        clearHiddenInputs(); // Limpiar los inputs ocultos
+    // Limpiar los inputs ocultos y visibles si el valor está vacío o no se encuentra el ítem
+    const clearInputs = () => {
+        clearHiddenInputs();
         if (otherInputsArray) {
             otherInputsArray.forEach(idOtherInput => {
                 const otherInputElement = document.getElementById(idOtherInput);
@@ -297,28 +300,47 @@ function validateValueOnRealTime(input, idOptions, idMessageError, someHiddenIdI
                 }
             });
         }
+    };
+
+    if (value === "" || !itemEncontrado) {
+        messageError.classList.add('shown'); 
+        clearInputs();
     } else {
-        if (!itemEncontrado) {
-            messageError.classList.add('shown'); 
-            clearHiddenInputs(); 
-            if (otherInputsArray) {
-                otherInputsArray.forEach(idOtherInput => {
+        messageError.classList.remove('shown');
+        // Actualizar los inputs ocultos
+        if (id) {
+            document.getElementById(someHiddenIdInputsArray[0]).value = id;
+            if (nombre && someHiddenIdInputsArray.length === 2) {
+                document.getElementById(someHiddenIdInputsArray[1]).value = nombre;
+            }
+        }
+
+        // Rellenar otros inputs visibles si se requiere
+        if (otherInputsArray && itemsDB && searchField) {
+            const searchValue = id;
+            const itemArraySearched = returnItemDBValueWithRequestedID(searchField, searchValue, itemsDB);
+            console.log(itemArraySearched);
+
+            if (itemArraySearched) {
+                otherInputsArray.forEach((idOtherInput, index) => {
                     const otherInputElement = document.getElementById(idOtherInput);
                     if (otherInputElement) {
-                        otherInputElement.value = ""; 
+                        // Usar el índice para acceder al nombre del campo en dbFieldsNameArray
+                        const dbField = dbFieldsNameArray[index];
+                        otherInputElement.value = itemArraySearched[dbField] || ""; 
                     }
                 });
             }
-        } else {
-            messageError.classList.remove('shown'); 
-            // Actualizar los inputs ocultos
-            if (id && nombre) {
-                document.getElementById(someHiddenIdInputsArray[0]).value = id;
-                document.getElementById(someHiddenIdInputsArray[1]).value = nombre;
-
-                console.log(document.getElementById(someHiddenIdInputsArray[0]).value);
-                console.log(document.getElementById(someHiddenIdInputsArray[1]).value);
-            } 
         }
     }
+}
+
+function returnItemDBValueWithRequestedID(searchField, searchValue, itemsDB) {
+    // Buscar el objeto en itemsDB que tenga el searchField con el valor searchValue
+    for (const key in itemsDB) {
+        if (itemsDB[key][searchField] === searchValue) {
+            return itemsDB[key]; // Devolver el objeto encontrado
+        }
+    }
+    return null; // Retornar null si no se encuentra el objeto
 }
