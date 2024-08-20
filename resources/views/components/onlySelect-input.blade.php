@@ -4,10 +4,11 @@
     $dynamicIdOptions = $idOptions ?? 'options-' . $uniqueId;
     $isDisabled = $disabled ?? false;
     $spanOwnClassName = $spanClassName ?? ''; // Asignar un valor por defecto si $spanClassName no está definido
+    $focusBorder = $focusBorder ?? '';
 @endphp
 
 <div class ="input-select">
-    <div class="onlySelectInput-container">
+    <div class="onlySelectInput-container {{$focusBorder}}">
         <input 
             class="{{ $inputClassName }}"
             type="text" 

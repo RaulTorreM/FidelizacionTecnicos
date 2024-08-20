@@ -131,9 +131,9 @@ function setOnlySelectInputFocusColor() {
         elements.forEach(function(element) {
             var isClickInside = element.contains(event.target);
             if (!isClickInside) {
-                element.style.borderColor = '#ccc';
+                element.classList.remove('activeFocus');
             } else {
-                element.style.borderColor = '#007bff'; // Mantener el color de foco si está dentro
+                element.classList.add('activeFocus'); // Mantener el color de foco si está dentro
             }
         });
     });
@@ -301,6 +301,7 @@ function validateValueOnRealTime(input, idOptions, idMessageError, someHiddenIdI
     };
 
     if (value === "") {
+        messageError.classList.remove('shown');
         clearInputs();
     } else if (!itemEncontrado) {
         clearInputs();

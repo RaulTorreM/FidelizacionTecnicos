@@ -54,15 +54,17 @@ class RecompensaController extends Controller
         return view('dashboard.recompensas', compact('recompensas', 'recompensasWithoutFirst', 'idNuevaRecompensa'));
     }
     
-    function store(Request $request) 
+    public function store(Request $request) 
     {
         Recompensa::create($request->all());  
         return redirect()->route('recompensas.create');
     }
 
-    function update() {
-
-        
+    public function update(Request $request) {
+        $recompensaSolicitada = Recompensa::find($request->idRecompensa);
+        $recompensaSolicitada->update([
+            'costoPuntos_Recompensa'=> $request->costoPuntos_Recompensa,
+        ]);
         return redirect()->route('recompensas.create'); 
     }
 }

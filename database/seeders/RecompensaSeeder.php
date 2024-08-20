@@ -49,6 +49,11 @@ class RecompensaSeeder extends Seeder
                 'descripcionRecompensa' => 'Caja de herramientas vacía',
                 'costoPuntos_Recompensa' => 50,
             ],
+            [
+                'tipoRecompensa' => 'Herramienta',
+                'descripcionRecompensa' => 'Palustre de 9225mmREF.: BK1040 Marca: BRICKELL',
+                'costoPuntos_Recompensa' => 100,
+            ],
         ];
 
         foreach ($recompensas as $recompensa) {

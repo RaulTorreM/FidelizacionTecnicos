@@ -42,6 +42,7 @@ function selectOptionEditarRecompensa(value, idRecompensa, descripcionRecompensa
 
         // Llenar campos ocultos
         document.getElementById(someHiddenIdInputsArray[0]).value = idRecompensa;
+        searchEditRecompensaError.classList.remove("shown");
     } else {
         tipoRecompensaInputEdit.value = "";
         descripcionRecompensaInputEdit.value = "";
@@ -58,7 +59,7 @@ function validarCamposVaciosFormulario() {
   return allFilled;
 }
 
-function guardarModalEditarRecompensa() {
+function guardarModalEditarRecompensa(idModal, idForm) {
     if (validarCamposVaciosFormulario()) {
         console.log("Enviando formulario satisfactoriamente");
         editarRecompensaMessageError.classList.remove("shown");

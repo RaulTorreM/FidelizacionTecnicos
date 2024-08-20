@@ -308,7 +308,7 @@ $(document).ready(function() {
 			"infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
 			"infoFiltered": "(filtrado de un total de _MAX_ registros)",
 			"search": "<span class='material-symbols-outlined'>search</span>",
-			"searchPlaceholder": "Buscar DNI/Nombre de técnico o número de comprobante", // Placeholder para el campo de búsqueda
+			"searchPlaceholder": "Buscar Código/Tipo/Descripción de recompensa", // Placeholder para el campo de búsqueda
 			"loadingRecords": "Cargando...",
 			"paginate": {
 				"first": "Primero",

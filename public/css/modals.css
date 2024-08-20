@@ -239,6 +239,14 @@
     transition: border-color 0.3s;
 }
 
+.onlySelectInput-container.activeFocus {
+    border-color: #007bff; 
+}
+
+.onlySelectInput-container.noFocusBorder.activeFocus {
+    border-color: #ccc; 
+}
+
 .onlySelectInput{
     padding: 20px 10px;
     max-width: 100%;
@@ -278,6 +286,9 @@
     color: #0b55a4;
 }
 
+.onlySelectInput-container span.noHandCursor:hover{
+    color: #666;
+}
 
 /* Estilos de los textarea*/
 .textarea {

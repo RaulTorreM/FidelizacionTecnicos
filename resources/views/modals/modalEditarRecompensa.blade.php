@@ -7,7 +7,7 @@
             </div>
             <div class="modal-body" id="idModalBodyEditarRecompensa">
                 <form id="formEditarRecompensa" action="{{ route('recompensas.update') }}" method="POST">
-
+                    @method('PUT')
                     @csrf
                     <!-- Variables globales -->
                     @php
@@ -23,11 +23,15 @@
                         $otherInputsArray = [ $idTipoRecompensaInputEdit , 'descripcionRecompensaInputEdit', $idCostoPuntosInput];
                         $searchField = 'idRecompensa';
                     @endphp
-                    <input id='{{ $someHiddenIdInputsArray[0] }}' maxlength="13" name="idRecompensa">
+                    <input type="hidden" id='{{ $someHiddenIdInputsArray[0] }}' maxlength="13" name="idRecompensa">
+                   
+                    <div class="form-group start">
+                        <h5> *Solo puede editar el costo unitario de una recompensa creada.</h5>
+                    </div>
+
                     <div class="form-group gap">
-                        <label class="primary-label" for="recompensaSelect">Recompensa:</label>
-                        <div class="input-select" id="recompensaSelect">
-                           
+                        <label class="primary-label" for="recompensaEditSelect">Recompensa:</label>
+                        <div class="input-select" id="recompensaEditSelect">
                             <input class="input-select-item" type="text" id='{{ $idInput }}' maxlength="100" placeholder="Código - Descripción"
                                 oninput="filterOptions('{{ $idInput }}', '{{ $idOptions }}'),
                                         validateValueOnRealTime(this, '{{ $idOptions }}', '{{ $idMessageError }}', 
@@ -64,6 +68,7 @@
                             :options="['Accesorio', 'EPP', 'Herramienta']"
                             :disabled="true"
                             :spanClassName="'noHandCursor'"
+                            :focusBorder="'noFocusBorder'"
                         />
                     </div>
 
@@ -75,8 +80,8 @@
                 
                     <div class="form-group gap">
                         <label class="primary-label" for="costoUnitarioInput">Costo unitario (puntos):</label>
-                        <input class="input-item" id='{{ $idCostoPuntosInput }}' name="costoPuntos_Recompensa" maxlength="4"
-                                   oninput="validateNumberRealTime(this)" placeholder="1000">
+                        <input class="input-item" id='{{ $idCostoPuntosInput }}' maxlength="4"
+                                   oninput="validateNumberRealTime(this)" placeholder="1000" name="costoPuntos_Recompensa" >
                     </div>
 
                     <div class="form-group start">
