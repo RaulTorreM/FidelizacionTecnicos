@@ -64,6 +64,7 @@ function guardarModalEditarRecompensa(idModal, idForm) {
         console.log("Enviando formulario satisfactoriamente");
         editarRecompensaMessageError.classList.remove("shown");
         guardarModal(idModal, idForm);	
+        console.log("Funciona despues de guardar?");
     } else {
         editarRecompensaMessageError.textContent = "Todos los campos del formulario deben estar rellenados correctamente.";
         editarRecompensaMessageError.classList.add("shown");

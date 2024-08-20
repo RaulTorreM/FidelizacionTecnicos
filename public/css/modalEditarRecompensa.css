@@ -9,3 +9,12 @@
 #idModalBodyEditarRecompensa {
 	padding: 0;
 }
+
+.form-group.start.paddingY {
+	padding: 0.5rem 0;
+}
+
+.form-group.start.paddingY > h5{
+	font-size: 0.8rem;
+	color: #555;
+}

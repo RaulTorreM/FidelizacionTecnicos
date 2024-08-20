@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="{{ asset('css/recompensasStyle.css') }}">
     <link rel="stylesheet" href="{{ asset('css/modalRegistrarNuevaRecompensa.css') }}">
     <link rel="stylesheet" href="{{ asset('css/modalEditarRecompensa.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/modalSuccess.css') }}">
 @endpush
 
 @section('main-content')
@@ -23,6 +24,10 @@
 
 			<x-btn-delete-item onclick=""> Eliminar </x-btn-delete-item>
 		</div>
+
+        <x-modalSuccessAction>
+            {{ session('success') }}
+        </x-modalSuccessAction>
 
 		<!--Tabla de ventas intermediadas-->
         <div class="secondRow">
@@ -66,4 +71,12 @@
 @push('scripts')
     <script src="{{ asset('js/modalRegistrarNuevaRecompensa.js') }}"></script>
     <script src="{{ asset('js/modalEditarRecompensa.js') }}"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Verificar si hay un mensaje de éxito en la sesión
+            @if(session('success'))
+                    openModal('successModal');
+            @endif
+        });
+    </script>
 @endpush

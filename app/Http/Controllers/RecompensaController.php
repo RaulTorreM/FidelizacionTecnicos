@@ -62,9 +62,13 @@ class RecompensaController extends Controller
 
     public function update(Request $request) {
         $recompensaSolicitada = Recompensa::find($request->idRecompensa);
+        
+        // Actualizar los campos
         $recompensaSolicitada->update([
-            'costoPuntos_Recompensa'=> $request->costoPuntos_Recompensa,
+            'costoPuntos_Recompensa' => $request->costoPuntos_Recompensa,
         ]);
-        return redirect()->route('recompensas.create'); 
+    
+        // Agregar un mensaje flash para indicar el éxito de la actualización
+        return redirect()->route('recompensas.create')->with('success', 'Recompensa actualizada correctamente');
     }
 }

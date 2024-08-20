@@ -25,7 +25,7 @@
                     @endphp
                     <input type="hidden" id='{{ $someHiddenIdInputsArray[0] }}' maxlength="13" name="idRecompensa">
                    
-                    <div class="form-group start">
+                    <div class="form-group start paddingY">
                         <h5> *Solo puede editar el costo unitario de una recompensa creada.</h5>
                     </div>
 
@@ -85,7 +85,7 @@
                     </div>
 
                     <div class="form-group start">
-                        <span class="inline-alert-message" id="editarRecompensaMessageError">  </span>      
+                        <span class="noInline-alert-message" id="editarRecompensaMessageError">  </span>      
                     </div>
                 </form>
             </div>
