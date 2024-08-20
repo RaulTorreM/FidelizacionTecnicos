@@ -3,6 +3,7 @@
     $dynamicIdInput = $idInput ?? 'input-' . $uniqueId;
     $dynamicIdOptions = $idOptions ?? 'options-' . $uniqueId;
     $isDisabled = $disabled ?? false;
+    $spanOwnClassName = $spanClassName ?? ''; // Asignar un valor por defecto si $spanClassName no está definido
 @endphp
 
 <div class ="input-select">
@@ -19,7 +20,7 @@
             name="{{ $name ?? '' }}"
             {{ $isDisabled ? 'disabled' : '' }}
         >
-        <span class="material-symbols-outlined" 
+        <span class="material-symbols-outlined {{ $spanOwnClassName }}" 
               onclick="{{ $isDisabled ? '' : "clearInput('{$dynamicIdInput}')" }}"> cancel </span>
     </div>  
     <ul class="select-items" id="{{ $dynamicIdOptions }}">

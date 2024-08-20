@@ -254,6 +254,10 @@
     width: 13.5rem;
 }
 
+.onlySelectInput.long.noHandCursor{
+    cursor: default;
+}
+
 .onlySelectInput::placeholder {
     color: #BBB;
 }
@@ -264,6 +268,10 @@
     background-color: transparent;
     color: #666;
     margin-right: 0.5rem;
+}
+
+.onlySelectInput-container span.noHandCursor{
+    cursor: default;
 }
 
 .onlySelectInput-container span:hover {

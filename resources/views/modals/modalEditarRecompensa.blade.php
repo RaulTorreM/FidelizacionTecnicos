@@ -6,7 +6,8 @@
                 <button class="close" onclick="closeModal('modalEditarRecompensa')">&times;</button>
             </div>
             <div class="modal-body" id="idModalBodyEditarRecompensa">
-                <form id="formEditarRecompensa" action="{{ route('recompensas.edit') }}" method="POST">
+                <form id="formEditarRecompensa" action="{{ route('recompensas.update') }}" method="POST">
+
                     @csrf
                     <!-- Variables globales -->
                     @php
@@ -37,11 +38,14 @@
                             <ul class="select-items" id='{{ $idOptions }}'>
                                 @foreach ($recompensasWithoutFirst as $recompensa)
                                     @php
-                                        $value = $recompensa->idRecompensa . " - " . $recompensa->descripcionRecompensa;
-                                        $costoPuntos = $recompensa->costoPuntos_Recompensa;
+                                        $idRecompensa = htmlspecialchars($recompensa->idRecompensa, ENT_QUOTES, 'UTF-8');
+                                        $descripcionRecompensa = htmlspecialchars($recompensa->descripcionRecompensa, ENT_QUOTES, 'UTF-8');
+                                        $costoPuntos = htmlspecialchars($recompensa->costoPuntos_Recompensa, ENT_QUOTES, 'UTF-8');
+                                        $tipoRecompensa = htmlspecialchars($recompensa->tipoRecompensa, ENT_QUOTES, 'UTF-8');
+                                        $value = $idRecompensa . " - " . $descripcionRecompensa;
                                     @endphp
-                                    <li onclick="selectOptionEditarRecompensa('{{ $value }}', '{{ $idInput }}', '{{ $idOptions }}', 
-                                        {{ json_encode($someHiddenIdInputsArray) }}, '{{ $costoPuntos }}')">
+                            
+                                   <li onclick="selectOptionEditarRecompensa('{{ $value }}', '{{ $idRecompensa }}', '{{ $descripcionRecompensa }}', '{{ $costoPuntos }}', '{{ $tipoRecompensa }}', '{{ $idInput }}', '{{ $idOptions }}', {{ json_encode($someHiddenIdInputsArray) }})">
                                         {{ $value }}
                                     </li>
                                 @endforeach
@@ -54,11 +58,12 @@
                         <label class="primary-label" id="tipoRecompensaLabelEdit" for="tipoRecompensaInput">Tipo:</label>
                         <x-onlySelect-input 
                             :idInput="$idTipoRecompensaInputEdit"
-                            :inputClassName="'onlySelectInput long'"
+                            :inputClassName="'onlySelectInput long noHandCursor'"
                             :placeholder="'Tipo de recompensa'"
                             :name="'tipoRecompensa'"
                             :options="['Accesorio', 'EPP', 'Herramienta']"
                             :disabled="true"
+                            :spanClassName="'noHandCursor'"
                         />
                     </div>
 
@@ -75,14 +80,14 @@
                     </div>
 
                     <div class="form-group start">
-                        <span class="inline-alert-message"> multiMessageError </span>      
+                        <span class="inline-alert-message" id="editarRecompensaMessageError">  </span>      
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" onclick="closeModal('modalEditarRecompensa')">Cancelar</button>
                 <button type="button" class="btn btn-primary" 
-                        onclick="guardarModalRegistrarNuevaRecompensa('modalEditarRecompensa', 'formEditarRecompensa')">Guardar</button>
+                        onclick="guardarModalEditarRecompensa('modalEditarRecompensa', 'formEditarRecompensa')">Guardar</button>
             </div>
         </div>
     </div>

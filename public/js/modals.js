@@ -184,8 +184,6 @@ function selectOption(value, idInput, idOptions) {
     var input = document.getElementById(idInput);
     var options = document.getElementById(idOptions);
 
-    console.log("selectOption: " + idInput);
-
     if (input) {
         input.value = value;
         options.classList.remove('show'); // Ocultar las opciones
@@ -302,10 +300,13 @@ function validateValueOnRealTime(input, idOptions, idMessageError, someHiddenIdI
         }
     };
 
-    if (value === "" || !itemEncontrado) {
-        messageError.classList.add('shown'); 
+    if (value === "") {
         clearInputs();
-    } else {
+    } else if (!itemEncontrado) {
+        clearInputs();
+        messageError.classList.add('shown'); 
+    }
+    else {
         messageError.classList.remove('shown');
         // Actualizar los inputs ocultos
         if (id) {

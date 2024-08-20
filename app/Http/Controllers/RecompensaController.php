@@ -60,7 +60,9 @@ class RecompensaController extends Controller
         return redirect()->route('recompensas.create');
     }
 
-    function edit() {
+    function update() {
+
+        
         return redirect()->route('recompensas.create'); 
     }
 }
