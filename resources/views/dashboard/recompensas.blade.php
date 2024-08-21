@@ -1,82 +1,91 @@
-@extends('layouts.layoutDashboard')
+    @extends('layouts.layoutDashboard')
 
-@section('title', 'Recompensas')
+    @section('title', 'Recompensas')
 
-@push('styles')
-    <link rel="stylesheet" href="{{ asset('css/recompensasStyle.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/modalRegistrarNuevaRecompensa.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/modalEditarRecompensa.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/modalSuccess.css') }}">
-@endpush
+    @push('styles')
+        <link rel="stylesheet" href="{{ asset('css/recompensasStyle.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/modalRegistrarNuevaRecompensa.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/modalEditarRecompensa.css') }}">
+    @endpush
 
-@section('main-content')
-	<div class="recompensasContainer">
-		<div class="firstRow">
-			<x-btn-create-item onclick="openModal('modalRegistrarNuevaRecompensa')"> 
-				Registrar nueva recompensa
-			</x-btn-create-item>
+    @section('main-content')
+        <div class="recompensasContainer">
+            <div class="firstRow">
+                <x-btn-create-item onclick="openModal('modalRegistrarNuevaRecompensa')"> 
+                    Registrar nueva recompensa
+                </x-btn-create-item>
 
-            @include('modals.modalRegistrarNuevaRecompensa')
+                @include('modals.modalRegistrarNuevaRecompensa')
 
-			<x-btn-edit-item onclick="openModal('modalEditarRecompensa')"> Editar </x-btn-edit-item>
+                <x-btn-edit-item onclick="openModal('modalEditarRecompensa')"> Editar </x-btn-edit-item>
 
-            @include('modals.modalEditarRecompensa')
+                @include('modals.modalEditarRecompensa')
 
-			<x-btn-delete-item onclick=""> Eliminar </x-btn-delete-item>
-		</div>
+                <x-btn-delete-item onclick=""> Eliminar </x-btn-delete-item>
+            </div>
+            
+            <x-modalSuccessAction 
+                :idSuccesModal="'successModalRecompensaGuardada'"
+                :message="'Recompensa guardada correctamente'"
+            />
 
-        <x-modalSuccessAction>
-            {{ session('success') }}
-        </x-modalSuccessAction>
+            <x-modalSuccessAction 
+                :idSuccesModal="'successModalRecompensaActualizada'"
+                :message="'Recompensa actualizada correctamente'"
+            />
 
-		<!--Tabla de ventas intermediadas-->
-        <div class="secondRow">
-            <table id="tblRecompensas">
-                <thead>
-                    <tr>
-                        <th class="celda-centered">#</th>
-                        <th>Código</th>
-                        <th>Tipo</th>
-                        <th>Descripción</th>
-                        <th class="celda-centered">Costo (puntos)</th>
-                        <th class="celda-centered">Fecha y hora de creación</th>
-                        <th class="celda-centered">Fecha y hora de actualización</th> 
-                    </tr>
-                </thead>
-                <tbody>
-                    @php
-                        $contador = 1;
-                    @endphp
-                    @foreach ($recompensas as $recompensa)
-                    <tr>
-                        <td class="celda-centered">{{ $contador++ }}</td> 
-                        <td>{{ $recompensa->idRecompensa }}</td>
-						<td class="celda__tipoRecompensa">
-                            <span class="tipoRecompensa__span-{{strtolower(str_replace(' ', '-', $recompensa->tipoRecompensa))}}">
-                                {{ $recompensa->tipoRecompensa }}
-                            </span>
-                        </td>
-                        <td>{{ $recompensa->descripcionRecompensa }}</td>
-                        <td class="celda-centered">{{ $recompensa->costoPuntos_Recompensa }}</td>
-						<td class="celda-centered">{{ $recompensa->created_at}}</td>
-						<td class="celda-centered">{{ $recompensa->updated_at}}</td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
+            <x-modalSuccessAction 
+                :idSuccesModal="'successModalRecompensaEliminada'"
+                :message="'Recompensa eliminada correctamente'"
+            />
+
+            <!--Tabla de ventas intermediadas-->
+            <div class="secondRow">
+                <table id="tblRecompensas">
+                    <thead>
+                        <tr>
+                            <th class="celda-centered">#</th>
+                            <th>Código</th>
+                            <th>Tipo</th>
+                            <th>Descripción</th>
+                            <th class="celda-centered">Costo (puntos)</th>
+                            <th class="celda-centered">Fecha y hora de creación</th>
+                            <th class="celda-centered">Fecha y hora de actualización</th> 
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @php
+                            $contador = 1;
+                        @endphp
+                        @foreach ($recompensas as $recompensa)
+                        <tr>
+                            <td class="celda-centered">{{ $contador++ }}</td> 
+                            <td>{{ $recompensa->idRecompensa }}</td>
+                            <td class="celda__tipoRecompensa">
+                                <span class="tipoRecompensa__span-{{strtolower(str_replace(' ', '-', $recompensa->tipoRecompensa))}}">
+                                    {{ $recompensa->tipoRecompensa }}
+                                </span>
+                            </td>
+                            <td>{{ $recompensa->descripcionRecompensa }}</td>
+                            <td class="celda-centered">{{ $recompensa->costoPuntos_Recompensa }}</td>
+                            <td class="celda-centered">{{ $recompensa->created_at}}</td>
+                            <td class="celda-centered">{{ $recompensa->updated_at}}</td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
         </div>
-	</div>
-@endsection
+    @endsection
 
-@push('scripts')
-    <script src="{{ asset('js/modalRegistrarNuevaRecompensa.js') }}"></script>
-    <script src="{{ asset('js/modalEditarRecompensa.js') }}"></script>
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            // Verificar si hay un mensaje de éxito en la sesión
-            @if(session('success'))
-                    openModal('successModal');
-            @endif
-        });
-    </script>
-@endpush
+    @push('scripts')
+        <script src="{{ asset('js/modalRegistrarNuevaRecompensa.js') }}"></script>
+        <script src="{{ asset('js/modalEditarRecompensa.js') }}"></script>
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                @if(session('success'))
+                    openModal('successModalRecompensaEliminada');
+                @endif
+            });
+        </script>
+    @endpush

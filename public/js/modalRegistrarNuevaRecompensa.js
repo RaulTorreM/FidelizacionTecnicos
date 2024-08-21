@@ -13,17 +13,19 @@ let formInputsArray = [
 
 let mensajeCombinado = "";
 
-function validarCamposVaciosFormulario() {
+function validarCamposVaciosFormularioRegistrar() {
     let allFilled = true;
     formInputsArray.forEach(input => {
         if (!input.value.trim()) {
+            console.log(input.value);
             allFilled = false;
         }
     });
+    console.log("aaaaaa");
     return allFilled;
 }
 
-function validarCamposCorrectosFormulario() {
+function validarCamposCorrectosFormularioRegistrar() {
     mensajeCombinado = "";
     var returnError = false;
 
@@ -41,8 +43,8 @@ function validarCamposCorrectosFormulario() {
 }
 
 function guardarModalRegistrarNuevaRecompensa(idModal, idForm) {
-	if (validarCamposVaciosFormulario()) {
-		if (validarCamposCorrectosFormulario()) {
+	if (validarCamposVaciosFormularioRegistrar()) {
+		if (validarCamposCorrectosFormularioRegistrar()) {
 			console.log("Enviando formulario satisfactoriamente");
 			registrarRecompensaMessageError.classList.remove("shown");
 			guardarModal(idModal, idForm);	

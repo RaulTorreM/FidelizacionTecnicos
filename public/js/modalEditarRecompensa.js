@@ -49,7 +49,7 @@ function selectOptionEditarRecompensa(value, idRecompensa, descripcionRecompensa
     }
 }
 
-function validarCamposVaciosFormulario() {
+function validarCamposVaciosFormularioEdit() {
   let allFilled = true;
   formEditInputsArray.forEach(input => {
       if (!input.value.trim()) {
@@ -60,11 +60,10 @@ function validarCamposVaciosFormulario() {
 }
 
 function guardarModalEditarRecompensa(idModal, idForm) {
-    if (validarCamposVaciosFormulario()) {
+    if (validarCamposVaciosFormularioEdit()) {
         console.log("Enviando formulario satisfactoriamente");
         editarRecompensaMessageError.classList.remove("shown");
         guardarModal(idModal, idForm);	
-        console.log("Funciona despues de guardar?");
     } else {
         editarRecompensaMessageError.textContent = "Todos los campos del formulario deben estar rellenados correctamente.";
         editarRecompensaMessageError.classList.add("shown");

@@ -26,7 +26,7 @@
                     <input type="hidden" id='{{ $someHiddenIdInputsArray[0] }}' maxlength="13" name="idRecompensa">
                    
                     <div class="form-group start paddingY">
-                        <h5> *Solo puede editar el costo unitario de una recompensa creada.</h5>
+                        <h5> *Solo puede editar el costo unitario de una recompensa previamente creada.</h5>
                     </div>
 
                     <div class="form-group gap">

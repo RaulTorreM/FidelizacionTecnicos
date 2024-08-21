@@ -7,7 +7,7 @@ use App\Models\Recompensa;
 use Illuminate\Auth\Recaller;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Support\Facades\Cookie;
 
 class RecompensaController extends Controller
 {   
@@ -56,19 +56,18 @@ class RecompensaController extends Controller
     
     public function store(Request $request) 
     {
-        Recompensa::create($request->all());  
-        return redirect()->route('recompensas.create');
+        Recompensa::create($request->all());
+        $messageStore = 'Recompensa guardada correctamente';
+        return redirect()->route('recompensas.create')->with('success', $messageStore);
     }
 
     public function update(Request $request) {
         $recompensaSolicitada = Recompensa::find($request->idRecompensa);
-        
         // Actualizar los campos
         $recompensaSolicitada->update([
             'costoPuntos_Recompensa' => $request->costoPuntos_Recompensa,
         ]);
-    
-        // Agregar un mensaje flash para indicar el éxito de la actualización
-        return redirect()->route('recompensas.create')->with('success', 'Recompensa actualizada correctamente');
+        $messageUpdate = 'Recompensa actualizada correctamente';
+        return redirect()->route('recompensas.create')->with('success', $messageUpdate);
     }
 }

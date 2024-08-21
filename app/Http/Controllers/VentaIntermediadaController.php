@@ -104,6 +104,6 @@ class VentaIntermediadaController extends Controller
         // Crear una venta intermediada con todos los campos de la request recepcionada
         VentaIntermediada::create($request->all());
         // Los datos que no se envian tienen valores por default en la migración   
-        return redirect()->route('ventasIntermediadas.create'); 
+        return redirect()->route('ventasIntermediadas.create')->with('success', 'Venta Intermediada guardada correctamente');
     }
 }
