@@ -265,6 +265,8 @@ function getAllLiText(idOptions) {
 function validateValueOnRealTime(input, idOptions, idMessageError, someHiddenIdInputsArray, 
                                 otherInputsArray = null, itemsDB = null, searchField = null,
                                 dbFieldsNameArray = null) {
+
+    console.log("perro?");
     const value = input.value;
     const messageError = document.getElementById(idMessageError);
    

@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Cookie;
 
+
 class RecompensaController extends Controller
 {   
     public function generarIdRecompensa()
@@ -58,7 +59,7 @@ class RecompensaController extends Controller
     {
         Recompensa::create($request->all());
         $messageStore = 'Recompensa guardada correctamente';
-        return redirect()->route('recompensas.create')->with('success', $messageStore);
+        return redirect()->route('recompensas.create')->with('successStore', $messageStore);
     }
 
     public function update(Request $request) {
@@ -68,6 +69,15 @@ class RecompensaController extends Controller
             'costoPuntos_Recompensa' => $request->costoPuntos_Recompensa,
         ]);
         $messageUpdate = 'Recompensa actualizada correctamente';
-        return redirect()->route('recompensas.create')->with('success', $messageUpdate);
+        return redirect()->route('recompensas.create')->with('successUpdate', $messageUpdate);
+    }
+
+    public function delete(Request $request) {
+        dd("FUNCIONA EL ELIMINAR CONTROLLER");
+        $recompensaSolicitada = Recompensa::find($request->idRecompensa);
+        // Actualizar los campos
+        $recompensaSolicitada->delete();
+        $messageUpdate = 'Recompensa eliminada correctamente';
+        return redirect()->route('recompensas.create')->with('successUpdate', $messageUpdate);
     }
 }

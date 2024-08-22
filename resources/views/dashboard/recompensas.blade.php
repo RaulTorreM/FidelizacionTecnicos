@@ -6,6 +6,7 @@
         <link rel="stylesheet" href="{{ asset('css/recompensasStyle.css') }}">
         <link rel="stylesheet" href="{{ asset('css/modalRegistrarNuevaRecompensa.css') }}">
         <link rel="stylesheet" href="{{ asset('css/modalEditarRecompensa.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/modalEliminarRecompensa.css') }}">
     @endpush
 
     @section('main-content')
@@ -21,7 +22,9 @@
 
                 @include('modals.modalEditarRecompensa')
 
-                <x-btn-delete-item onclick=""> Eliminar </x-btn-delete-item>
+                <x-btn-delete-item onclick="openModal('modalEliminarRecompensa')"> Eliminar </x-btn-delete-item>
+
+                @include('modals.modalEliminarRecompensa')
             </div>
             
             <x-modalSuccessAction 
@@ -81,9 +84,16 @@
     @push('scripts')
         <script src="{{ asset('js/modalRegistrarNuevaRecompensa.js') }}"></script>
         <script src="{{ asset('js/modalEditarRecompensa.js') }}"></script>
+        <script src="{{ asset('js/modalEliminarRecompensa.js') }}"></script>
         <script>
             document.addEventListener("DOMContentLoaded", function() {
-                @if(session('success'))
+                @if(session('successStore'))
+                    openModal('successModalRecompensaGuardada');
+                @endif
+                @if(session('successUpdate'))
+                    openModal('successModalRecompensaActualizada');
+                @endif
+                @if(session('successDelete'))
                     openModal('successModalRecompensaEliminada');
                 @endif
             });

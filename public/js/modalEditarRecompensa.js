@@ -1,7 +1,7 @@
 let idRecompensaInput = document.getElementById('recompensaEditInput');
 let tipoRecompensaInputEdit = document.getElementById('tipoRecompensaInputEdit');
 let descripcionRecompensaInputEdit = document.getElementById('descripcionRecompensaInputEdit');
-let costoPuntosInput = document.getElementById('costoPuntosInput');
+let costoPuntosInput = document.getElementById('costoPuntosInputEdit');
 let searchRecompensaError = document.getElementById('searchEditRecompensaError');
 let editarRecompensaMessageError = document.getElementById('editarRecompensaMessageError');
 

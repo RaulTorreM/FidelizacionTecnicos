@@ -25,8 +25,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard-canjes', [DashboardController::class, 'canjes'])->name('canjes');  
    
     Route::get('/dashboard-recompensas', [RecompensaController::class, 'create'])->name('recompensas.create');  
-    Route::post('/modal-nuevaRecompensa', [RecompensaController::class, 'store'])->name('recompensas.store');  
+    Route::post('/modal-storeRecompensa', [RecompensaController::class, 'store'])->name('recompensas.store');  
     Route::put('/modal-updateRecompensa', [RecompensaController::class, 'update'])->name('recompensas.update'); 
+    Route::delete('/modal-deleteRecompensa', [RecompensaController::class, 'delete'])->name('recompensas.delete');
 
     Route::get('/dashboard-tecnicos', [DashboardController::class, 'tecnicos'])->name('tecnicos');  
     Route::get('/dashboard-configuracion', [DashboardController::class, 'configuracion'])->name('configuracion');  

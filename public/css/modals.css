@@ -139,6 +139,25 @@
     background-color: #0056b3;
 }
 
+
+.btn-primary.update {
+    background-color: #5125AD;
+    color: #fff;
+}
+
+.btn-primary.update:hover{
+    background-color: #5b2ddb;
+}
+
+.btn-primary.delete {
+    background-color: #570E28;
+    color: #fff;
+}
+
+.btn-primary.delete:hover{
+    background-color: #922f52;
+}
+
 .close {
     font-size: 1.6rem;
     color: #AAA;
@@ -157,6 +176,10 @@
 	font-weight: 700;
     margin: 0;
     font-size: 1rem;
+}
+
+.primary-label.noEditable {
+	color: var(--clr-dark-variant);
 }
 
 .primary-label.marginX {
@@ -479,4 +502,8 @@
 .input-item.time {
     margin: 0;
     max-width: 6rem;
+}
+
+.form-group.start.paddingY {
+	padding: 0.5rem 0;
 }
