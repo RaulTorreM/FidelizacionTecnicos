@@ -21,7 +21,7 @@
              "ventasIntermediadas": "{{ route('ventasIntermediadas.create') }}",
              "canjes": "{{ route('canjes') }}",
              "recompensas": "{{ route('recompensas.create') }}",
-             "tecnicos": "{{ route('tecnicos') }}",
+             "tecnicos": "{{ route('tecnicos.create') }}",
              "configuracion": "{{ route('configuracion') }}",
              "perfil": "{{ route('profile.edit') }}"
          }'>
@@ -53,8 +53,8 @@
                     <h5>Recompensas</h5>
                 </a>
 
-                <a href="{{ route('tecnicos') }}" 
-                    class="{{ Request::routeIs('tecnicos') ? 'active' : '' }}">
+                <a href="{{ route('tecnicos.create') }}" 
+                    class="{{ Request::routeIs('tecnicos.create') ? 'active' : '' }}">
                     <span class="material-symbols-outlined">groups</span>
                     <h5>Técnicos</h5>
                 </a>
