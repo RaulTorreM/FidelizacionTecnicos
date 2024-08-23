@@ -46,7 +46,7 @@ class RecompensaController extends Controller
         // Obtener la última recompensa para generar el nuevo ID
         $idNuevaRecompensa = $this->generarIdRecompensa();
         
-        // Obtener todas las recompensas
+        // Obtener todas las recompensas activas
         $recompensas = Recompensa::all();
         
         // Obtener todas las recompensas excepto la primera
@@ -62,7 +62,8 @@ class RecompensaController extends Controller
         return redirect()->route('recompensas.create')->with('successStore', $messageStore);
     }
 
-    public function update(Request $request) {
+    public function update(Request $request) 
+    {
         $recompensaSolicitada = Recompensa::find($request->idRecompensa);
         // Actualizar los campos
         $recompensaSolicitada->update([
@@ -72,12 +73,21 @@ class RecompensaController extends Controller
         return redirect()->route('recompensas.create')->with('successUpdate', $messageUpdate);
     }
 
-    public function delete(Request $request) {
-        dd("FUNCIONA EL ELIMINAR CONTROLLER");
-        $recompensaSolicitada = Recompensa::find($request->idRecompensa);
-        // Actualizar los campos
-        $recompensaSolicitada->delete();
-        $messageUpdate = 'Recompensa eliminada correctamente';
-        return redirect()->route('recompensas.create')->with('successUpdate', $messageUpdate);
+    public function delete(Request $request) 
+    {
+        // Encuentra la recompensa usando el idRecompensa
+        $recompensa = Recompensa::where("idRecompensa", $request->idRecompensa)->first();
+    
+        // Verifica si se encontró la recompensa
+        if ($recompensa) {
+            // Aplica soft delete
+            $recompensa->delete();
+    
+            $messageDelete = 'Recompensa eliminada correctamente';
+        } else {
+            $messageDelete = 'Recompensa no encontrada';
+        }
+    
+        return redirect()->route('recompensas.create')->with('successDelete', $messageDelete);
     }
 }

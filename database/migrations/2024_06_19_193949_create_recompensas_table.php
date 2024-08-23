@@ -14,6 +14,7 @@ return new class extends Migration
             $table->string('descripcionRecompensa', 100)->nullable(); 
             $table->unsignedInteger('costoPuntos_Recompensa')->nullable(); 
             $table->timestamps(); //created_at updated_at
+            $table->softDeletes(); //deleted_at
         });
     }
 

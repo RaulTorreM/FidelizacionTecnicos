@@ -7,8 +7,8 @@
             </div>
             <div class="modal-body" id="idModalBodyEliminarRecompensa">
                 <form id="formEliminarRecompensa" action="{{ route('recompensas.delete') }}" method="POST">
-                    @method('PUT')
                     @csrf
+                    @method('DELETE')
                     <!-- Variables globales -->
                     @php
                         $recompensasDB = $recompensasWithoutFirst;
