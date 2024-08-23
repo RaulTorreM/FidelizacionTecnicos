@@ -36,22 +36,22 @@
     font-weight: bold;
     font-size: 0.75rem;
     display: inline-block;
-    max-width: 100%;
+	width: 60%;
 }
 
 .rangoTecnico__span-plata {
-    color: #139161;
-    background-color: rgba(19, 145, 97, 0.15) !important;
+    color: #000;
+    background-color: #C0C0C0 !important;
 }
 
 .rangoTecnico__span-oro {
-    color: #2196F3;
-    background-color: rgba(33, 150, 243, 0.15) !important;
+    color: #000;
+    background-color: #FFD700 !important;
 }
 
 .rangoTecnico__span-black {
-    color: #9C27B0;
-    background-color: rgba(156, 39, 176, 0.15) !important;
+    color: #fff;
+    background-color: #333 !important;
 }
 
 td {

@@ -49,7 +49,7 @@
                         <tr>
                             <th class="celda-centered">#</th>
                             <th>Código</th>
-                            <th>Tipo</th>
+                            <th class="celda-centered">Tipo</th>
                             <th>Descripción</th>
                             <th class="celda-centered">Costo (puntos)</th>
                             <th class="celda-centered">Fecha y hora de creación</th>

@@ -24,7 +24,7 @@
 }
 
 .celda__tipoRecompensa {
-    padding: 0 !important;
+    padding: 15px !important;
     margin: 0 !important;
     text-align: center !important; 
 }
@@ -36,7 +36,7 @@
     font-weight: bold;
     font-size: 0.75rem;
     display: inline-block;
-    max-width: 100%;
+    width: 90%;
 }
 
 .tipoRecompensa__span-efectivo {

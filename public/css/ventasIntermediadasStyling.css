@@ -109,7 +109,7 @@
     font-weight: bold;
     font-size: 0.85rem;
     display: inline-block;
-    max-width: 100%;
+    width: 100%;
 }
 
 .estado__span-redimido {

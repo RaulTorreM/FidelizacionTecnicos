@@ -65,7 +65,11 @@
 						<td class="celda-centered">{{ $tecnico->fechaNacimiento_Tecnico}}</td>
 						<td class="celda-centered">{{ $tecnico->totalPuntosActuales_Tecnico}}</td>
 						<td class="celda-centered">{{ $tecnico->historicoPuntos_Tecnico}}</td>
-						<td class="celda-centered">{{ $tecnico->rangoTecnico}}</td>
+						<td class="celda__rangoTecnico">
+							<span class="rangoTecnico__span-{{strtolower(str_replace(' ', '-', $tecnico->rangoTecnico))}}">
+								{{ $tecnico->rangoTecnico }}
+							</span>
+						</td>
 					</tr>
 					@endforeach
 				</tbody>
