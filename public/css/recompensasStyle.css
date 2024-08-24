@@ -36,7 +36,7 @@
     font-weight: bold;
     font-size: 0.75rem;
     display: inline-block;
-    width: 90%;
+    width: 100%; /*max-width: 100% para anchos dinámicos*/
 }
 
 .tipoRecompensa__span-efectivo {
@@ -60,5 +60,5 @@
 }
 
 td {
-    padding: 1rem 0 !important;
+    padding: 1rem 0.5rem !important;
 }

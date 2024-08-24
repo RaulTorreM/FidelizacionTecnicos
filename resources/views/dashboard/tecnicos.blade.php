@@ -4,34 +4,38 @@
 
 @push('styles')
     <link rel="stylesheet" href="{{ asset('css/tecnicosStyle.css') }}">
+	<link rel="stylesheet" href="{{ asset('css/modalAgregarNuevoTecnico.css') }}">
 @endpush
 
 @section('main-content')
 	<div class="tecnicosContainer">
 		<div class="firstRow">
-			<x-btn-create-item onclick=""> 
+			<x-btn-create-item onclick="openModal('modalAgregarNuevoTecnico')"> 
 				Registrar nuevo técnico
 			</x-btn-create-item>
 
-			<x-btn-edit-item onclick=""> Editar </x-btn-edit-item>
+			@include('modals.tecnicos.modalAgregarNuevoTecnico')
 
-			<x-btn-delete-item onclick=""> Eliminar </x-btn-delete-item>
+			<x-btn-edit-item onclick="openModal('modalEditarTecnico')"> Editar </x-btn-edit-item>
+
+
+			<x-btn-delete-item onclick="openModal('modalEliminarTecnico')"> Eliminar </x-btn-delete-item>
 
 		</div>
 		
 		<x-modalSuccessAction 
-			:idSuccesModal="'successModalRecompensaGuardada'"
-			:message="'Recompensa guardada correctamente'"
+			:idSuccesModal="'successModalTecnicoGuardado'"
+			:message="'Técnico guardado correctamente'"
+		/>
+		
+		<x-modalSuccessAction 
+			:idSuccesModal="'successModalTecnicoActualizado'"
+			:message="'Téncico actualizado correctamente'"
 		/>
 
 		<x-modalSuccessAction 
-			:idSuccesModal="'successModalRecompensaActualizada'"
-			:message="'Recompensa actualizada correctamente'"
-		/>
-
-		<x-modalSuccessAction 
-			:idSuccesModal="'successModalRecompensaEliminada'"
-			:message="'Recompensa eliminada correctamente'"
+			:idSuccesModal="'successModalTecnicoEliminado'"
+			:message="'Técnico eliminado correctamente'"
 		/>
 
 		<!--Tabla de ventas intermediadas-->
@@ -77,3 +81,21 @@
 		</div>
 	</div>
 @endsection
+
+@push('scripts')
+	<script src="{{ asset('js/modalAgregarNuevoTecnico.js') }}"></script>
+	<script>
+		document.addEventListener("DOMContentLoaded", function() {
+			@if(session('successTecnicoStore'))
+				console.log("FUNCIONA");
+				openModal('successModalTecnicoGuardado');
+			@endif
+			@if(session('successUpdate'))
+				openModal('successModalTecnicoActualizado');
+			@endif
+			@if(session('successDelete'))
+				openModal('successModalTecnicoEliminado');
+			@endif
+		});
+	</script>
+@endpush

@@ -17,8 +17,8 @@ class TecnicoController extends Controller
 
     function store(Request $request) 
     {
-        Tecnico::create($request->all()); // Crear un técnico con todos los campos de la request recepcionada
-        // Los datos que no se envian tienen valores por default en la migración   
-        return redirect()->route('ventasIntermediadas.create');
+        Tecnico::create($request->all()); 
+        $messageStore = 'Tecnico guardado correctamente';
+        return redirect()->route('tecnicos.create')->with('successTecnicoStore', $messageStore);
     }
 }

@@ -16,10 +16,10 @@
             </x-btn-create-item>
 
             <!--Modal para agregar nueva venta-->
-            @include('modals.modalAgregarVenta')
+            @include('modals.ventasIntermediadas.modalAgregarVenta')
 
             <!--Modal para agregar nuevo técnico-->
-            @include('modals.modalAgregarNuevoTecnico')
+            @include('modals.tecnicos.modalAgregarNuevoTecnico')
         </div>
 
         <x-modalSuccessAction>
@@ -83,7 +83,7 @@
 
 @push('scripts')
     <script src="{{ asset('js/modalAgregarVentaScript.js') }}"></script>
-    <script src="{{ asset('js/modalAgregarNuevoTecnicoScript.js') }}"></script>
+    <script src="{{ asset('js/modalAgregarNuevoTecnico.js') }}"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             // Verificar si hay un mensaje de éxito en la sesión

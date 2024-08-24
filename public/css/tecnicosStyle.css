@@ -40,12 +40,12 @@
 }
 
 .rangoTecnico__span-plata {
-    color: #000;
-    background-color: #C0C0C0 !important;
+    color: #38495a;
+    background-color: #c0c1c3 !important;
 }
 
 .rangoTecnico__span-oro {
-    color: #000;
+    color: #694a01;
     background-color: #FFD700 !important;
 }
 
@@ -55,5 +55,5 @@
 }
 
 td {
-    padding: 1rem 0 !important;
+    padding: 1rem 0.5rem !important;
 }

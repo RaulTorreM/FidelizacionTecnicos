@@ -1,24 +1,24 @@
-<div class="modal second" id="modalAgregarNuevoTecnico">
-    <div class="modal-dialog">
+<div class="modal second modalAgregarNuevoTecnico" id="modalAgregarNuevoTecnico">
+    <div class="modal-dialog modalAgregarNuevoTecnico" id="sirve">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Registrar nuevo técnico</h5>
                 <button class="close" onclick="closeModal('modalAgregarNuevoTecnico')">&times;</button>
             </div>
             <div class="modal-body" id="idModalBodyAgregarNuevoTecnico">
-                <form id="formAgregarNuevoTecnico" action="{{ route('nuevoTecnico.store') }}" method="POST">
+                <form id="formAgregarNuevoTecnico" action="{{ route('tecnicos.store') }}" method="POST">
                     @csrf
                     <div class="form-group">
                         <label class="primary-label marginX" id="dniLabel" for="dniInput">DNI:</label>
-                        <input class="input-item" type="number" id="dniInput" placeholder="12345678" 
+                        <input class="input-item" value="11111111" type="number" id="dniInput" placeholder="12345678" 
                                oninput="validateRealTimeInputLength(this, 8), validateNumberRealTime(this)" name="idTecnico">
                         <label class="primary-label marginX" id="nameLabel"  for="nameInput">Nombre:</label>
-                        <input class="input-item" type="text" id="nameInput" placeholder="Ingresar nombre" name="nombreTecnico"
+                        <input class="input-item" value="NombrePrueba" type="text" id="nameInput" placeholder="Ingresar nombre" name="nombreTecnico"
                                oninput="validateRealTimeInputLength(this, 60)">
                     </div>
                     <div class="form-group">
                         <label class="primary-label marginX" id="phoneLabel" for="phoneInput">Celular:</label>
-                        <input class="input-item" type="number" id="phoneInput" placeholder="999888777"
+                        <input class="input-item" value="999999999" type="number" id="phoneInput" placeholder="999888777"
                                oninput="validateRealTimeInputLength(this, 9), validateNumberRealTime(this)" name="celularTecnico">
                         <label class="primary-label marginX" id="oficioLabel" for="oficioInput">Oficio:</label>
                         <x-onlySelect-input 

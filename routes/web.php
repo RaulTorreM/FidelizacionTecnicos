@@ -19,20 +19,29 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+
+
     Route::get('/dashboard-ventasIntermediadas', [VentaIntermediadaController::class, 'create'])->name('ventasIntermediadas.create');
-    Route::post('/modal-nuevaVenta', [VentaIntermediadaController::class, 'store'])->name('ventasIntermediadas.store');
+    Route::post('/modal-storeVenta', [VentaIntermediadaController::class, 'store'])->name('ventasIntermediadas.store');
    
     Route::get('/dashboard-canjes', [DashboardController::class, 'canjes'])->name('canjes');  
    
+
+
     Route::get('/dashboard-recompensas', [RecompensaController::class, 'create'])->name('recompensas.create');  
     Route::post('/modal-storeRecompensa', [RecompensaController::class, 'store'])->name('recompensas.store');  
     Route::put('/modal-updateRecompensa', [RecompensaController::class, 'update'])->name('recompensas.update'); 
     Route::delete('/modal-deleteRecompensa', [RecompensaController::class, 'delete'])->name('recompensas.delete');
 
+
+
     Route::get('/dashboard-tecnicos', [TecnicoController::class, 'create'])->name('tecnicos.create');  
+    Route::post('/modal-storeTecnico', [TecnicoController::class, 'store'])->name('tecnicos.store');  
+    Route::put('/modal-updateTecnico', [TecnicoController::class, 'update'])->name('tecnicos.update'); 
+    Route::delete('/modal-deleteTecnico', [TecnicoController::class, 'delete'])->name('tecnicos.delete');
+
 
     Route::get('/dashboard-configuracion', [DashboardController::class, 'configuracion'])->name('configuracion');  
-    Route::post('/modal-nuevoTecnico', [TecnicoController::class, 'store'])->name('nuevoTecnico.store');  
 
     Route::get('emailExample', function () {
         Mail::to('garciabetancourtjosue@gmail.com')

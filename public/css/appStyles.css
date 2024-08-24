@@ -49,7 +49,7 @@ body{
 	--padding-right-mainDashboardContainer: 2rem;
 	--padding-left-mainDashboardContainer: 1rem;
 	
-	--padding-mainSectionContainer: 1rem;
+	--padding-mainSectionContainer: 2rem;
 	--border-radius-mainSectionContainer: 1rem;
 	--background-color-mainSectionContainer: #fff;
 }
