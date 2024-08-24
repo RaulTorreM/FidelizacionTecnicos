@@ -21,4 +21,15 @@ class TecnicoController extends Controller
         $messageStore = 'Tecnico guardado correctamente';
         return redirect()->route('tecnicos.create')->with('successTecnicoStore', $messageStore);
     }
+    function update(Request $request) 
+    {
+        $tecnicoSolicitado = Tecnico::find($request->idTecnico);
+        // Actualizar los campos
+        $tecnicoSolicitado->update([
+            'celularTecnico' => $request->celularTecnico,
+            'oficioTecnico' => $request->oficioTecnico
+        ]);
+        $messageUpdate = 'Técnico actualizado correctamente';
+        return redirect()->route('tecnicos.create')->with('successTecnicoUpdate', $messageUpdate);
+    }
 }

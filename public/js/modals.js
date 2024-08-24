@@ -266,7 +266,6 @@ function validateValueOnRealTime(input, idOptions, idMessageError, someHiddenIdI
                                 otherInputsArray = null, itemsDB = null, searchField = null,
                                 dbFieldsNameArray = null) {
 
-    console.log("perro?");
     const value = input.value;
     const messageError = document.getElementById(idMessageError);
    
@@ -280,16 +279,15 @@ function validateValueOnRealTime(input, idOptions, idMessageError, someHiddenIdI
         });
     };
 
-    // Obtener todos los valores de técnicos
+    // Obtener todos los valores del item
     const allItems = getAllLiText(idOptions);
     
-    // Comparar el valor ingresado con la lista de técnicos
+    // Comparar el valor ingresado con la lista de items
     const itemEncontrado = allItems.includes(value);
 
     // Dividir el valor en partes (id y nombre)
     const [id, nombre] = value.split(' - ');
 
-    // Limpiar los inputs ocultos y visibles si el valor está vacío o no se encuentra el ítem
     const clearInputs = () => {
         clearHiddenInputs();
         if (otherInputsArray) {

@@ -70,6 +70,7 @@ class RecompensaController extends Controller
             'costoPuntos_Recompensa' => $request->costoPuntos_Recompensa,
         ]);
         $messageUpdate = 'Recompensa actualizada correctamente';
+        
         return redirect()->route('recompensas.create')->with('successUpdate', $messageUpdate);
     }
 

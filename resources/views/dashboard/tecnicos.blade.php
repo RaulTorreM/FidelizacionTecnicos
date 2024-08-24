@@ -5,6 +5,8 @@
 @push('styles')
     <link rel="stylesheet" href="{{ asset('css/tecnicosStyle.css') }}">
 	<link rel="stylesheet" href="{{ asset('css/modalAgregarNuevoTecnico.css') }}">
+	<link rel="stylesheet" href="{{ asset('css/modalEditarTecnico.css') }}">
+	<link rel="stylesheet" href="{{ asset('css/modalEliminarTecnico.css') }}">
 @endpush
 
 @section('main-content')
@@ -18,9 +20,10 @@
 
 			<x-btn-edit-item onclick="openModal('modalEditarTecnico')"> Editar </x-btn-edit-item>
 
+			@include('modals.tecnicos.modalEditarTecnico')
 
-			<x-btn-delete-item onclick="openModal('modalEliminarTecnico')"> Eliminar </x-btn-delete-item>
-
+			
+			@include('modals.tecnicos.modalEliminarTecnico')
 		</div>
 		
 		<x-modalSuccessAction 
@@ -84,6 +87,8 @@
 
 @push('scripts')
 	<script src="{{ asset('js/modalAgregarNuevoTecnico.js') }}"></script>
+	<script src="{{ asset('js/modalEditarTecnico.js') }}"></script>
+	<script src="{{ asset('js/modalEliminarTecnico.js') }}"></script>
 	<script>
 		document.addEventListener("DOMContentLoaded", function() {
 			@if(session('successTecnicoStore'))
