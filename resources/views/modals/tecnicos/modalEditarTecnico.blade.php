@@ -16,7 +16,7 @@
 											'totalPuntosActuales_Tecnico', 'historicoPuntos_Tecnico', 'rangoTecnico'];
                         $idInput = 'tecnicoEditInput';
                         $idOptions = 'tecnicoEditOptions';
-                        $idMessageError = 'searchEditTecnicoError';
+                        $idMessageError = 'searchEditTecnicoMessageError';
                         $someHiddenIdInputsArray = ['idEditTecnicoInput'];
 						
 						$idCelularInput = 'celularInputEdit'; //El valor se debe modificar también en modalEditarTecnico.js
@@ -60,7 +60,9 @@
                                     @endphp
                             
                                    <li onclick="selectOptionEditarTecnico('{{ $value }}', '{{ $idTecnico }}', '{{ $nombreTecnico }}', '{{ $celularTecnico }}',
-												'{{ $oficioTecnico }}', '{{ $idInput }}', '{{ $idOptions }}', {{ json_encode($someHiddenIdInputsArray) }})">
+												'{{ $oficioTecnico }}', '{{ $fechaNacimiento_Tecnico }}', '{{ $totalPuntosActuales_Tecnico }}', 
+                                                '{{ $historicoPuntos_Tecnico }}', '{{ $rangoTecnico }}', '{{ $idInput }}', '{{ $idOptions }}', 
+                                                {{ json_encode($someHiddenIdInputsArray) }})">
                                         {{ $value }}
                                     </li>
                                 @endforeach
@@ -71,7 +73,10 @@
 
                     <div class="form-group gap">
                         <label class="primary-label" for="costoUnitarioInput">Celular:</label>
-                        <input class="input-item" value="999999999"  type="number" id='{{ $idCelularInput }}'
+                        <div class="tooltip-container">
+                            <span class="tooltip" id="idCelularTecnicoEditTooltip">Este es el mensaje del tooltip</span>
+                        </div>
+                        <input class="input-item" type="number" id='{{ $idCelularInput }}'
                                 oninput="validateRealTimeInputLength(this, 9), validateNumberRealTime(this)" 
                                 placeholder="987654321" name="celularTecnico">
 
@@ -87,7 +92,7 @@
 
                     <div class="form-group gap">
                         <label class="primary-label noEditable" id="idFechaNacimientoTecnicoLabel" for='{{ $idFechaNacimientoInput }}'>Fecha de nacimiento:</label>
-                        <input class="input-item" type="date" id='{{ $idFechaNacimientoInput }}'
+                        <input class="input-item center" type="date" id='{{ $idFechaNacimientoInput }}'
                                name="fechaNacimiento_Tecnico" disabled>
                     </div>
 
@@ -119,7 +124,7 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" onclick="closeModal('modalEditarTecnico')">Cancelar</button>
                 <button type="button" class="btn btn-primary update" 
-                        onclick="guardarmodalEditarTecnico('modalEditarTecnico', 'formEditarTecnico')">Actualizar</button>
+                        onclick="guardarModalEditarTecnico('modalEditarTecnico', 'formEditarTecnico')">Actualizar</button>
             </div>
         </div>
     </div>

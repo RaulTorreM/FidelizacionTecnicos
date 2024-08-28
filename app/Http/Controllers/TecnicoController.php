@@ -21,6 +21,7 @@ class TecnicoController extends Controller
         $messageStore = 'Tecnico guardado correctamente';
         return redirect()->route('tecnicos.create')->with('successTecnicoStore', $messageStore);
     }
+
     function update(Request $request) 
     {
         $tecnicoSolicitado = Tecnico::find($request->idTecnico);
@@ -31,5 +32,23 @@ class TecnicoController extends Controller
         ]);
         $messageUpdate = 'Técnico actualizado correctamente';
         return redirect()->route('tecnicos.create')->with('successTecnicoUpdate', $messageUpdate);
+    }
+
+    public function delete(Request $request) 
+    {
+        // Encuentra la recompensa usando el idRecompensa
+        $tecnico = Tecnico::where("idTecnico", $request->idTecnico)->first();
+    
+        // Verifica si se encontró la recompensa
+        if ($tecnico) {
+            // Aplica soft delete
+            $tecnico->delete();
+    
+            $messageDelete = 'Técnico eliminado correctamente';
+        } else {
+            $messageDelete = 'Técnico no encontrado';
+        }
+    
+        return redirect()->route('tecnicos.create')->with('successTecnicoDelete', $messageDelete);
     }
 }

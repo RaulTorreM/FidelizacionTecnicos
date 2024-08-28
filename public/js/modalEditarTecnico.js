@@ -1,57 +1,62 @@
 let tecnicoEditInput = document.getElementById('tecnicoEditInput');
-let tipoRecompensaInputEdit = document.getElementById('tipoRecompensaInputEdit');
-let descripcionRecompensaInputEdit = document.getElementById('descripcionRecompensaInputEdit');
-let costoPuntosInput = document.getElementById('costoPuntosInputEdit');
-let searchRecompensaError = document.getElementById('searchEditRecompensaError');
-let editarRecompensaMessageError = document.getElementById('editarRecompensaMessageError');
+let celularEditInput = document.getElementById('celularInputEdit');
+let oficioEditInput = document.getElementById('oficioInputEdit');
+let fechaNacimientoEditInput = document.getElementById('fechaNacimientoInputEdit');
+let puntosActualesEditInput = document.getElementById('puntosActualesInputEdit');
+let historicoPuntosEditInput = document.getElementById('historicoPuntosInputEdit');
+let rangoInputEdit = document.getElementById('rangoInputEdit');
+let searchEditTecnicoMessageError = document.getElementById('searchEditTecnicoMessageError');
+let editarTecnicoMessageError = document.getElementById('editarTecnicoMessageError');
+let celularTecnicoEditHiddenInput = document.getElementById('idcelularTecnicoEditInput');
 
-let formEditInputsArray = [
+let formTecnicoEditInputsArray = [
 	tecnicoEditInput,
-	tipoRecompensaInputEdit,
-	descripcionRecompensaInputEdit,
-  	costoPuntosInput, 	
+	celularEditInput,
+	oficioEditInput,
+    fechaNacimientoEditInput,
+    puntosActualesEditInput,
+    historicoPuntosEditInput,
+    rangoInputEdit,
 ];
 
-function selectOptionEditarTecnico(value, idRecompensa, descripcionRecompensa, costoPuntos, tipoRecompensa, 
-    idInput, idOptions, someHiddenIdInputsArray) {
+let celularTecnicoEditTooltip = document.getElementById('idCelularTecnicoEditTooltip');
 
-    // Escapar caracteres especiales en la descripción
-    function sanitizeString(str) {
-        if (typeof str !== 'string') return str;
-        return str
-            .replace(/&/g, '&amp;')  // Reemplazar & por &amp;
-            .replace(/</g, '&lt;')   // Reemplazar < por &lt;
-            .replace(/>/g, '&gt;')   // Reemplazar > por &gt;
-            .replace(/"/g, '&quot;') // Reemplazar " por &quot;
-            .replace(/'/g, '&#39;')  // Reemplazar ' por &#39;
-            .replace(/\n/g, '\\n')   // Reemplazar saltos de línea por \n
-            .replace(/\r/g, '\\r');  // Reemplazar retornos de carro por \r
-    }
 
-    // Sanitizar solo la descripción
-    const sanitizedDescripcionRecompensa = sanitizeString(descripcionRecompensa);
-
+function selectOptionEditarTecnico(value, idTecnico, nombreTecnico, celularTecnico, oficioTecnico, fechaNacimiento_Tecnico,
+    totalPuntosActuales_Tecnico, historicoPuntos_Tecnico, rangoTecnico, idInput, idOptions, someHiddenIdInputsArray) {
+    
     // Colocar en el input la opción seleccionada 
-    selectOption(value, idInput, idOptions); 
-
+    if (idInput && idOptions) {
+        selectOption(value, idInput, idOptions); 
+    }
+    
     // Actualizar los demás campos del formulario
-    if (idRecompensa && sanitizedDescripcionRecompensa) {
-        tipoRecompensaInputEdit.value = tipoRecompensa;
-        descripcionRecompensaInputEdit.value = sanitizedDescripcionRecompensa;
-        costoPuntosInput.value = costoPuntos;
+    if (celularTecnico && oficioTecnico && fechaNacimiento_Tecnico && totalPuntosActuales_Tecnico && historicoPuntos_Tecnico && 
+        rangoTecnico && someHiddenIdInputsArray) {
+       
+        celularEditInput.value = celularTecnico;
+        oficioEditInput.value = oficioTecnico;
+        fechaNacimientoEditInput.value = fechaNacimiento_Tecnico;
+        puntosActualesEditInput.value = totalPuntosActuales_Tecnico;
+        historicoPuntosEditInput.value = historicoPuntos_Tecnico;
+        rangoInputEdit.value = rangoTecnico;
 
         // Llenar campos ocultos
-        document.getElementById(someHiddenIdInputsArray[0]).value = idRecompensa;
-        searchEditRecompensaError.classList.remove("shown");
+        document.getElementById(someHiddenIdInputsArray[0]).value = idTecnico;
+        searchEditTecnicoMessageError.classList.remove("shown");
     } else {
-        tipoRecompensaInputEdit.value = "";
-        descripcionRecompensaInputEdit.value = "";
+        celularEditInput.value = "";
+        oficioEditInput.value = "";
+        fechaNacimientoEditInput.value = "";
+        puntosActualesEditInput.value = "";
+        historicoPuntosEditInput.value = "";
+        rangoInputEdit.value = "";
     }
 }
 
 function validarCamposVaciosFormularioEdit() {
   let allFilled = true;
-  formEditInputsArray.forEach(input => {
+  formTecnicoEditInputsArray.forEach(input => {
       if (!input.value.trim()) {
           allFilled = false;
       }
@@ -59,13 +64,25 @@ function validarCamposVaciosFormularioEdit() {
   return allFilled;
 }
 
-function guardarModalEditarRecompensa(idModal, idForm) {
+function validarCamposCorrectosFormularioTecnicoEdit() {
+    if (celularEditInput.value.length != 9) {
+        showHideTooltip(celularTecnicoEditTooltip, "El número de celular debe contener 9 dígitos");
+        editarTecnicoMessageError.textContent = "El número de celular debe contener 9 dígitos";
+        editarTecnicoMessageError.classList.add("shown");
+        return false
+    }
+    
+    return true;
+}
+
+function guardarModalEditarTecnico(idModal, idForm) {
     if (validarCamposVaciosFormularioEdit()) {
-        console.log("Enviando formulario satisfactoriamente");
-        editarRecompensaMessageError.classList.remove("shown");
-        guardarModal(idModal, idForm);	
+        if (validarCamposCorrectosFormularioTecnicoEdit()) {
+            editarTecnicoMessageError.classList.remove("shown");
+            guardarModal(idModal, idForm);	
+        } 
     } else {
-        editarRecompensaMessageError.textContent = "Todos los campos del formulario deben estar rellenados correctamente.";
-        editarRecompensaMessageError.classList.add("shown");
+        editarTecnicoMessageError.textContent = "Todos los campos del formulario deben estar rellenados correctamente.";
+        editarTecnicoMessageError.classList.add("shown");
       }
 }

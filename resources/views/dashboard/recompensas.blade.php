@@ -87,13 +87,13 @@
         <script src="{{ asset('js/modalEliminarRecompensa.js') }}"></script>
         <script>
             document.addEventListener("DOMContentLoaded", function() {
-                @if(session('successStore'))
+                @if(session('successRecompensaStore'))
                     openModal('successModalRecompensaGuardada');
                 @endif
-                @if(session('successUpdate'))
+                @if(session('successRecompensaUpdate'))
                     openModal('successModalRecompensaActualizada');
                 @endif
-                @if(session('successDelete'))
+                @if(session('successRecompensaDelete'))
                     openModal('successModalRecompensaEliminada');
                 @endif
             });

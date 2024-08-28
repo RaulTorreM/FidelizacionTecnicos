@@ -59,7 +59,7 @@ class RecompensaController extends Controller
     {
         Recompensa::create($request->all());
         $messageStore = 'Recompensa guardada correctamente';
-        return redirect()->route('recompensas.create')->with('successStore', $messageStore);
+        return redirect()->route('recompensas.create')->with('successRecompensaStore', $messageStore);
     }
 
     public function update(Request $request) 
@@ -71,7 +71,7 @@ class RecompensaController extends Controller
         ]);
         $messageUpdate = 'Recompensa actualizada correctamente';
         
-        return redirect()->route('recompensas.create')->with('successUpdate', $messageUpdate);
+        return redirect()->route('recompensas.create')->with('successRecompensaUpdate', $messageUpdate);
     }
 
     public function delete(Request $request) 
@@ -89,6 +89,6 @@ class RecompensaController extends Controller
             $messageDelete = 'Recompensa no encontrada';
         }
     
-        return redirect()->route('recompensas.create')->with('successDelete', $messageDelete);
+        return redirect()->route('recompensas.create')->with('successRecompensaDelete', $messageDelete);
     }
 }

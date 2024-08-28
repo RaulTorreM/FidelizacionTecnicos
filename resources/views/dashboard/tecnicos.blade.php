@@ -15,14 +15,12 @@
 			<x-btn-create-item onclick="openModal('modalAgregarNuevoTecnico')"> 
 				Registrar nuevo técnico
 			</x-btn-create-item>
-
 			@include('modals.tecnicos.modalAgregarNuevoTecnico')
 
 			<x-btn-edit-item onclick="openModal('modalEditarTecnico')"> Editar </x-btn-edit-item>
-
 			@include('modals.tecnicos.modalEditarTecnico')
 
-			
+			<x-btn-delete-item onclick="openModal('modalEliminarTecnico')"> Eliminar </x-btn-delete-item>
 			@include('modals.tecnicos.modalEliminarTecnico')
 		</div>
 		
@@ -33,7 +31,7 @@
 		
 		<x-modalSuccessAction 
 			:idSuccesModal="'successModalTecnicoActualizado'"
-			:message="'Téncico actualizado correctamente'"
+			:message="'Técnico actualizado correctamente'"
 		/>
 
 		<x-modalSuccessAction 
@@ -95,10 +93,10 @@
 				console.log("FUNCIONA");
 				openModal('successModalTecnicoGuardado');
 			@endif
-			@if(session('successUpdate'))
+			@if(session('successTecnicoUpdate'))
 				openModal('successModalTecnicoActualizado');
 			@endif
-			@if(session('successDelete'))
+			@if(session('successTecnicoDelete'))
 				openModal('successModalTecnicoEliminado');
 			@endif
 		});
