@@ -548,9 +548,8 @@ $(document).ready(function() {
 	});
 
 	$('#tblTecnicos').DataTable({
-
 		// Configuración inicial
-		lengthMenu: [3, 10, 15], 
+		lengthMenu: [3, 10, 1000], 
 		pageLength: 10, 
 		dom: "Blifrtp", //B:buttons f:filter r:processing t:table
 						//i:info l:length ("Mostrar n registros") p:paging
@@ -567,12 +566,12 @@ $(document).ready(function() {
 		],
 
 		// Configuración del buscador
-		search: {
+		/*search: {
 			caseInsensitive: true, // Búsqueda sin distinción entre mayúsculas y minúsculas
 			regex: true, // Habilitar búsqueda usando expresiones regulares (opcional)
 			smart: true, // Habilitar búsqueda inteligente (por defecto)
-		},
-		
+		},*/
+
 		// Configurando el idioma
 		language: {
 			"processing": "Procesando...",
@@ -819,5 +818,37 @@ $(document).ready(function() {
 			},
 			"infoThousands": "."
 		},
+
+		// Ajax
+		processing: false, // personalizar 
+		serverSide: true,
+		"createdRow": function(row, data, dataIndex){
+			let tdContador = row.children[0];
+			tdContador.innerHTML = dataIndex + 1;
+
+			let tdRango = row.children[8];
+			let span = document.createElement('span');
+
+			console.log(data);
+
+			span.classList.add('rangoTecnico__span-' + (data['rangoTecnico']).toLowerCase());
+
+			span.innerHTML = data['rangoTecnico'];
+			tdRango.innerHTML = '';
+			tdRango.appendChild(span);
+		},
+
+		ajax: "tblTecnicos",
+			columns: [
+				{data: null, name: '#', class: 'celda-centered tdContador'},
+				{data: 'idTecnico', name: 'idTecnico', class: 'celda-centered'},
+				{data: 'nombreTecnico', name: 'nombreTecnico', class: 'celda-centered'},
+				{data: 'oficioTecnico', name: 'oficioTecnico', class: 'celda-centered'},
+				{data: 'celularTecnico', name: 'celularTecnico', class: 'celda-centered'},
+				{data: 'fechaNacimiento_Tecnico', name: 'fechaNacimiento_Tecnico', class: 'celda-centered'},
+				{data: 'totalPuntosActuales_Tecnico', name: 'totalPuntosActuales_Tecnico', class: 'celda-centered'},
+				{data: 'historicoPuntos_Tecnico', name: 'historicoPuntos_Tecnico', class: 'celda-centered'},
+				{data: 'rangoTecnico', name: 'rangoTecnico', class: 'celda-centered celda__rangoTecnico'},
+			]
 	});
 });

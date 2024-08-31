@@ -1,5 +1,8 @@
 <?php
 
+use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Facade;
+
 return [
 
     /*
@@ -118,9 +121,11 @@ return [
     |
     */
 
-    'maintenance' => [
-        'driver' => env('APP_MAINTENANCE_DRIVER', 'file'),
-        'store' => env('APP_MAINTENANCE_STORE', 'database'),
-    ],
-
+    'providers' => ServiceProvider::defaultProviders()->merge([
+        Yajra\DataTables\DataTablesServiceProvider::class,
+        ])->toArray(),
+    
+    'aliases' => Facade::defaultAliases()->merge([
+        'DataTables' => Yajra\DataTables\Facades\DataTables::class,
+        ])->toArray(),
 ];

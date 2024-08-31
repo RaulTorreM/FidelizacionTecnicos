@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Tecnico;
+use Yajra\DataTables\DataTables;
 
 class TecnicoController extends Controller
 {   
@@ -50,5 +51,10 @@ class TecnicoController extends Controller
         }
     
         return redirect()->route('tecnicos.create')->with('successTecnicoDelete', $messageDelete);
+    }
+
+    public function tabla()
+    {
+        return DataTables::make(Tecnico::all())->toJson();
     }
 }
