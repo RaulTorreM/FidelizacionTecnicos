@@ -69,7 +69,6 @@
 	<script>
 		document.addEventListener("DOMContentLoaded", function() {
 			@if(session('successTecnicoStore'))
-				console.log("FUNCIONA");
 				openModal('successModalTecnicoGuardado');
 			@endif
 			@if(session('successTecnicoUpdate'))

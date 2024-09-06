@@ -820,7 +820,7 @@ $(document).ready(function() {
 		},
 
 		// Ajax
-		processing: false, // personalizar 
+		processing: true, // personalizar el mensaje "Procesando"
 		serverSide: true,
 		"createdRow": function(row, data, dataIndex){
 			let tdContador = row.children[0];
@@ -828,8 +828,6 @@ $(document).ready(function() {
 
 			let tdRango = row.children[8];
 			let span = document.createElement('span');
-
-			console.log(data);
 
 			span.classList.add('rangoTecnico__span-' + (data['rangoTecnico']).toLowerCase());
 
