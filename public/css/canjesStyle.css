@@ -12,31 +12,86 @@ h3 {
 	color: var(--clr-primary-variant3);
 }
 
-.firstRow{
+.firstCanjesRow{
     display: flex;
 	flex-direction: row;
+	flex-wrap: nowrap;
     width: 100%;
     height: 3rem;
     gap: 1.5rem;
     align-items: center;
+	justify-content: space-between;
+	padding-bottom: 1rem;
 }
 
-.secondRow{
+.fechaContainer {
+	display: flex;
+	flex-direction: row;
+	gap: 1em;
+	align-items: center;
+}
+
+.secondCanjesRow{
+    display: flex;
+	flex-direction: row;
+    width: 100%;
+	gap: 2rem;
+	padding-bottom: 1rem;
+	border-bottom: 1.5px solid #ccc;
+}
+
+.thirdCanjesRow{
     display: flex;
 	flex-direction: row;
     width: 100%;
 	align-content: space-between;
+	margin-top: 1rem;
+	gap: 2rem;
+	padding-bottom: 1rem;
+	border-bottom: 1.5px solid #ccc;
 }
 
 .verticalPairGroup {
 	display: flex;
 	flex-direction: column;
-	gap: 1rem;
-	width: 100%;
+	gap: 0.5rem;
+	max-width: 100%;
 	text-align: start;
+	align-items: start;
 }
 
-.verticalPairGroup input {
+.verticalPairGroup label {
+	text-align: left;
+	width: auto;
+}
+
+.input[type="date"] {
 	text-align: start;
-	width: 8rem;
+	width: 5rem;
+}
+
+#idFechaCanjeInput{
+	height: 2.3rem;
+	max-width: 60%;
+	border-radius: 3px;
+	padding-left: 15px;
+	padding-right: 0;
+}
+
+#tecnicoCanjesInput {
+	width: 20rem;
+}
+
+#puntosActualesCanjesInput {
+	width: 7rem;
+	text-align: center;
+	border-radius: 3px;
+	padding-left: 1px;
+}
+
+#montoTotalCanjesInput {
+	width: 7rem;
+	text-align: center;
+	border-radius: 3px;
+	padding-left: 1px;
 }

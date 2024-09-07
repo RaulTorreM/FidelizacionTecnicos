@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Canje;
+use App\Models\Tecnico;
+use App\Models\VentaIntermediada;
 
 class CanjeController extends Controller
 {
@@ -33,5 +35,16 @@ class CanjeController extends Controller
         $rutaPDFCanje = "public/PDFCanjes/{$nuevoIdCanje}.pdf";
 
         return $rutaPDFCanje;
+    }
+
+    public function create()
+    {
+        $tecnicos = Tecnico::all();
+        $ventas = VentaIntermediada::all();
+        $optionsNumComprobante = [];
+        foreach ($ventas as $venta) {
+            $optionsNumComprobante[] = $venta->idVentaIntermediada;
+        }
+        return view('dashboard.canjes', compact('tecnicos', 'ventas', 'optionsNumComprobante'));
     }
 }

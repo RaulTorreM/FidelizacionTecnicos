@@ -19,7 +19,7 @@
     <div class="dashboard-container" 
          data-routes='{
              "ventasIntermediadas": "{{ route('ventasIntermediadas.create') }}",
-             "canjes": "{{ route('canjes') }}",
+             "canjes": "{{ route('canjes.create') }}",
              "recompensas": "{{ route('recompensas.create') }}",
              "tecnicos": "{{ route('tecnicos.create') }}",
              "configuracion": "{{ route('configuracion') }}",
@@ -41,8 +41,8 @@
                     <h5>Ventas <br>Intermediadas</h5>
                 </a>
                 
-                <a href="{{ route('canjes') }}" 
-                    class="{{ Request::routeIs('canjes') ? 'active' : '' }}">
+                <a href="{{ route('canjes.create') }}" 
+                    class="{{ Request::routeIs('canjes.create') ? 'active' : '' }}">
                     <span class="material-symbols-outlined">currency_exchange</span>
                     <h5>Canjes</h5>
                 </a>

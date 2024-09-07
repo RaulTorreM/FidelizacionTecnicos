@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CanjeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
@@ -26,7 +27,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard-ventasIntermediadas', [VentaIntermediadaController::class, 'create'])->name('ventasIntermediadas.create');
     Route::post('/modal-storeVenta', [VentaIntermediadaController::class, 'store'])->name('ventasIntermediadas.store');
    
-    Route::get('/dashboard-canjes', [DashboardController::class, 'canjes'])->name('canjes');  
+    Route::get('/dashboard-canjes', [CanjeController::class, 'create'])->name('canjes.create');  
    
 
 
