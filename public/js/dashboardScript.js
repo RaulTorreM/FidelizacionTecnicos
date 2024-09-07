@@ -119,3 +119,37 @@ document.addEventListener('DOMContentLoaded', function() {
         initializeSidebarState(); // Reestablecer el sidebar al estado correcto
     }
 });
+
+function getAllLiText(idOptions) {
+    // Obtener el elemento UL que contiene todas las opciones
+    const ul = document.getElementById(idOptions);
+    
+    // Obtener todos los elementos LI dentro de la UL
+    const liElements = ul.getElementsByTagName('li');
+    
+    // Extraer el texto de cada LI y almacenarlo en un array
+    let tecnicos = [];
+    for (let li of liElements) {
+        tecnicos.push(li.textContent.trim());
+    }
+    
+    return tecnicos;
+}
+
+function validateOptionFound(input, idOptions, idMessageError) {
+
+    const value = input.value;
+    const messageError = document.getElementById(idMessageError);
+
+    // Obtener todos los valores del item
+    const allItems = getAllLiText(idOptions);
+
+    // Comparar el valor ingresado con la lista de items
+    const itemEncontrado = allItems.includes(value);
+    if (!itemEncontrado && value)  {
+        messageError.classList.add('shown'); 
+    }
+    else {
+        messageError.classList.remove('shown');
+    }
+}

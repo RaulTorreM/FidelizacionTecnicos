@@ -1,3 +1,6 @@
+let tecnicoCanjesInput = document.getElementById('tecnicoCanjesInput')
+
+
 function getFormattedDate() {
     let today = new Date();
     let day = String(today.getDate()).padStart(2, '0'); // Obtener el día y añadir un 0 si es necesario
@@ -11,5 +14,31 @@ let date = getFormattedDate();
 
 document.addEventListener("DOMContentLoaded", function() {
     let fechaCanjeInput = document.getElementById('idFechaCanjeInput');
+  
     fechaCanjeInput.value = date;  // Asigna la fecha en formato YYYY-MM-DD
 });
+
+
+function selectOptionNumComprobanteCanjes(value, idInput, idOptions) {
+    if (tecnicoCanjesInput.value) {
+        return
+    }
+
+    //Colocar en el input la opción seleccionada 
+    selectOption(value, idInput, idOptions); 
+    
+}
+
+
+function selectOptionAgregarVenta() {
+    
+    // Actualizar los campos ocultos
+    if (id && nombre) {
+        idTecnicoInput.value = id;
+        nombreTecnicoInput.value = nombre;
+    } else {
+        idTecnicoInput.value = "";
+        nombreTecnicoInput.value = "";
+    }
+    nuevaVentaMessageError.classList.remove('shown'); 
+}

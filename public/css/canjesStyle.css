@@ -21,6 +21,7 @@ h3 {
     gap: 1.5rem;
     align-items: center;
 	justify-content: space-between;
+	padding-top: 1rem;
 	padding-bottom: 1rem;
 }
 
@@ -38,15 +39,17 @@ h3 {
 	gap: 2rem;
 	padding-bottom: 1rem;
 	border-bottom: 1.5px solid #ccc;
+	align-items: center;
 }
 
 .thirdCanjesRow{
     display: flex;
 	flex-direction: row;
     width: 100%;
+	height: auto;
 	align-content: space-between;
 	margin-top: 1rem;
-	gap: 2rem;
+	gap: 1rem;
 	padding-bottom: 1rem;
 	border-bottom: 1.5px solid #ccc;
 }
@@ -56,6 +59,7 @@ h3 {
 	flex-direction: column;
 	gap: 0.5rem;
 	max-width: 100%;
+	height: auto;
 	text-align: start;
 	align-items: start;
 }
@@ -94,4 +98,13 @@ h3 {
 	text-align: center;
 	border-radius: 3px;
 	padding-left: 1px;
+}
+
+#clienteCanjesTextarea {
+	width: 10rem;
+	height: 4.5rem;
+	max-height: 5rem;
+	padding-right: 0;
+	resize: none; 
+	overflow-y: hidden;	
 }

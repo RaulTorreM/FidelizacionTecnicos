@@ -246,6 +246,7 @@ function guardarModal(idModal, idForm) {
     closeModal(idModal);
 }
 
+/*
 function getAllLiText(idOptions) {
     // Obtener el elemento UL que contiene todas las opciones
     const ul = document.getElementById(idOptions);
@@ -261,6 +262,9 @@ function getAllLiText(idOptions) {
     
     return tecnicos;
 }
+Esta función está en dashboardScript.js
+*/
+
 
 function validateValueOnRealTime(input, idOptions, idMessageError, someHiddenIdInputsArray, 
                                 otherInputsArray = null, itemsDB = null, searchField = null,
