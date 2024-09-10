@@ -5,10 +5,11 @@
     $isDisabled = $disabled ?? false;
     $spanOwnClassName = $spanClassName ?? ''; // Asignar un valor por defecto si $spanClassName no está definido
     $focusBorder = $focusBorder ?? '';
+    $selectFunction = $onSelectFunction ?? 'selectOption'; // Asignar la función predeterminada
 @endphp
 
-<div class ="input-select">
-    <div class="onlySelectInput-container {{$focusBorder}}">
+<div class="input-select">
+    <div class="onlySelectInput-container {{ $focusBorder }}">
         <input 
             class="{{ $inputClassName }}"
             type="text" 
@@ -16,7 +17,7 @@
             placeholder="{{ $placeholder ?? 'Seleccionar opción' }}" 
             oninput="filterOptions('{{ $dynamicIdInput }}', '{{ $dynamicIdOptions }}')" 
             onclick="toggleOptions('{{ $dynamicIdInput }}', '{{ $dynamicIdOptions }}')" 
-            autocomplete="off" 
+            autocomplete="off"
             readonly
             name="{{ $name ?? '' }}"
             {{ $isDisabled ? 'disabled' : '' }}
@@ -27,7 +28,7 @@
     <ul class="select-items" id="{{ $dynamicIdOptions }}">
         @foreach ($options as $option)
             <li 
-                onclick="selectOption('{{ $option }}', '{{ $dynamicIdInput }}', '{{ $dynamicIdOptions }}')"
+                onclick="{{ $selectFunction }}('{{ $option }}', '{{ $dynamicIdInput }}', '{{ $dynamicIdOptions }}')"
             >
                 {{ $option }}
             </li>

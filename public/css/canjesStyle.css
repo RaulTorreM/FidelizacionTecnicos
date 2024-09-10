@@ -57,11 +57,14 @@ h3 {
 .verticalPairGroup {
 	display: flex;
 	flex-direction: column;
-	gap: 0.5rem;
 	max-width: 100%;
-	height: auto;
 	text-align: start;
 	align-items: start;
+	gap: 0.5rem;
+}
+
+.verticalPairGroup.tooltipInside {
+	gap: 0.25rem;
 }
 
 .verticalPairGroup label {
@@ -107,4 +110,8 @@ h3 {
 	padding-right: 0;
 	resize: none; 
 	overflow-y: hidden;	
+}
+
+#messageErrorTecnicoCanjes {
+	margin-top: 1.6rem;
 }

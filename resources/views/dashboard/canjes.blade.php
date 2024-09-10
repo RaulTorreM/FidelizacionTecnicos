@@ -13,6 +13,7 @@
 			$idInput = 'tecnicoCanjesInput';
 			$idOptions = 'tecnicoCanjesOptions';
 			$idMessageError = "messageErrorTecnicoCanjes";
+			$tecnicosDB = $tecnicos;
 		@endphp
 
 		<div class="firstCanjesRow">
@@ -27,19 +28,17 @@
 			<div class="verticalPairGroup">
 				<label class="primary-label"> Técnico </label>
 				<div class="input-select" id="tecnicoSelect">
-					<div class="tooltip-container">
-						<span class="tooltip" id="idTecnicoTooltip">Este es el mensaje del tooltip</span>
-					</div>
 					<input class="input-select-item" type="text" id='{{ $idInput }}' maxlength="50" placeholder="DNI - Nombre"
-						oninput="filterOptions('{{ $idInput }}', '{{ $idOptions }}'), 
-								validateOptionFound(this, '{{ $idOptions }}', '{{ $idMessageError }}')" 
+						oninput="filterOptions('{{ $idInput }}', '{{ $idOptions }}'),
+								 validateOptionTecnicoCanjes(this, '{{ $idOptions }}', '{{ $idMessageError }}', {{ json_encode($tecnicosDB) }})"
 						onclick="toggleOptions('{{ $idInput }}', '{{ $idOptions }}')">
 					<ul class="select-items" id='{{ $idOptions }}'>
-						@foreach ($tecnicos as $tecnico)
+						@foreach ($tecnicosDB as $tecnico)
 							@php
 								$value = $tecnico->idTecnico . " - " . $tecnico->nombreTecnico;
+								$puntosActuales = $tecnico->totalPuntosActuales_Tecnico;
 							@endphp
-							<li onclick="selectOption('{{ $value }}', '{{ $idInput }}', '{{ $idOptions }}')">
+							<li onclick="selectOptionTecnicoCanjes('{{ $value }}', '{{ $idInput }}', '{{ $idOptions }}', '{{ $puntosActuales }}')">
 								{{ $value }}
 							</li>
 						@endforeach
@@ -55,8 +54,11 @@
 		</div>
 
 		<div class="thirdCanjesRow">
-			<div class="verticalPairGroup">
+			<div class="verticalPairGroup tooltipInside">
 				<label class="primary-label"> Número de comprobante </label>
+				<div class="tooltip-container">
+					<span class="tooltip" id="idTecnicoCanjesTooltip">Este es el mensaje del tooltip</span>
+				</div>
 				<x-onlySelect-input 
 						:idSelect="'comprobanteSelect'"
 						:inputClassName="'onlySelectInput'"
@@ -65,6 +67,7 @@
 						:placeholder="'Seleccionar comprobante'"
 						:name="'idVentaIntermediada'"
 						:options="$optionsNumComprobante"
+						:onSelectFunction="'selectOptionNumComprobanteCanjes'"
 				/>
 			</div>
 			<div class="verticalPairGroup">
