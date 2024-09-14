@@ -109,7 +109,11 @@ function validateNumComprobanteInputNoEmpty(recompensaCanjesInput) {
     if(!numComprobanteCanjesInput.value) {
         recompensaCanjesInput.value = '';
         showHideTooltip(numComprobanteCanjesTooltip, "Seleccione tipo de documento primero");
-    }
+    } 
+}
+
+function hideResumeContainer() {
+    resumenContainer.classList.remove('shown');
 }
 
 function returnPuntosActualesDBWithRequestedTecnicoID(idTecnico, tecnicosDB) {

@@ -6,6 +6,7 @@
     $spanOwnClassName = $spanClassName ?? ''; // Asignar un valor por defecto si $spanClassName no está definido
     $focusBorder = $focusBorder ?? '';
     $selectFunction = $onSelectFunction ?? 'selectOption'; // Asignar la función predeterminada
+    $spanClickFunction = ", " . $onSpanClickFunction . "()"  ?? '';
 @endphp
 
 <div class="input-select">
@@ -23,7 +24,7 @@
             {{ $isDisabled ? 'disabled' : '' }}
         >
         <span class="material-symbols-outlined {{ $spanOwnClassName }}" 
-              onclick="{{ $isDisabled ? '' : "clearInput('{$dynamicIdInput}')" }}"> cancel </span>
+              onclick="{{ $isDisabled ? '' : "clearInput('{$dynamicIdInput}')" }} {{$spanClickFunction}}"> cancel </span>
     </div>  
     <ul class="select-items" id="{{ $dynamicIdOptions }}">
         @foreach ($options as $option)

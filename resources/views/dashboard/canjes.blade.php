@@ -73,6 +73,7 @@
 						:name="'idVentaIntermediada'"
 						:options="$optionsNumComprobante"
 						:onSelectFunction="'selectOptionNumComprobanteCanjes'"
+						:onSpanClickFunction="'hideResumeContainer'"
 				/>
 			</div>
 
