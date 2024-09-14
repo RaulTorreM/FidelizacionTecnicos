@@ -1,6 +1,8 @@
 let tecnicoCanjesInput = document.getElementById('tecnicoCanjesInput');
 let tecnicoCanjesTooltip = document.getElementById('idTecnicoCanjesTooltip');
+let recompensaCanjesTooltip = document.getElementById('idRecompensaCanjesTooltip');
 let numComprobanteCanjesTooltip = document.getElementById('idNumComprobanteCanjesTooltip');
+let resumenContainer = document.getElementById('idResumenContainer');
 let numComprobanteCanjesInput = document.getElementById('comprobanteCanjesInput')
 let puntosActualesCanjesInput = document.getElementById('puntosActualesCanjesInput');
 
@@ -15,6 +17,7 @@ function getFormattedDate() {
 
 let date = getFormattedDate();
 let tecnicoFilledCorrectlySearchField = false;
+let recompensaFilledCorrectlySearchField = false;
 
 document.addEventListener("DOMContentLoaded", function() {
     let fechaCanjeInput = document.getElementById('idFechaCanjeInput');
@@ -23,10 +26,12 @@ document.addEventListener("DOMContentLoaded", function() {
 
 function selectOptionNumComprobanteCanjes(value, idInput, idOptions) {
     if (tecnicoCanjesInput.value && tecnicoFilledCorrectlySearchField) {
+        resumenContainer.classList.add('shown');
         selectOption(value, idInput, idOptions); 
         return;
-    } 
-
+    }
+    
+    resumenContainer.classList.remove('shown');
     showHideTooltip(tecnicoCanjesTooltip, "Seleccione un Técnico primero");
 }
 
@@ -58,7 +63,7 @@ function validateOptionTecnicoCanjes(input, idOptions, idMessageError, tecnicosD
 function selectOptionTecnicoCanjes(value, idInput, idOptions, puntosActuales, idTecnico) {
     selectOption(value, idInput, idOptions);
     puntosActualesCanjesInput.value = puntosActuales;
-    filterNumComprobantesInputWithTecnico(idTecnico);
+    //filterNumComprobantesInputWithTecnico(idTecnico);
     tecnicoFilledCorrectlySearchField = true;
 }
 
@@ -69,16 +74,41 @@ function selectOptionRecompensaCanjes(value, idInput, idOptions) {
     }
 
     selectOption(value, idInput, idOptions);
+    recompensaCanjesTooltip.classList.remove('red');
+    recompensaCanjesTooltip.classList.add('green');
+    showHideTooltip(recompensaCanjesTooltip, "Recompensa encontrada");
 }
 
-function validateOptionRecompensaCanjes() {
+function validateOptionRecompensaCanjes(input, idOptions, idMessageError, recompensasDB) {
+    const value = input.value;
+    //const messageError = document.getElementById(idMessageError);
 
+    // Obtener todos los valores del item (la función está en dashboardScrip.js)
+    const allItems = getAllLiText(idOptions);
+
+    // Comparar el valor ingresado con la lista de items 
+    const itemEncontrado = allItems.includes(value);
+   
+    // Valor no encontrado o 
+    if (value && !itemEncontrado)  {
+        //messageError.classList.add('shown'); 
+        recompensaFilledCorrectlySearchField = false;
+        recompensaCanjesTooltip.classList.remove('green');
+        recompensaCanjesTooltip.classList.add('red');
+        showHideTooltip(recompensaCanjesTooltip, "No se encontró la recompensa buscada");
+    } else if (value && itemEncontrado) {
+        //messageError.classList.remove('shown');
+        recompensaFilledCorrectlySearchField = true;
+        recompensaCanjesTooltip.classList.remove('red');
+        recompensaCanjesTooltip.classList.add('green');
+        showHideTooltip(recompensaCanjesTooltip, "Recompensa encontrada");
+    }
 }
 
 function validateNumComprobanteInputNoEmpty(recompensaCanjesInput) {
     if(!numComprobanteCanjesInput.value) {
         recompensaCanjesInput.value = '';
-        showHideTooltip(codigoClienteTooltip, "Seleccione tipo de documento primero");
+        showHideTooltip(numComprobanteCanjesTooltip, "Seleccione tipo de documento primero");
     }
 }
 

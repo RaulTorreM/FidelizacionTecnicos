@@ -187,6 +187,10 @@
 	color: var(--clr-dark-variant);
 }
 
+.primary-label.centered {
+    align-self: center;
+}
+
 .primary-label.marginX {
     margin: 0 0.8rem;
 }

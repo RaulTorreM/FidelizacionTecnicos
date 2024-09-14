@@ -1,14 +1,14 @@
 .tooltip-container {
     position: relative;
     display: inline;
-    /*FALTA CENTRAR HORIZONTALMENTE Y VERTICALMENTE EN EL CONTAINER*/
 }
 
 .tooltip {
+    --color-tooltip: rgba(119, 119, 119, 0.96); /* Gris oscuro con un 90% de opacidad */
     visibility: hidden;
     opacity: 0;
     width: 150px;
-    background-color: #777;
+    background-color: var(--color-tooltip);
     color: #fff;
     text-align: center;
     border-radius: 6px;
@@ -17,6 +17,15 @@
     z-index: 1;
     transition: opacity 0.4s, visibility 0.4s;
     font-size: 0.8rem;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Sombra suave */
+}
+
+.tooltip.red {
+    --color-tooltip: rgba(231, 115, 115, 0.96); /* Rojo suave con un 90% de opacidad */
+}
+
+.tooltip.green {
+    --color-tooltip: rgba(76, 175, 80, 0.96); /* Verde suave con un 90% de opacidad */
 }
 
 .tooltip::after {
@@ -27,7 +36,7 @@
     margin-left: -5px;
     border-width: 5px;
     border-style: solid;
-    border-color: #777 transparent transparent;
+    border-color: var(--color-tooltip) transparent transparent;
 }
 
 .tooltip.shown {

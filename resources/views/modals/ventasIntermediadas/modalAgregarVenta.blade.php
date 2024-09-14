@@ -28,7 +28,7 @@
                     <div class="form-group start">
                         <div class="input-select" id="tecnicoSelect">
                             <div class="tooltip-container">
-                                <span class="tooltip" id="idTecnicoTooltip">Este es el mensaje del tooltip</span>
+                                <span class="tooltip red" id="idTecnicoTooltip">Este es el mensaje del tooltip</span>
                             </div>
                             <input class="input-select-item" type="text" id='{{ $idInput }}' maxlength="50" placeholder="DNI - Nombre"
                                 oninput="filterOptions('{{ $idInput }}', '{{ $idOptions }}'),
@@ -69,7 +69,7 @@
                         <div class = "group-items">
                             <label class="secondary-label"> Número de documento </label>
                             <div class="tooltip-container">
-                                <span class="tooltip" id="idCodigoClienteTooltip">Este es el mensaje del tooltip</span>
+                                <span class="tooltip red" id="idCodigoClienteTooltip">Este es el mensaje del tooltip</span>
                             </div>
                             <input class="input-item" id="idClienteInput" name="codigoCliente_VentaIntermediada" maxlength="11"
                                    oninput="updateDNIRUCMaxLength(this), validateNumberRealTime(this)" placeholder="12345678">
@@ -89,7 +89,7 @@
                         <div class = "group-items">
                             <label class="secondary-label"> Número de comprobante </label>
                             <div class="tooltip-container">
-                                <span class="tooltip" id="idNumComprobanteTooltip">Este es el mensaje del tooltip</span>
+                                <span class="tooltip green" id="idNumComprobanteTooltip">Este es el mensaje del tooltip</span>
                             </div>
                             <input class="input-item" id="idVentaIntermediadaInput" name="idVentaIntermediada"
                                    oninput="validateNumComprobanteInput(this)" maxlength="13" placeholder="B001-72">
@@ -98,14 +98,14 @@
                             <label class="secondary-label centered"> Fecha y hora de emisión </label>
                             <div class="dateTimeContainer">
                                 <div class="tooltip-container">
-                                    <span class="tooltip" id="idFechaEmisionTooltip">Este es el mensaje del tooltip</span>
+                                    <span class="tooltip green" id="idFechaEmisionTooltip">Este es el mensaje del tooltip</span>
                                 </div>
                                 <input class="input-item date" id="fechaEmisionVentaIntermediadaInput" type="text"
                                         oninput="validateManualDateInput(this), updateDateInput(this)" maxlength="10"
                                         placeholder="aaaa-mm-dd">
 
                                 <div class="tooltip-container">
-                                    <span class="tooltip" id="idHoraEmisionTooltip">Este es el mensaje del tooltip</span>
+                                    <span class="tooltip green" id="idHoraEmisionTooltip">Este es el mensaje del tooltip</span>
                                 </div>
                                 <input class="input-item time" id="horaEmisionVentaIntermediadaInput" type="text"
                                         oninput="validateManualTimeInput(this), updateTimeInput(this)"  maxlength="8"

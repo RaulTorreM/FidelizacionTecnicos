@@ -286,3 +286,20 @@ aside .sidebar a:hover span {
 aside.hovered {
     width: 13rem; /* Anchura cuando el aside está expandido */
 }
+
+/*Tablas*/
+.ownTable th, td{
+    font-size: 0.8rem;
+    padding: 0.4rem 0.7rem;
+    width: auto;
+    height: auto;
+}
+
+.celda-centered {
+    text-align: center !important;
+}
+
+.celda-centered.word-wrap {
+    word-wrap: break-word;
+}
+

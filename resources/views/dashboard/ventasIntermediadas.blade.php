@@ -22,9 +22,10 @@
             @include('modals.tecnicos.modalAgregarNuevoTecnico')
         </div>
 
-        <x-modalSuccessAction>
-            Venta Intermediada registrada correctamente
-        </x-modalSuccessAction>
+        <x-modalSuccessAction 
+            :idSuccesModal="'successModalVentaIntermediadaGuardada'"
+            :message="'Venta Intermediada registrada correctamente'"
+        />
 
         <!--Tabla de ventas intermediadas-->
         <div class="thirdRow">
@@ -86,9 +87,8 @@
     <script src="{{ asset('js/modalAgregarNuevoTecnico.js') }}"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            // Verificar si hay un mensaje de éxito en la sesión
-            @if(session('success'))
-                    openModal('successModal');
+            @if(session('successVentaIntermiadaStore'))
+                    openModal('successModalVentaIntermediadaGuardada');
             @endif
         });
     </script>
