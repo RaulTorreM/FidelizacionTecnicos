@@ -25,8 +25,11 @@
 		</div>
 
 		<div class="secondCanjesRow">
-			<div class="verticalPairGroup">
+			<div class="verticalPairGroup tooltipInside">
 				<label class="primary-label"> Técnico </label>
+				<div class="tooltip-container">
+					<span class="tooltip" id="idTecnicoCanjesTooltip">Este es el mensaje del tooltip</span>
+				</div>
 				<div class="input-select" id="tecnicoSelect">
 					<input class="input-select-item" type="text" id='{{ $idInput }}' maxlength="50" placeholder="DNI - Nombre"
 						oninput="filterOptions('{{ $idInput }}', '{{ $idOptions }}'),
@@ -37,8 +40,10 @@
 							@php
 								$value = $tecnico->idTecnico . " - " . $tecnico->nombreTecnico;
 								$puntosActuales = $tecnico->totalPuntosActuales_Tecnico;
+								$idTecnico = $tecnico->idTecnico
 							@endphp
-							<li onclick="selectOptionTecnicoCanjes('{{ $value }}', '{{ $idInput }}', '{{ $idOptions }}', '{{ $puntosActuales }}')">
+							<li onclick="selectOptionTecnicoCanjes('{{ $value }}', '{{ $idInput }}', '{{ $idOptions }}', 
+										'{{ $puntosActuales }}', '{{ $idTecnico }}')">
 								{{ $value }}
 							</li>
 						@endforeach
@@ -57,7 +62,7 @@
 			<div class="verticalPairGroup tooltipInside">
 				<label class="primary-label"> Número de comprobante </label>
 				<div class="tooltip-container">
-					<span class="tooltip" id="idTecnicoCanjesTooltip">Este es el mensaje del tooltip</span>
+					<span class="tooltip" id="idNumComprobanteCanjesTooltip">Este es el mensaje del tooltip</span>
 				</div>
 				<x-onlySelect-input 
 						:idSelect="'comprobanteSelect'"
@@ -94,6 +99,64 @@
 				<input class="input-item" id="montoTotalCanjesInput" maxlength="4" 
 					   placeholder="0" name="bbb" disabled>
 			</div>
+		</div>
+
+		<div class="fourthCanjesRow">
+			<div class="verticalPairGroup tooltipInside">
+				<label class="primary-label"> Recompensas </label>
+				<div class="tooltip-container">
+					<span class="tooltip" id="idRecompensasCanjesTooltip">Este es el mensaje del tooltip</span>
+				</div>
+				 @php
+					$idRecompensaInput = 'recompensasCanjesInput';
+					$idRecompensaOptions = 'recompensaOptions';
+					$idRecompensaMessageError = 'messageErrorRecompensaCanjes';
+					$recompensasDB = $RecompensasWithoutEfectivo;
+				@endphp
+				<div class="input-select" id="tecnicoSelect">
+					<div class="tooltip-container">
+						<span class="tooltip" id="idTecnicoTooltip">Este es el mensaje del tooltip</span>
+					</div>
+					<input class="input-select-item" type="text" id='{{ $idRecompensaInput }}' maxlength="50" placeholder="Código - Tipo - Descripción"
+						oninput="filterOptions('{{ $idRecompensaInput }}', '{{ $idRecompensaOptions }}'), validateNumComprobanteInputNoEmpty(this)
+								validateOptionRecompensaCanjes(this, '{{ $idRecompensaOptions }}', '{{ $idRecompensaMessageError }}', {{ json_encode($recompensasDB) }})"
+						onclick="toggleOptions('{{ $idRecompensaInput }}', '{{ $idRecompensaOptions }}')">
+					<ul class="select-items" id='{{ $idRecompensaOptions }}'>
+						@foreach ($recompensasDB as $recompensa)
+							@php
+								$value = $recompensa->idRecompensa . " - " . $recompensa->tipoRecompensa .
+										 " - " . $recompensa->descripcionRecompensa;
+								$idRecompensa = $recompensa->idRecompensa;
+								$costoPuntosRecompensa = $recompensa->costoPuntos_Recompensa;
+							@endphp
+							
+							<li onclick="selectOptionRecompensaCanjes('{{ $value }}', '{{ $idRecompensaInput }}', '{{ $idRecompensaOptions }}',
+																	  '{{ $idRecompensa }}')">
+								{{ $value }}
+							</li>
+						@endforeach
+					</ul>
+				</div>
+			</div>
+			<div class="verticalPairGroup">
+				<label class="primary-label noEditable"> Cantidad </label>
+				<input class="input-item" id="cantidadRecompensaCanjesInput" type="number" min="1" max="100" 
+					   placeholder="0" name="cantidadRecompensa_Canje"
+					   oninput="validateRealTimeInputLength(this, 3), validateNumberRealTime(this), 
+					   			validateMinMaxRealTime(this, 1, 100)">
+			</div>
+
+			<x-btn-create-item 
+				id="idAgregarRecompensaTablaBtn" 
+				onclick="">
+				Agregar a tabla
+			</x-btn-create-item>
+
+			<x-btn-delete-item 
+				id="idQuitarRecompensaTablaBtn" 
+				onclick="">
+				Quitar
+			</x-btn-delete-item>
 		</div>
 
 	</div>

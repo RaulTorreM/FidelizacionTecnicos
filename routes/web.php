@@ -26,9 +26,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('/dashboard-ventasIntermediadas', [VentaIntermediadaController::class, 'create'])->name('ventasIntermediadas.create');
     Route::post('/modal-storeVenta', [VentaIntermediadaController::class, 'store'])->name('ventasIntermediadas.store');
-   
+    
     Route::get('/dashboard-canjes', [CanjeController::class, 'create'])->name('canjes.create');  
-   
+    route::get('/dashboard-canjes/tecnico/{idTecnico}', [VentaIntermediadaController::class, 'getComprobantesByTecnico'])
+        ->name('getVentasIntermediadasWithTecnico');
 
 
     Route::get('/dashboard-recompensas', [RecompensaController::class, 'create'])->name('recompensas.create');  

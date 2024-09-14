@@ -54,6 +54,18 @@ h3 {
 	border-bottom: 1.5px solid #ccc;
 }
 
+.fourthCanjesRow{
+    display: flex;
+	flex-direction: row;
+    width: 100%;
+	height: auto;
+	align-content: space-between;
+	margin-top: 1rem;
+	gap: 1rem;
+	padding-bottom: 1rem;
+	border-bottom: 1.5px solid #ccc;
+}
+
 .verticalPairGroup {
 	display: flex;
 	flex-direction: column;
@@ -114,4 +126,23 @@ h3 {
 
 #messageErrorTecnicoCanjes {
 	margin-top: 1.6rem;
+}
+
+#recompensasCanjesInput {
+	width: 35rem;
+}
+
+#cantidadRecompensaCanjesInput {
+	width: 5rem;
+	text-align: center;
+}
+
+#idAgregarRecompensaTablaBtn {
+	max-width: 10rem;
+	max-height: 2rem;
+}
+
+#idQuitarRecompensaTablaBtn {
+	max-width: 10rem;
+	max-height: 2rem;
 }

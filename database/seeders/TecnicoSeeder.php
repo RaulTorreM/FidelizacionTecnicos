@@ -24,7 +24,7 @@ class TecnicoSeeder extends Seeder
         
         Tecnico::create([
             'idTecnico' => '77665544',
-            'nombreTecnico' => 'Manuel Carrasco Flores',
+            'nombreTecnico' => 'PruebaNombre PruebaApellido',
             'celularTecnico' =>'999888777', 
             'oficioTecnico' => 'Albañil',
             'fechaNacimiento_Tecnico' => '1998-10-13',
@@ -33,6 +33,6 @@ class TecnicoSeeder extends Seeder
             'rangoTecnico' => 'Plata',
         ]);
 
-        Tecnico::factory(1000)->create();
+        Tecnico::factory(10)->create();
     }
 }

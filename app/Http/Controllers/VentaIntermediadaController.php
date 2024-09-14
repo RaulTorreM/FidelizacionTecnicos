@@ -46,7 +46,6 @@ class VentaIntermediadaController extends Controller
         return $tipoComprobante;
     }
 
-    
     public function create()
     {
         // Obtener todas las ventas intermediadas con sus canjes y cargar los modelos relacionados
@@ -105,5 +104,13 @@ class VentaIntermediadaController extends Controller
         VentaIntermediada::create($request->all());
         // Los datos que no se envian tienen valores por default en la migración   
         return redirect()->route('ventasIntermediadas.create')->with('success', 'Venta Intermediada guardada correctamente');
+    }
+
+    public function getComprobantesByTecnico($idTecnico)
+    {
+        $comprobantes = VentaIntermediada::where('idTecnico', $idTecnico)
+            ->get(['idVentaIntermediada', 'codigoCliente_VentaIntermediada']);
+        
+        return json_encode($comprobantes);
     }
 }

@@ -549,7 +549,7 @@ $(document).ready(function() {
 
 	$('#tblTecnicos').DataTable({
 		// Configuración inicial
-		lengthMenu: [3, 10, 1000], 
+		lengthMenu: [3, 10, 15], 
 		pageLength: 10, 
 		dom: "Blifrtp", //B:buttons f:filter r:processing t:table
 						//i:info l:length ("Mostrar n registros") p:paging

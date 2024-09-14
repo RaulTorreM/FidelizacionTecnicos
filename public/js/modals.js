@@ -265,6 +265,26 @@ function getAllLiText(idOptions) {
 Esta función está en dashboardScript.js
 */
 
+function validateMinMaxRealTime(input, min, max) {
+    // Obtener el valor actual del input
+    const value = parseFloat(input.value);
+
+    // Verificar si el valor es NaN o no está dentro del rango permitido
+    if (isNaN(value)) {
+        input.value = '';
+        return;
+    }
+
+    // Ajustar el valor si está fuera del rango mínimo
+    if (value < min) {
+        input.value = min;
+    }
+
+    // Ajustar el valor si está fuera del rango máximo
+    if (value > max) {
+        input.value = max;
+    }
+}
 
 function validateValueOnRealTime(input, idOptions, idMessageError, someHiddenIdInputsArray, 
                                 otherInputsArray = null, itemsDB = null, searchField = null,

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Canje;
+use App\Models\Recompensa;
 use App\Models\Tecnico;
 use App\Models\VentaIntermediada;
 
@@ -41,10 +42,22 @@ class CanjeController extends Controller
     {
         $tecnicos = Tecnico::all();
         $ventas = VentaIntermediada::all();
+        // Obtener todas las recompensas en una sola consulta
+        $recompensas = Recompensa::all();
+        
+        // Obtener la primera recompensa
+        $recomEfectivo = $recompensas->first();
+        // Obtener el resto de las recompensas excluyendo la primera
+        $RecompensasWithoutEfectivo = $recompensas->slice(1);
+        
+        // Obtener las opciones de número de comprobante
         $optionsNumComprobante = [];
         foreach ($ventas as $venta) {
             $optionsNumComprobante[] = $venta->idVentaIntermediada;
         }
-        return view('dashboard.canjes', compact('tecnicos', 'ventas', 'optionsNumComprobante'));
+        
+        return view('dashboard.canjes', compact('tecnicos', 'ventas', 'optionsNumComprobante', 
+                                                'RecompensasWithoutEfectivo', 'recomEfectivo'));
     }
+
 }
