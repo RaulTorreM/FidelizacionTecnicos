@@ -6,7 +6,7 @@
     $spanOwnClassName = $spanClassName ?? ''; // Asignar un valor por defecto si $spanClassName no está definido
     $focusBorder = $focusBorder ?? '';
     $selectFunction = $onSelectFunction ?? 'selectOption'; // Asignar la función predeterminada
-    $spanClickFunction = ", " . $onSpanClickFunction . "()"  ?? '';
+    $spanClickFunction = isset($onSpanClickFunction) ? ", " . $onSpanClickFunction . "()" : '';
 @endphp
 
 <div class="input-select">

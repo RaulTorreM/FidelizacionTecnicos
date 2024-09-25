@@ -12,6 +12,7 @@
     referrerpolicy="no-referrer"/>
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="{{ asset('css/configuracionStyle.css') }}">
     @stack('styles')
 @endpush
 
@@ -119,4 +120,14 @@
     <script src="{{ asset('js/datatables.js') }}"> </script>
     <script src="{{ asset('js/datatableConfig.js') }}"> </script>
     <script src="{{ asset('js/modals.js') }}"> </script>
+    <script>
+        // Aplicar configuración al cargar la página
+        document.addEventListener('DOMContentLoaded', function() {
+            if (localStorage.getItem('darkMode') === 'true') {
+                document.documentElement.classList.add('dark-mode');
+            }
+            document.documentElement.classList.add(`font-${localStorage.getItem('fontSize') || 'medium'}`);
+            document.documentElement.style.setProperty('--button-color', localStorage.getItem('accentColor') || '#007bff');
+        });
+    </script>
 @endpush

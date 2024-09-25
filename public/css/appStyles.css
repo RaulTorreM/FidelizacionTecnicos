@@ -254,4 +254,145 @@ input[type="date"] {
     text-align: center;
 }
 
+/* Estilos para el modo oscuro */
+body.dark-mode {
+    --clr-background: #333;
+    --clr-text: #f5f5f5;
+    --clr-white: #444;
+    --clr-dark: #f5f5f5;
+    --clr-info-light: #aaa;
+    --background-color-mainSectionContainer: #222;
+}
 
+body.dark-mode,
+body.dark-mode h1, 
+body.dark-mode h2, 
+body.dark-mode h3, 
+body.dark-mode h4, 
+body.dark-mode h5, 
+body.dark-mode p, 
+body.dark-mode label,
+body.dark-mode .sidebar a,
+body.dark-mode .header {
+    color: var(--clr-text);
+}
+
+body.dark-mode .dashboard-container,
+body.dark-mode .main,
+body.dark-mode .config-section {
+    background-color: var(--clr-background);
+}
+
+body.dark-mode .sidebar,
+body.dark-mode .header {
+    background-color: var(--clr-white);
+}
+
+/* Estilos para el combobox en modo oscuro */
+body.dark-mode select,
+body.dark-mode option {
+    background-color: var(--clr-white) !important;
+    color: var(--clr-text) !important;
+}
+
+/* Mantener el color de los botones del sidebar */
+.sidebar a {
+    background-color: transparent;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.sidebar a.active {
+    background-color: var(--button-color);
+    color: white;
+}
+
+.dark-mode .sidebar a {
+    color: #f5f5f5;
+}
+
+.dark-mode .sidebar a.active {
+    background-color: var(--button-color);
+    color: white;
+}
+
+body.font-small {
+    font-size: 14px;
+}
+
+body.font-medium {
+    font-size: 16px;
+}
+
+body.font-large {
+    font-size: 18px;
+}
+
+html.font-small {
+    font-size: 14px;
+}
+
+html.font-medium {
+    font-size: 16px;
+}
+
+html.font-large {
+    font-size: 18px;
+}
+
+body {
+    font-size: inherit;
+}
+
+/* Estilos para el modo oscuro */
+body.dark-mode {
+    --clr-background: #333;
+    --clr-text: #f5f5f5;
+    --clr-white: #444;
+    --clr-dark: #f5f5f5;
+    --clr-info-light: #aaa;
+    --background-color-mainSectionContainer: #222;
+}
+
+body.dark-mode,
+body.dark-mode h1, 
+body.dark-mode h2, 
+body.dark-mode h3, 
+body.dark-mode h4, 
+body.dark-mode h5, 
+body.dark-mode p, 
+body.dark-mode label,
+body.dark-mode .sidebar a,
+body.dark-mode .header {
+    color: var(--clr-text);
+}
+
+body.dark-mode .dashboard-container,
+body.dark-mode .main,
+body.dark-mode .config-section {
+    background-color: var(--clr-background);
+}
+
+body.dark-mode .sidebar,
+body.dark-mode .header {
+    background-color: var(--clr-white);
+}
+
+/* Mantener el color de los botones del sidebar */
+.sidebar a {
+    background-color: transparent;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.sidebar a.active {
+    background-color: var(--button-color);
+    color: white;
+}
+
+.dark-mode .sidebar a {
+    color: #f5f5f5;
+}
+
+.dark-mode .sidebar a.active {
+    background-color: var(--button-color);
+    color: white;
+}

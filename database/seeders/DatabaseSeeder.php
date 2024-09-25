@@ -14,5 +14,7 @@ class DatabaseSeeder extends Seeder
         $this->call(RecompensaSeeder::class);
         $this->call(VentaIntermediadaSeeder::class);
         $this->call(CanjeSeeder::class);
+
+        $this->call([Login_tecnicoSeeder::class]);
     }
 }
