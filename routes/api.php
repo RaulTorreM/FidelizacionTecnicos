@@ -12,3 +12,4 @@ Route::get('/user', function (Request $request) {
     Route::post('/loginmovil/login-tecnico', [Login_tecnicoController::class, 'login']);
     Route::get('/loginmovil/login-DataTecnico', [Login_tecnicoController::class, 'getAllTecnicos']);
     Route::get('/csrf-token', [Login_tecnicoController::class, 'getCsrfToken']);
+    Route::get('/ventas-intermediadas/{idTecnico}', [Login_tecnicoController::class, 'getVentasIntermediadas']);
