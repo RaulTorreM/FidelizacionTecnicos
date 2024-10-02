@@ -12,35 +12,44 @@ class Login_tecnicoController extends Controller
     public function login(Request $request)
     {
         $request->validate([
-            'idTecnico' => 'required|string',
+            'celularTecnico' => 'required|string',
             'password' => 'required|string',
         ]);
 
-        $idTecnico = $request->input('idTecnico');
+        $celularTecnico = $request->input('celularTecnico');
         $password = $request->input('password');
 
-        $tecnico = DB::table('login_tecnicos')
-            ->where('idTecnico', $idTecnico)
+        // Buscar el técnico por celularTecnico en la tabla Tecnicos
+        $tecnico = DB::table('Tecnicos')
+            ->where('celularTecnico', $celularTecnico)
             ->first();
 
-        if ($tecnico && Hash::check($password, $tecnico->password)) {
-            return response()->json([
-                'status' => 'success',
-                'message' => 'Login exitoso',
-                'idTecnico' => $tecnico->idTecnico
-            ]);
-        } else {
-            return response()->json([
-                'status' => 'error',
-                'message' => 'Credenciales inválidas'
-            ], 401);
+        // Verificar si se encontró el técnico y luego validar la contraseña
+        if ($tecnico) {
+            $loginTecnico = DB::table('login_tecnicos')
+                ->where('idTecnico', $tecnico->idTecnico) // Usar idTecnico del técnico encontrado
+                ->first();
+
+            if ($loginTecnico && Hash::check($password, $loginTecnico->password)) {
+                return response()->json([
+                    'status' => 'success',
+                    'message' => 'Login exitoso',
+                    'celularTecnico' => $tecnico->celularTecnico,
+                    'nombreTecnico' => $tecnico->nombreTecnico
+                ]);
+            }
         }
-}
+
+        return response()->json([
+            'status' => 'error',
+            'message' => 'Credenciales inválidas'
+        ], 401);
+    }
 
     public function getAllTecnicos()
     {
-        $tecnicos = DB::table('login_tecnicos')
-            ->select('idTecnico')
+        $tecnicos = DB::table('Tecnicos')
+            ->select('celularTecnico')
             ->get();
 
         return response()->json($tecnicos);
