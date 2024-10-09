@@ -34,15 +34,7 @@ class Login_tecnicoController extends Controller
                 return response()->json([
                     'status' => 'success',
                     'message' => 'Login exitoso',
-                    'tecnico' => [ // Devolver los datos del técnico
-                        'idTecnico' => $tecnico->idTecnico,
-                        'celularTecnico' => $tecnico->celularTecnico,
-                        'nombreTecnico' => $tecnico->nombreTecnico,
-                        'fechaNacimientoTecnico' => $tecnico->fechaNacimiento_Tecnico,
-                        'puntosTecnico' => $tecnico->totalPuntosActuales_Tecnico,
-                        'historicoPuntosTecnico' => $tecnico->historicoPuntos_Tecnico,
-                        'rangoTecnico' => $tecnico->rangoTecnico
-                    ]
+                    'idTecnico' => $tecnico->idTecnico
                 ]);
             }
         }
@@ -68,11 +60,41 @@ class Login_tecnicoController extends Controller
     }
 
     public function getVentasIntermediadas($idTecnico)
-{
+    {
     $ventas = DB::table('ventasintermediadas')
         ->where('idTecnico', $idTecnico)
         ->get();
         
         return response()->json($ventas);
+    }
+
+    public function obtenerTecnicoPorId($idTecnico)
+    {
+    $datostecnico = DB::table('Tecnicos')
+        ->where('idTecnico', $idTecnico)
+        ->first();
+        
+        return response()->json([
+            'tecnico' => [ // Devolver los datos del técnico
+                'idTecnico' => $datostecnico->idTecnico,
+                'nombreTecnico' => $datostecnico->nombreTecnico,
+                'celularTecnico' => $datostecnico->celularTecnico,
+                'oficioTecnico' => $datostecnico-> oficioTecnico,
+                'fechaNacimiento_Tecnico' => $datostecnico->fechaNacimiento_Tecnico,
+                'totalPuntosActuales_Tecnico' => $datostecnico->totalPuntosActuales_Tecnico,
+                'historicoPuntos_Tecnico' => $datostecnico->historicoPuntos_Tecnico,
+                'rangoTecnico' => $datostecnico->rangoTecnico
+            ]
+        ]);
+    }
+
+    public function obtenerRecompensas()
+    {
+        // Obtener todas las recompensas desde la tabla 'Recompensas'
+        $recompensas = DB::table('Recompensas')
+            ->select('idRecompensa', 'tipoRecompensa', 'descripcionRecompensa', 'costoPuntos_Recompensa')
+            ->get();
+
+        return response()->json($recompensas);
     }
 }
